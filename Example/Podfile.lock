@@ -1,0 +1,16 @@
+PODS:
+  - GQPaymentIOSSDK (0.1.0)
+
+DEPENDENCIES:
+  - GQPaymentIOSSDK (from `../`)
+
+EXTERNAL SOURCES:
+  GQPaymentIOSSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  GQPaymentIOSSDK: 7259ac36c9b3c23bb1ba38e4d1306bb4a8726b02
+
+PODFILE CHECKSUM: 2d4402bf2ff41dc273aa2238df6e8d2cbbf9d9a1
+
+COCOAPODS: 1.14.3
