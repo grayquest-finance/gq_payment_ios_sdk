@@ -27,58 +27,58 @@ class ViewController: UIViewController, GQPaymentDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    @IBAction func openSDK(_ sender: Any) {
-        
-        
-        let auth: [String: Any] = [
-            "client_id": "<KEY>",
-            "client_secret": "<KEY>",
-            "gq_api_key": "<KEY>"
-        ]
-        
-        //              let auth: [String: Any] = [
-        //                  "client_id": "<KEY>",
-        //                  "client_secret": "<KEY>",
-        //                  "gq_api_key": "<KEY>"
-        //              ]
-        
-        let ppConfig: [String: Any] = [
-//                  "slug": "masira-darvesh-ayc-two"
-            "slug": "masira-darvesh-gile"
-            //            "card_code": "card_code"
-        ]
-        
-        let feeHeaders: [String: Any] = [
-            "Payable_fee_EMI": 12000,
-            "Payable_fee_Auto_Debit": 10000,
-            "Payable_fee_PG": 100
-        ]
-        
-        let customization: [String: Any] = [
-            "fee_helper_text": "fee_helper_text",
-            "logo_url": "logo_url",
-            "theme_color": "45AC45"
-        ]
-        
-        let config: [String: Any] = [
-            "auth": auth,
-            "student_id": "demo_1022",
-            "env": "test",
-            "customer_number": "8425900022",
-            "pp_config": ppConfig,
-            "fee_headers": feeHeaders,
-            //                  "customization": customization
-        ]
-        
-        
-        let gqPaymentSDK = GQPaymentSDK()
-        gqPaymentSDK.delegate = self
-        gqPaymentSDK.clientJSONObject = config
-        DispatchQueue.main.async {
-            self.present(gqPaymentSDK, animated: true)
-        }
-        
-    }
+//    @IBAction func openSDK(_ sender: Any) {
+//        
+//        
+//        let auth: [String: Any] = [
+//            "client_id": "<KEY>",
+//            "client_secret": "<KEY>",
+//            "gq_api_key": "<KEY>"
+//        ]
+//        
+//        //              let auth: [String: Any] = [
+//        //                  "client_id": "<KEY>",
+//        //                  "client_secret": "<KEY>",
+//        //                  "gq_api_key": "<KEY>"
+//        //              ]
+//        
+//        let ppConfig: [String: Any] = [
+////                  "slug": "masira-darvesh-ayc-two"
+//            "slug": "masira-darvesh-gile"
+//            //            "card_code": "card_code"
+//        ]
+//        
+//        let feeHeaders: [String: Any] = [
+//            "Payable_fee_EMI": 12000,
+//            "Payable_fee_Auto_Debit": 10000,
+//            "Payable_fee_PG": 100
+//        ]
+//        
+//        let customization: [String: Any] = [
+//            "fee_helper_text": "fee_helper_text",
+//            "logo_url": "logo_url",
+//            "theme_color": "45AC45"
+//        ]
+//        
+//        let config: [String: Any] = [
+//            "auth": auth,
+//            "student_id": "demo_1022",
+//            "env": "test",
+//            "customer_number": "8425900022",
+//            "pp_config": ppConfig,
+//            "fee_headers": feeHeaders,
+//            //                  "customization": customization
+//        ]
+//        
+//        
+//        let gqPaymentSDK = GQPaymentSDK()
+//        gqPaymentSDK.delegate = self
+//        gqPaymentSDK.clientJSONObject = config
+//        DispatchQueue.main.async {
+//            self.present(gqPaymentSDK, animated: true)
+//        }
+//        
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
