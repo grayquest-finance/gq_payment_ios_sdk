@@ -1,22 +1,32 @@
 {
   "name": "GQPaymentIOSSDK",
   "version": "0.1.0",
-  "summary": "A short description of GQPaymentIOSSDK.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/1410avi/GQPaymentIOSSDK",
+  "summary": "GrayQuest Education Finance Pvt. Ltd. iOS SDK",
+  "description": "\"The SDK is an integrated flow in ERP that will enable users to avail multiple payment options in a seamless manner, with faster integration and deployment times.\"",
+  "homepage": "https://github.com/grayquest-finance/gq_payment_ios_sdk",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "1410avi": "avinash.soni@grayquest.com"
+    "grayquest-finance": "developer@grayquest.com"
   },
   "source": {
-    "git": "https://github.com/1410avi/GQPaymentIOSSDK.git",
+    "git": "https://github.com/grayquest-finance/gq_payment_ios_sdk.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "10.0"
+    "ios": "15.0"
   },
-  "source_files": "GQPaymentIOSSDK/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "GQPaymentIOSSDK/Classes/**/*",
+  "dependencies": {
+    "CashfreePG": [
+      "~> 2.0.3"
+    ],
+    "razorpay-pod": [
+      "1.2.5"
+    ]
+  },
+  "swift_version": "5.0"
 }
