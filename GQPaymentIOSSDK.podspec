@@ -32,6 +32,8 @@ Pod::Spec.new do |s|
   s.swift_versions = "5.0"
 
   s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
+  s.dependency 'CashfreePG', '~> 2.0.3'
+  s.dependency 'razorpay-pod', '1.2.5'
   
   # s.resource_bundles = {
   #   'GQPaymentIOSSDK' => ['GQPaymentIOSSDK/Assets/*.png']

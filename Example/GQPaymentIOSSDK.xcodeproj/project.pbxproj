@@ -316,10 +316,22 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework/CFNetworkSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework/CashfreeAnalyticsSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework/CashfreePG",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework/CashfreePGCoreSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework/CashfreePGUISDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework/Razorpay",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GQPaymentIOSSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CFNetworkSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreeAnalyticsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGCoreSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGUISDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

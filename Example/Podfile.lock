@@ -1,16 +1,45 @@
 PODS:
-  - GQPaymentIOSSDK (0.1.0)
+  - CashfreeAnalyticsSDK (2.0.5):
+    - CFNetworkSDK (~> 2.0.5)
+  - CashfreePG (2.0.9):
+    - CashfreePGUISDK (~> 2.0.8)
+  - CashfreePGCoreSDK (2.0.8):
+    - CashfreeAnalyticsSDK (~> 2.0.5)
+  - CashfreePGUISDK (2.0.8):
+    - CashfreePGCoreSDK (~> 2.0.8)
+  - CFNetworkSDK (2.0.5)
+  - GQPaymentIOSSDK (0.1.0):
+    - CashfreePG (~> 2.0.3)
+    - razorpay-pod (= 1.2.5)
+  - razorpay-pod (1.2.5)
 
 DEPENDENCIES:
+  - CashfreePG (~> 2.0.3)
   - GQPaymentIOSSDK (from `../`)
+  - razorpay-pod (= 1.2.5)
+
+SPEC REPOS:
+  trunk:
+    - CashfreeAnalyticsSDK
+    - CashfreePG
+    - CashfreePGCoreSDK
+    - CashfreePGUISDK
+    - CFNetworkSDK
+    - razorpay-pod
 
 EXTERNAL SOURCES:
   GQPaymentIOSSDK:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GQPaymentIOSSDK: 7259ac36c9b3c23bb1ba38e4d1306bb4a8726b02
+  CashfreeAnalyticsSDK: 6d3825916b1f37e38e26cc3b825eef31c9a8b4b9
+  CashfreePG: 857dffd7e7ecec2b3efc572d3ff0ebf5f59dc342
+  CashfreePGCoreSDK: 8ad9ae1bc97668d5399e936e2de00d6d103a7bfb
+  CashfreePGUISDK: 891276c947bc2aea7f3990bb60c19cd62c631313
+  CFNetworkSDK: 02adc1210041ce65a6653049c730c9db2f73451a
+  GQPaymentIOSSDK: 1a2d887a24b6bbeac9862a5d683e2c530ff1c2f6
+  razorpay-pod: aa2df076ea44baab6cc8296c1ccc715fe2ca818c
 
-PODFILE CHECKSUM: 2d4402bf2ff41dc273aa2238df6e8d2cbbf9d9a1
+PODFILE CHECKSUM: 8652713ebea5e8e1991755683b72e736a4d2a12e
 
 COCOAPODS: 1.14.3
