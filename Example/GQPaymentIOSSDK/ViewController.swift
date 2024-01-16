@@ -8,77 +8,206 @@
 
 import UIKit
 import GQPaymentIOSSDK
+import SwiftUI
 
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
-        print("Success Received in App: \(data)")
+        callBackMessage += convertDictionaryToJson(dictionary: data!)!
+        callback.isHidden.toggle()
+        print("Success callback received with data: \(data)")
     }
     
     func gqFailureResponse(data: [String : Any]?) {
-        print("Failure Received in App: \(data)")
+        print("Failure callback received with data: \(data)")
+        callBackMessage += convertDictionaryToJson(dictionary: data!)!
+        callback.isHidden.toggle()
+        self.dismiss(animated: true, completion: nil)
     }
     
     func gqCancelResponse(data: [String : Any]?) {
-        print("Cancel Received in App: \(data)")
+        print("Cancel callback received with data: \(data)")
+//        openAlert(title: "Cancel", message: "\(data)")
+        callBackMessage += convertDictionaryToJson(dictionary: data!)!
+        callback.isHidden.toggle()
     }
     
+    
+    @IBOutlet weak var txtClientId: UITextField!
+    @IBOutlet weak var txtClientSecretKey: UITextField!
+    @IBOutlet weak var txtGqApiKey: UITextField!
+    @IBOutlet weak var txtEnvironment: UITextField!
+    @IBOutlet weak var txtStudentID: UITextField!
+    @IBOutlet weak var txtCustomerNumber: UITextField!
+    @IBOutlet weak var txtPPConfig: UITextField!
+    @IBOutlet weak var txtFeeHeader: UITextField!
+    @IBOutlet weak var txtCustomization: UITextField!
+    @IBOutlet weak var txtOptionalData: UITextField!
+    
+    @IBOutlet weak var callback: UIButton!
+    var clientID: String?
+    var clientSecretKey: String?
+    var gqApiKey: String?
+    var environment: String?
+    var studentID: String?
+    var customerNumber: String?
+    var ppConfig: String?
+    var feeHeader: String?
+    var customization: String?
+    var optionalObj: String?
+    var callBackMessage: String = ""
+    
+    var config: [String: Any] = [:]
+    var auth: [String: Any] = [:]
+    var ppConfigObj: [String: Any] = [:]
+    var feeHeqaderObj: [String: Any] = [:]
+    var customizationObj: [String: Any] = [:]
+    var optionalDataObj: [String: Any] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    
+        callback.isHidden = true
     }
-//    @IBAction func openSDK(_ sender: Any) {
-//        
-//        
-//        let auth: [String: Any] = [
-//            "client_id": "GQ-0d2ed24e-cc1f-400b-a4e3-7208c88b99b5",
-//            "client_secret": "a96dd7ea-7d4a-4772-92c3-ac481713be4a",
-//            "gq_api_key": "b59bf799-2a82-4298-b901-09c512ea4aaa"
-//        ]
-//        
-//        //              let auth: [String: Any] = [
-//        //                  "client_id": "GQ-e2daf990-c020-4162-9a2f-da9ec6423be5",
-//        //                  "client_secret": "51028d07-97aa-4498-8379-5c2e8e4d3716",
-//        //                  "gq_api_key": "08051930-3621-42ff-858b-cb86383df2d5"
-//        //              ]
-//        
-//        let ppConfig: [String: Any] = [
-////                  "slug": "masira-darvesh-ayc-two"
-//            "slug": "masira-darvesh-gile"
-//            //            "card_code": "card_code"
-//        ]
-//        
-//        let feeHeaders: [String: Any] = [
-//            "Payable_fee_EMI": 12000,
-//            "Payable_fee_Auto_Debit": 10000,
-//            "Payable_fee_PG": 100
-//        ]
-//        
-//        let customization: [String: Any] = [
-//            "fee_helper_text": "fee_helper_text",
-//            "logo_url": "logo_url",
-//            "theme_color": "45AC45"
-//        ]
-//        
-//        let config: [String: Any] = [
-//            "auth": auth,
-//            "student_id": "demo_1022",
-//            "env": "test",
-//            "customer_number": "8425900022",
-//            "pp_config": ppConfig,
-//            "fee_headers": feeHeaders,
-//            //                  "customization": customization
-//        ]
-//        
-//        
-//        let gqPaymentSDK = GQPaymentSDK()
-//        gqPaymentSDK.delegate = self
-//        gqPaymentSDK.clientJSONObject = config
-//        DispatchQueue.main.async {
-//            self.present(gqPaymentSDK, animated: true)
+    
+    @IBAction func btnOpenSdk(_ sender: UIButton) {
+        callBackMessage = ""
+        if !callback.isHidden {
+            callback.isHidden.toggle()
+        }
+        clientID = txtClientId.text
+        clientSecretKey = txtClientSecretKey.text
+        gqApiKey = txtGqApiKey.text
+        
+        environment = txtEnvironment.text
+        studentID = txtStudentID.text
+        customerNumber = txtCustomerNumber.text
+        
+        ppConfig = txtPPConfig.text
+        feeHeader = txtFeeHeader.text
+        customization = txtCustomization.text
+        optionalObj = txtOptionalData.text
+        
+        openSDK()
+        
+    }
+    func openSDK(){
+        auth = [:]
+        config = [:]
+        
+        if let unwrapClientId = clientID, !unwrapClientId.isEmpty,
+           let unwrapSecretKey = clientSecretKey, !unwrapSecretKey.isEmpty,
+           let unwrapGqApi = gqApiKey, !unwrapGqApi.isEmpty{
+            print("true")
+            auth = [
+                "client_id": unwrapClientId,
+                "client_secret_key": unwrapSecretKey,
+                "gq_api_key": unwrapGqApi
+            ]
+            
+            config["auth"] = auth
+        } else {
+            print("false")
+        }
+        
+        
+        config["student_id"] = studentID
+        config["env"] = environment
+        
+        if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty{
+            config["customer_number"] = unwrapCustomerNumber
+        }
+        
+        if let unwrapCustomization = customization, !unwrapCustomization.isEmpty{
+            config["customization"] = converString(dataString: unwrapCustomization)
+        }
+        
+        if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
+            print("ppConfigConvert: \(converString(dataString: ppConfig!))")
+            config["pp_config"] = converString(dataString: unwrapPPConifg)
+        }
+        
+        if let unwrapFeeHeader = feeHeader, !unwrapFeeHeader.isEmpty{
+            config["fee_headers"] = converString(dataString: unwrapFeeHeader)
+        }
+        
+        print("Config Object: \(config)")
+        
+        let gqPaymentSDK = GQPaymentSDK()
+        gqPaymentSDK.delegate = self
+        gqPaymentSDK.clientJSONObject = config
+        if let wrapOption = optionalObj, !wrapOption.isEmpty{
+            gqPaymentSDK.prefillJSONObject = converString(dataString: wrapOption)
+        }
+        DispatchQueue.main.async {
+            self.present(gqPaymentSDK, animated: true)
+        }
+        
+    }
+    @IBAction func callback(_ sender: UIButton) {
+//        if var wrapCallBack = callBackMessage, !wrapCallBack.isEmpty{
+            openAlert(title: "CallBack Listner", message: callBackMessage)
 //        }
-//        
-//    }
+    }
+    @IBAction func btnPrefill(_ sender: UIButton) {
+        txtClientId.text = "GQ-0d2ed24e-cc1f-400b-a4e3-7208c88b99b5"
+        txtClientSecretKey.text = "a96dd7ea-7d4a-4772-92c3-ac481713be4a"
+        txtGqApiKey.text = "b59bf799-2a82-4298-b901-09c512ea4aaa"
+        
+        txtEnvironment.text = "test"
+        txtStudentID.text = "demo_00023"
+        txtCustomerNumber.text = "8425900023"
+        
+        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+    }
+    
+    func converString(dataString: String) -> [String:Any] {
+        
+        // Convert the JSON string to Data
+        if let jsonData = dataString.data(using: .utf8) {
+            do {
+                // Deserialize the JSON data into a dictionary
+                if let dataObj = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                    // Now, dataObj is a dictionary of type [String: Any]
+                    print(dataObj)
+                    return dataObj
+                } else {
+                    return [:]
+                    print("Failed to cast JSON object to [String: Any]")
+                }
+            } catch {
+                return [:]
+                print("Error deserializing JSON: \(error)")
+            }
+        } else {
+            return [:]
+            print("Failed to convert JSON string to data")
+        }
+    }
+    
+    func openAlert(title: String, message: String){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            
+            self?.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func convertDictionaryToJson(dictionary: [String: Any]) -> String? {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                return jsonString
+            } else {
+                print("Error converting JSON data to string.")
+                return nil
+            }
+        } catch {
+            print("Error converting dictionary to JSON: \(error.localizedDescription)")
+            return nil
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
