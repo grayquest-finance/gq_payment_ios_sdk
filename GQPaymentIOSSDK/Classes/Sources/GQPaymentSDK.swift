@@ -13,7 +13,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
     
     public var delegate: GQPaymentDelegate?
     let customInstance = Custom()
-    let environment = Environment.shared
+    var environment = Environment.shared
     
     public var clientJSONObject: [String: Any]?
     public var prefillJSONObject: [String: Any]?
@@ -23,16 +23,16 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["errpr":"Invalid JSON Object"]) {
             print("JSON String: \(jsonString)")
+            eraseEnvironment()
             if let jsonData = jsonString.data(using: .utf8) {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                         // Accessing values
                         if let auth = json["auth"] as? [String: Any],
                            let clientId = auth["client_id"] as? String,
-                           let clientSecret = auth["client_secret"] as? String,
+                           let clientSecret = auth["client_secret_key"] as? String,
                            let apiKey = auth["gq_api_key"] as? String {
                             print("Auth Object: \(auth)")
                             print("Auth Object111: \(customInstance.convertDictionaryToJson(dictionary: auth))")
@@ -260,6 +260,14 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
             webloadUrl += "&_fee_headers=\(environment.feeHeadersString)"
         }
         
+        if((prefillJSONObject?.isEmpty) != nil){
+            if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject!),
+               !optionalString.isEmpty{
+                print("optionalDataString: \(optionalString)")
+                webloadUrl += "&optional=\(optionalString)"
+            }
+        }
+        
         webloadUrl += "&_v=\(Environment.version)"
         
         print("Complete WebUrl: \(webloadUrl)")
@@ -271,6 +279,24 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
             self.present(gqWebView, animated: true, completion: nil)
         }
         
+    }
+    
+    func eraseEnvironment (){
+        
+        environment.update(environment: "test")
+        environment.updateClientId(clientID: "")
+        environment.updateClientSecret(clientSecret: "")
+        environment.updateApiKey(apiKey: "")
+        environment.updateAbase(abase: "")
+        environment.updateCustomerNumber(customerNumber: "")
+        environment.updateCustomerId(custId: 0)
+        environment.updateCustomerCode(custCode: "")
+        environment.updateCustomerType(custType: "")
+        environment.updateStudentID(stdId: "")
+        environment.updateTheme(theme: "")
+        environment.updateCustomization(customization: "")
+        environment.updatePpConfig(ppConfig: "")
+        environment.updateFeeHeaders(feeHeader: "")
     }
     
     func sdSuccess(data: [String : Any]?) {
@@ -293,9 +319,9 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
         func sdError(data: [String : Any]?) {
             print("sdCancel web callback received with data: \(String(describing: data))")
             delegate?.gqFailureResponse(data: data)
-            if let rootViewController = self.view.window?.rootViewController {
-                rootViewController.dismiss(animated: false, completion: nil)
-            }
+//            if let rootViewController = self.view.window?.rootViewController {
+//                rootViewController.dismiss(animated: false, completion: nil)
+//            }
     //        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         }
 }

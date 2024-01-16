@@ -15,6 +15,8 @@ import Razorpay
 
 class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletionProtocolWithData, WKUIDelegate, WKScriptMessageHandler, WKNavigationDelegate {
     
+    var paymentSessionId: String?
+    var orderId: String?
     let customInstance = Custom()
     public var delegate: GQPaymentDelegate?
     var webDelegate: WebDelegate?
@@ -71,6 +73,9 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                let mdMappingCode = pgOptions["md_mapping_code"] as? String,
                                let paymentSessionId1 = pgOptions["payment_session_id"] as? String {
                                 
+                                paymentSessionId = paymentSessionId1
+                                orderId = orderCode1
+                                
                                 // Use the extracted values
                                 print("Name: \(name)")
                                 print("Order Code: \(orderCode1)")
@@ -81,14 +86,12 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                     self.openPG(paymentSessionId: paymentSessionId1, orderId: orderCode1)
                                 }
                             }
-                            
                         } else if let pgOptions = json["pgOptions"] as? [String: Any],
                                   let key = pgOptions["key"] as? String,
                                   let order_id = pgOptions["order_id"] as? String,
                                   var redirect = pgOptions["redirect"] as? Bool,
                                   let prefillObj = pgOptions["prefill"] as? [String: Any],
-                                  let notes = pgOptions["notes"] as? [String: Any]
-                        {
+                                  let notes = pgOptions["notes"] as? [String: Any] {
                             let name = prefillObj["name"] as? String
                             let email = prefillObj["email"] as? String
                             let contact = prefillObj["contact"] as? String
