@@ -6,6 +6,7 @@ target 'GQPaymentIOSSDK_Example' do
 
   pod 'CashfreePG', '~> 2.0.3'
   pod 'razorpay-pod', '1.2.5'
+  pod 'Easebuzz', '~> 1.1'
   pod 'GQPaymentIOSSDK', :path => '../'
 
   target 'GQPaymentIOSSDK_Tests' do

@@ -34,6 +34,7 @@ Pod::Spec.new do |s|
   s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
   s.dependency 'CashfreePG', '~> 2.0.3'
   s.dependency 'razorpay-pod', '1.2.5'
+  s.dependency 'Easebuzz', '~> 1.1'
   
   # s.resource_bundles = {
   #   'GQPaymentIOSSDK' => ['GQPaymentIOSSDK/Assets/*.png']
