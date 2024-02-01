@@ -14,7 +14,7 @@ import CashfreePG
 import Razorpay
 import Easebuzz
 
-class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletionProtocolWithData, PayWithEasebuzzCallback, WKUIDelegate, WKScriptMessageHandler, WKNavigationDelegate {
+class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletionProtocolWithData, PayWithEasebuzzCallback, WKUIDelegate, WKScriptMessageHandler, WKNavigationDelegate {
     
     let environment = Environment.shared
     var paymentSessionId: String?
@@ -29,6 +29,14 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.hideLoader()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.hideLoader()
+    }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received message from web -> \(message.body)")
@@ -202,6 +210,7 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.showLoader()
         pgService.setCallback(self)
         
         let environment = Environment.shared
