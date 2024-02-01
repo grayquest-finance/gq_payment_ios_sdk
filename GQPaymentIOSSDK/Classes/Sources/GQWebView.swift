@@ -32,7 +32,12 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     weak var loader: UIActivityIndicatorView?
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.loader?.stopAnimating()
+        hideLoader()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        hideLoader()
+        print("Loading Webview Error")
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -200,6 +205,7 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
+//        webView.scrollView.bounces = false
         webView.uiDelegate = self
         view = webView
     }
@@ -226,12 +232,27 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     
     private func showLoader() {
         DispatchQueue.main.async {
-            let activityIndicator = UIActivityIndicatorView(style: .gray)
-            activityIndicator.backgroundColor = .blue
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            activityIndicator.center = self.view.center
-            activityIndicator.startAnimating()
+            let activityIndicator = UIActivityIndicatorView()
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.color = .black
+            activityIndicator.backgroundColor = .black.withAlphaComponent(0.3)
             self.view.addSubview(activityIndicator)
+            
+            //Adding Constraints
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicator.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            activityIndicator.widthAnchor.constraint(equalToConstant: 40).isActive = true
+            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+            
+            activityIndicator.startAnimating()
+            self.loader = activityIndicator
+        }
+    }
+    
+    private func hideLoader() {
+        DispatchQueue.main.async {
+            self.loader?.stopAnimating()
         }
     }
     
