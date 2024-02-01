@@ -13,16 +13,14 @@ import SwiftUI
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-//        callback.isHidden.toggle()
+        callback.isHidden.toggle()
         print("Success callback received with data: \(callBackMessage)")
-        openAlert(title: "Success", message: callBackMessage)
     }
     
     func gqFailureResponse(data: [String : Any]?) {
         print("Failure callback received with data: \(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-//        callback.isHidden.toggle()
-        openAlert(title: "Failure", message: callBackMessage)
+        callback.isHidden.toggle()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -30,8 +28,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Cancel callback received with data: \(data)")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-//        callback.isHidden.toggle()
-        openAlert(title: "Cancelled", message: callBackMessage)
+        callback.isHidden.toggle()
     }
     
     

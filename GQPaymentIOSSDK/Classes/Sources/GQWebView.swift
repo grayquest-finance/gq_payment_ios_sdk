@@ -29,6 +29,11 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
+    weak var loader: UIActivityIndicatorView?
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.loader?.stopAnimating()
+    }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Received message from web -> \(message.body)")
@@ -202,6 +207,7 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showLoader()
         pgService.setCallback(self)
         
         let environment = Environment.shared
@@ -211,6 +217,22 @@ class GQWebView: UIViewController, CFResponseDelegate, RazorpayPaymentCompletion
         let myURL = URL(string:loadURL ?? "https://grayquest.com")
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        showLoader()
+    }
+    
+    private func showLoader() {
+        DispatchQueue.main.async {
+            let activityIndicator = UIActivityIndicatorView(style: .gray)
+            activityIndicator.backgroundColor = .blue
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            activityIndicator.center = self.view.center
+            activityIndicator.startAnimating()
+            self.view.addSubview(activityIndicator)
+        }
     }
     
     func openPG(paymentSessionId: String, orderId: String) {
