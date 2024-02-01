@@ -76,9 +76,6 @@
                                                         <rect key="frame" x="15" y="432.33333333333331" width="363" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
-                                                        <connections>
-                                                            <action selector="txtCustomization:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="uPI-ut-87I"/>
-                                                        </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional Data" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hQZ-mU-m3q">
                                                         <rect key="frame" x="15" y="481.33333333333331" width="363" height="33.999999999999943"/>

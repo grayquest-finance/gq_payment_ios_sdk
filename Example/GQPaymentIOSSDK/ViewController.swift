@@ -13,14 +13,16 @@ import SwiftUI
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
-        print("Success callback received with data: \(data)")
+//        callback.isHidden.toggle()
+        print("Success callback received with data: \(callBackMessage)")
+        openAlert(title: "Success", message: callBackMessage)
     }
     
     func gqFailureResponse(data: [String : Any]?) {
         print("Failure callback received with data: \(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
+//        callback.isHidden.toggle()
+        openAlert(title: "Failure", message: callBackMessage)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -28,7 +30,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Cancel callback received with data: \(data)")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
+//        callback.isHidden.toggle()
+        openAlert(title: "Cancelled", message: callBackMessage)
     }
     
     
@@ -132,15 +135,19 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         print("Config Object: \(config)")
         
-        let gqPaymentSDK = GQPaymentSDK()
-        gqPaymentSDK.delegate = self
-        gqPaymentSDK.clientJSONObject = config
+        let gqPaymentSDK = GQPaymentSDK(delegate: self, displayController: self, clientJSONObject: config)
+//        gqPaymentSDK.delegate = self
+//        gqPaymentSDK.clientJSONObject = config
         if let wrapOption = optionalObj, !wrapOption.isEmpty{
             gqPaymentSDK.prefillJSONObject = converString(dataString: wrapOption)
         }
-        DispatchQueue.main.async {
-            self.present(gqPaymentSDK, animated: true)
+        
+        DispatchQueue.global(qos: .userInteractive).async {
+            gqPaymentSDK.initialiseSDK()
         }
+//        DispatchQueue.main.async {
+//            self.present(gqPaymentSDK, animated: true)
+//        }
         
     }
     @IBAction func callback(_ sender: UIButton) {
