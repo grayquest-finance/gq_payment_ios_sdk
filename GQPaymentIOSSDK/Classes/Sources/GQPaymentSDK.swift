@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CashfreePG
 
-public class GQPaymentSDK: UIViewController, WebDelegate {
+public class GQPaymentSDK: GQViewController, WebDelegate {
     
     public var delegate: GQPaymentDelegate?
     let customInstance = Custom()
@@ -23,6 +23,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoader()
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["errpr":"Invalid JSON Object"]) {
             print("JSON String: \(jsonString)")
             eraseEnvironment()
@@ -277,6 +278,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
         gqWebView.loadURL = webloadUrl
         DispatchQueue.main.async {
             self.present(gqWebView, animated: true, completion: nil)
+            self.hideLoader()
         }
         
     }
