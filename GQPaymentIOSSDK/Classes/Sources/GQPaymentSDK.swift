@@ -303,6 +303,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     
     func sdSuccess(data: [String : Any]?) {
             print("sdSucess webview callback with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqSuccessResponse(data: data)
     //        if let rootViewController = self.view.window?.rootViewController {
     //            rootViewController.dismiss(animated: false, completion: nil)
@@ -311,6 +312,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         func sdCancel(data: [String : Any]?) {
             print("sdCancel web callback received with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqCancelResponse(data: data)
             if let rootViewController = self.view.window?.rootViewController {
                 rootViewController.dismiss(animated: false, completion: nil)
@@ -320,6 +322,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         func sdError(data: [String : Any]?) {
             print("sdCancel web callback received with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqFailureResponse(data: data)
 //            if let rootViewController = self.view.window?.rootViewController {
 //                rootViewController.dismiss(animated: false, completion: nil)
