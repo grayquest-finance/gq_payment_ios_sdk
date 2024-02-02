@@ -217,9 +217,19 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         print("Global Env: \(environment.env)")
         //
         //        let myURL = URL(string:"https://erp-sdk.graydev.tech/instant-eligibility?gapik=<KEY>&abase=<KEY>&sid=demo_12345&m=8625960119&env=test&cid=34863&ccode=<KEY>&pc=&s=asdk&user=existing&_v=\"1.1\"")
-        let myURL = URL(string:loadURL ?? "https://grayquest.com")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
+        
+        if let urlString = loadURL?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let myURL = URL(string: urlString) {
+            let myRequest = URLRequest(url: myURL)
+            webView.load(myRequest)
+        } else {
+            if let myURL = URL(string: "https://grayquest.com") {
+                let myRequest = URLRequest(url: myURL)
+                webView.load(myRequest)
+            } else {
+                print("GQPaymentSDK: Invalid URL Found")
+            }
+        }
+        
     }
     
     func openPG(paymentSessionId: String, orderId: String) {
