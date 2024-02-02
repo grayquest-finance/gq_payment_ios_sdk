@@ -139,10 +139,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Config Object: \(config)")
         
         let gqPaymentSDK = GQPaymentSDK()
-        
-        gqPaymentSDK.modalPresentationStyle = .overFullScreen
-        gqPaymentSDK.modalTransitionStyle = .crossDissolve
-        
         gqPaymentSDK.delegate = self
         gqPaymentSDK.clientJSONObject = config
         if let wrapOption = optionalObj, !wrapOption.isEmpty{

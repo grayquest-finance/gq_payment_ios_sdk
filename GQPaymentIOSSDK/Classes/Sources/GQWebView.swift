@@ -29,6 +29,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
+    var isDismissed: Bool = false
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
@@ -47,6 +48,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                 print("sdkSuccess: \(con)")
                 print("sdkSuccessdata: \(data)")
                 webDelegate?.sdSuccess(data: con)
+                isDismissed = true
             } catch {
                 print(error)
                 self.dismiss(animated: true, completion: nil)
@@ -58,6 +60,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                 print("sdkError: \(con)")
                 print("sdkErrordata: \(data)")
                 webDelegate?.sdError(data: con)
+                isDismissed = true
                 //                delegate?.gqSuccessResponse(data: con)
             } catch {
                 print(error)
@@ -70,6 +73,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as? [String: Any]
                 print("sdkCancel: \(con)")
                 webDelegate?.sdCancel(data: con)
+                isDismissed = true
                 self.dismiss(animated: true, completion: nil)
             } catch {
                 print(error)
@@ -220,6 +224,13 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         let myURL = URL(string:loadURL ?? "https://grayquest.com")
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isBeingDismissed && !isDismissed {
+            webDelegate?.sdCancel(data: ["dismissed": "Closing GQWebview"])
+        }
     }
     
     func openPG(paymentSessionId: String, orderId: String) {
