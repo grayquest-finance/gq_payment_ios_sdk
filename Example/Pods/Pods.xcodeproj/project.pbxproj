@@ -541,7 +541,8 @@
 			children = (
 				A3E46AF32B6BC14500D6910C /* GQViewController.swift */,
 			);
-			path = "Base Classes";
+			name = "Base Classes";
+			path = "GQPaymentIOSSDK/Classes/Sources/Base Classes";
 			sourceTree = "<group>";
 		};
 		B2B68073FB6AF7786900F3542CDD2880 /* Pods */ = {
