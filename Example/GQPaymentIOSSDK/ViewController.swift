@@ -71,6 +71,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appBuildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        let appVersionNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        print("Build Number: \(appBuildNumber)")
+        print("Version Number: \(appVersionNumber)")
     
         callback.isHidden = true
     }
