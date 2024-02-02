@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CashfreePG
 
-public class GQPaymentSDK: UIViewController, WebDelegate {
+public class GQPaymentSDK: GQViewController, WebDelegate {
     
     public var delegate: GQPaymentDelegate?
     let customInstance = Custom()
@@ -23,6 +23,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        self.showLoader()
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["errpr":"Invalid JSON Object"]) {
             print("JSON String: \(jsonString)")
             eraseEnvironment()
@@ -277,6 +278,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
         gqWebView.loadURL = webloadUrl
         DispatchQueue.main.async {
             self.present(gqWebView, animated: true, completion: nil)
+            self.hideLoader()
         }
         
     }
@@ -301,6 +303,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
     
     func sdSuccess(data: [String : Any]?) {
             print("sdSucess webview callback with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqSuccessResponse(data: data)
     //        if let rootViewController = self.view.window?.rootViewController {
     //            rootViewController.dismiss(animated: false, completion: nil)
@@ -309,6 +312,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
         
         func sdCancel(data: [String : Any]?) {
             print("sdCancel web callback received with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqCancelResponse(data: data)
             if let rootViewController = self.view.window?.rootViewController {
                 rootViewController.dismiss(animated: false, completion: nil)
@@ -318,6 +322,7 @@ public class GQPaymentSDK: UIViewController, WebDelegate {
         
         func sdError(data: [String : Any]?) {
             print("sdCancel web callback received with data: \(String(describing: data))")
+            self.hideLoader()
             delegate?.gqFailureResponse(data: data)
 //            if let rootViewController = self.view.window?.rootViewController {
 //                rootViewController.dismiss(animated: false, completion: nil)

@@ -13,14 +13,18 @@ import SwiftUI
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
+        DispatchQueue.main.async {
+            self.callback.isHidden = false
+        }
         print("Success callback received with data: \(data)")
     }
     
     func gqFailureResponse(data: [String : Any]?) {
         print("Failure callback received with data: \(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
+        DispatchQueue.main.async {
+            self.callback.isHidden = false
+        }
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -28,7 +32,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Cancel callback received with data: \(data)")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
-        callback.isHidden.toggle()
+        DispatchQueue.main.async {
+            self.callback.isHidden = false
+        }
     }
     
     
@@ -133,6 +139,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Config Object: \(config)")
         
         let gqPaymentSDK = GQPaymentSDK()
+        
+        gqPaymentSDK.modalPresentationStyle = .overFullScreen
+        gqPaymentSDK.modalTransitionStyle = .crossDissolve
+        
         gqPaymentSDK.delegate = self
         gqPaymentSDK.clientJSONObject = config
         if let wrapOption = optionalObj, !wrapOption.isEmpty{
