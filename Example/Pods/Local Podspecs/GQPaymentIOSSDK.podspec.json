@@ -16,9 +16,12 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "15.0"
+    "ios": "12.0"
   },
   "swift_versions": "5.0",
+  "pod_target_xcconfig": {
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "arm64"
+  },
   "source_files": "GQPaymentIOSSDK/Classes/**/*",
   "dependencies": {
     "CashfreePG": [
@@ -26,6 +29,9 @@
     ],
     "razorpay-pod": [
       "1.2.5"
+    ],
+    "Easebuzz": [
+      "~> 1.1"
     ]
   },
   "swift_version": "5.0"

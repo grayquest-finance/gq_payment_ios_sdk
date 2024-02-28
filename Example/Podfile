@@ -1,11 +1,19 @@
 use_frameworks!
 
-#platform :ios, '10.0'
+#platform :ios, '12.0'
+
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+ end
+end
 
 target 'GQPaymentIOSSDK_Example' do
 
   pod 'CashfreePG', '~> 2.0.3'
   pod 'razorpay-pod', '1.2.5'
+  pod 'Easebuzz', '~> 1.1'
   pod 'GQPaymentIOSSDK', :path => '../'
 
   target 'GQPaymentIOSSDK_Tests' do
