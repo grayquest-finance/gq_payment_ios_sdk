@@ -182,6 +182,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -191,6 +192,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework"
+  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
