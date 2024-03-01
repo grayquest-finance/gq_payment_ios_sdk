@@ -13,11 +13,11 @@ class Custom {
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 return jsonString
             } else {
-                print("Error converting JSON data to string.")
+//                print("Error converting JSON data to string.")
                 return nil
             }
         } catch {
-            print("Error converting dictionary to JSON: \(error.localizedDescription)")
+//            print("Error converting dictionary to JSON: \(error.localizedDescription)")
             return nil
         }
     }
@@ -35,7 +35,7 @@ class Custom {
             //            print("customizationString: \(jsonString)")
             return jsonString
         } else {
-            print("Error converting customization to JSON string.")
+//            print("Error converting customization to JSON string.")
             return nil
         }
     }

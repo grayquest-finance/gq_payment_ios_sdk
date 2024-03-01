@@ -25,7 +25,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         super.viewDidLoad()
         self.showLoader()
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["errpr":"Invalid JSON Object"]) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             eraseEnvironment()
             if let jsonData = jsonString.data(using: .utf8) {
                 do {
@@ -35,11 +35,11 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                            let clientId = auth["client_id"] as? String,
                            let clientSecret = auth["client_secret_key"] as? String,
                            let apiKey = auth["gq_api_key"] as? String {
-                            print("Auth Object: \(auth)")
-                            print("Auth Object111: \(customInstance.convertDictionaryToJson(dictionary: auth))")
-                            print("Client ID: \(clientId)")
-                            print("Client Secret: \(clientSecret)")
-                            print("API Key: \(apiKey)")
+//                            print("Auth Object: \(auth)")
+//                            print("Auth Object111: \(customInstance.convertDictionaryToJson(dictionary: auth))")
+//                            print("Client ID: \(clientId)")
+//                            print("Client Secret: \(clientSecret)")
+//                            print("API Key: \(apiKey)")
                             environment.updateClientId(clientID: clientId)
                             environment.updateClientSecret(clientSecret: clientSecret)
                             environment.updateApiKey(apiKey: apiKey)
@@ -53,10 +53,10 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                         }
                         
                         if let studentID = json["student_id"] as? String {
-                            print("Student ID: \(studentID)")
+//                            print("Student ID: \(studentID)")
                             environment.updateStudentID(stdId: studentID)
                         }else {
-                            print("Student Id is missing")
+//                            print("Student Id is missing")
                             isInValid = true
                             errorMessage += ", Student Id is required"
                         }
@@ -64,100 +64,100 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                         if let env = json["env"] as? String {
                             if customInstance.containsAnyValidEnvironment(env){
                                 environment.update(environment: env)
-                                print("Environment: \(env)")
+//                                print("Environment: \(env)")
                             }else{
                                 isInValid = true
                                 errorMessage += ", Invalid environment"
-                                print("Invalid Environment: \(env)")
+//                                print("Invalid Environment: \(env)")
                             }
                         }else{
                             isInValid = true
                             errorMessage += ", Environment is required"
-                            print("Environment Not Available ")
+//                            print("Environment Not Available ")
                         }
                         
                         if let customization = json["customization"] as? [String: Any],
                            let theme_color = customization["theme_color"] as? String {
-                            print("themeColor: \(theme_color)")
+//                            print("themeColor: \(theme_color)")
                             environment.updateTheme(theme: theme_color)
-                            print("customization: \(json["customization"] as? [String: Any])")
+//                            print("customization: \(json["customization"] as? [String: Any])")
                             if let customizationData = try? JSONSerialization.data(withJSONObject: customization as Any, options: .prettyPrinted),
                                let customizationString = String(data: customizationData, encoding: .utf8) {
                                 environment.updateCustomization(customization: customizationString)
-                                print("customizationString: \(customizationString)")
+//                                print("customizationString: \(customizationString)")
                             } else {
-                                print("Error converting customization to JSON string.")
+//                                print("Error converting customization to JSON string.")
                             }
                         }
                         
                         if var ppConfig = json["pp_config"] as? [String: Any]{
                             if let slug = ppConfig["slug"] as? String, !slug.isEmpty {
-                                print("slug: \(slug)")
+//                                print("slug: \(slug)")
                                 if let ppConfigData = try? JSONSerialization.data(withJSONObject: ppConfig as Any, options: .prettyPrinted),
                                    let ppConfigString = String(data: ppConfigData, encoding: .utf8) {
-                                    print("ppConfigString: \(ppConfigString)")
+//                                    print("ppConfigString: \(ppConfigString)")
                                     environment.updatePpConfig(ppConfig: ppConfigString)
                                 } else {
-                                    print("Invalid ppConfig JSON")
+//                                    print("Invalid ppConfig JSON")
                                     isInValid = true
                                     errorMessage += ", Invalid PP Config Object"
                                 }
                             } else {
-                                print("Slug Not available")
+//                                print("Slug Not available")
                                 isInValid = true
                                 errorMessage += ", Slug is required"
                             }
                         } else {
-                            print("ppConfig Not avaibale")
+//                            print("ppConfig Not avaibale")
                         }
                         
                         if var feeHeaders = json["fee_headers"] as? [String: Any]{
                             if let feeHeadersData = try? JSONSerialization.data(withJSONObject: feeHeaders as Any, options: .prettyPrinted),
                                let feeHeadersString = String(data: feeHeadersData, encoding: .utf8) {
-                                print("feeHeadersString: \(feeHeadersString)")
+//                                print("feeHeadersString: \(feeHeadersString)")
                                 environment.updateFeeHeaders(feeHeader: feeHeadersString)
                             } else {
-                                print("Invalid Fee Headers JSON")
+//                                print("Invalid Fee Headers JSON")
                                 isInValid = true
                                 errorMessage += ", Invalid Fee Headers Object"
                             }
                         } else {
-                            print("Fee Headers Not avaibale")
+//                            print("Fee Headers Not avaibale")
                         }
                         
                         if let customerNumber = json["customer_number"] as? String {
                             if customInstance.validate(value: customerNumber){
-                                print("Customer Number: \(customerNumber)")
+//                                print("Customer Number: \(customerNumber)")
                                 environment.updateCustomerNumber(customerNumber: customerNumber)
                                 mobileNumber = customerNumber
                                 
                                 
                             }else{
-                                print("Invalid Customer Number: \(customerNumber)")
+//                                print("Invalid Customer Number: \(customerNumber)")
                                 isInValid = true
                                 errorMessage += ", Invalid customer number"
                             }
                         }else{
                             
-                            print("Customer Number Not Available ")
+//                            print("Customer Number Not Available ")
                         }
                     } else {
-                        print("Failed to convert JSON data.")
+//                        print("Failed to convert JSON data.")
                         isInValid = true
                         errorMessage += ", Invalid JSON Object"
                     }
                 } catch {
-                    print("Error parsing JSON: \(error.localizedDescription)")
+//                    print("Error parsing JSON: \(error.localizedDescription)")
                     isInValid = true
                     errorMessage += ", Invalid JSON Object"
                 }
             } else {
-                print("Failed to convert JSON string to data.")
+//                print("Failed to convert JSON string to data.")
                 isInValid = true
                 errorMessage += ", Invalid JSON Object"
             }
         } else {
-            print("Conversion to JSON failed.")
+//            print("Conversion to JSON failed.")
             isInValid = true
             errorMessage += ", Invalid JSON Object"
         }
@@ -186,7 +186,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     func handleAPIResult(responseObject: [String: Any]?, error: String?) {
         if let error = error {
             // Handle error
-            print("API Error: \(error)")
+//            print("API Error: \(error)")
             let errorObject: [String: Any] = [
                 "error": error
             ]
@@ -196,16 +196,16 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                 let message = responseObject["message"] as! String
                 
                 if (message == "Customer Exists") {
-                    print("existing")
+//                    print("existing")
                     self.environment.updateCustomerType(custType: "existing")
                 }
                 else {
-                    print("new")
+//                    print("new")
                     self.environment.updateCustomerType(custType: "new")
                 }
                 
                 let data = responseObject["data"] as! [String:AnyObject]
-                print("ResponseData: \(data)")
+//                print("ResponseData: \(data)")
                 self.environment.updateCustomerCode(custCode: data["customer_code"] as! String)
                 self.environment.updateCustomerId(custId: data["customer_id"] as! Int)
                 
@@ -264,14 +264,14 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         if((prefillJSONObject?.isEmpty) != nil){
             if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject!),
                !optionalString.isEmpty{
-                print("optionalDataString: \(optionalString)")
+//                print("optionalDataString: \(optionalString)")
                 webloadUrl += "&optional=\(optionalString)"
             }
         }
         
         webloadUrl += "&_v=\(Environment.version)"
         
-        print("Complete WebUrl: \(webloadUrl)")
+//        print("Complete WebUrl: \(webloadUrl)")
         
         let gqWebView = GQWebView()
         gqWebView.webDelegate = self
@@ -302,7 +302,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     }
     
     func sdSuccess(data: [String : Any]?) {
-            print("sdSucess webview callback with data: \(String(describing: data))")
+//            print("sdSucess webview callback with data: \(String(describing: data))")
             self.hideLoader()
             delegate?.gqSuccessResponse(data: data)
     //        if let rootViewController = self.view.window?.rootViewController {
@@ -311,7 +311,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
         
         func sdCancel(data: [String : Any]?) {
-            print("sdCancel web callback received with data: \(String(describing: data))")
+//            print("sdCancel web callback received with data: \(String(describing: data))")
             self.hideLoader()
             delegate?.gqCancelResponse(data: data)
             if let rootViewController = self.view.window?.rootViewController {
@@ -321,7 +321,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
         
         func sdError(data: [String : Any]?) {
-            print("sdCancel web callback received with data: \(String(describing: data))")
+//            print("sdCancel web callback received with data: \(String(describing: data))")
             self.hideLoader()
             delegate?.gqFailureResponse(data: data)
 //            if let rootViewController = self.view.window?.rootViewController {

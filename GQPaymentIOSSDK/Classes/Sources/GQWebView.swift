@@ -39,28 +39,28 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Received message from web -> \(message.body)")
+//        print("Received message from web -> \(message.body)")
         if (message.name == "sdkSuccess") {
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
-                print("sdkSuccess: \(con)")
-                print("sdkSuccessdata: \(data)")
+//                print("sdkSuccess: \(con)")
+//                print("sdkSuccessdata: \(data)")
                 webDelegate?.sdSuccess(data: con)
             } catch {
-                print(error)
+//                print(error)
                 self.dismiss(animated: true, completion: nil)
             }
         }else  if (message.name == "sdkError") {
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
-                print("sdkError: \(con)")
-                print("sdkErrordata: \(data)")
+//                print("sdkError: \(con)")
+//                print("sdkErrordata: \(data)")
                 webDelegate?.sdError(data: con)
                 //                delegate?.gqSuccessResponse(data: con)
             } catch {
-                print(error)
+//                print(error)
                 //                delegate?.gqErrorResponse(error: true, message: error.localizedDescription)
                 self.dismiss(animated: true, completion: nil)
             }
@@ -68,11 +68,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as? [String: Any]
-                print("sdkCancel: \(con)")
+//                print("sdkCancel: \(con)")
                 webDelegate?.sdCancel(data: con)
                 self.dismiss(animated: true, completion: nil)
             } catch {
-                print(error)
+//                print(error)
                 self.dismiss(animated: true, completion: nil)
             }
         }else if (message.name == "sendPGOptions") {
@@ -84,7 +84,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                        let name = json["name"] as? String{
                         
                         vName = name
-                        print("Name: \(vName)")
+//                        print("Name: \(vName)")
                         
                         if name == "CASHFREE"{
                             if let pgOptions = json["pgOptions"] as? [String: Any],
@@ -96,10 +96,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 orderId = orderCode1
                                 
                                 // Use the extracted values
-                                print("Name: \(name)")
-                                print("Order Code: \(orderCode1)")
-                                print("MD Mapping Code: \(mdMappingCode)")
-                                print("Payment Session ID: \(paymentSessionId1)")
+//                                print("Name: \(name)")
+//                                print("Order Code: \(orderCode1)")
+//                                print("MD Mapping Code: \(mdMappingCode)")
+//                                print("Payment Session ID: \(paymentSessionId1)")
                                 
                                 DispatchQueue.main.async {
                                     self.openPG(paymentSessionId: paymentSessionId1, orderId: orderCode1)
@@ -108,7 +108,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                         } else if name == "EASEBUZZ"{
                             if let pgOptions = json["pgOptions"] as? [String: Any],
                                let access_key = pgOptions["access_key"] as? String{
-                                print("Easebuz Key: \(access_key)")
+//                                print("Easebuz Key: \(access_key)")
                                 
                                 initiatePaymentAction(access_key: access_key)
                             }
@@ -122,7 +122,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             let email = prefillObj["email"] as? String
                             let contact = prefillObj["contact"] as? String
                             
-                            print("key: \(key)")
+//                            print("key: \(key)")
                             
                             razorpay = RazorpayCheckout.initWithKey(key, andDelegateWithData: self)
                             
@@ -142,7 +142,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                         }
                     }
                 } catch {
-                    print("Error parsing JSON: \(error)")
+//                    print("Error parsing JSON: \(error)")
                 }
             }
         }else if (message.name == "sendADOptions") {
@@ -157,7 +157,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                        let redirect = json["redirect"] as? Bool,
                        let callback_url = json["callback_url"] as? String,
                        let notes = json["notes"] as? [String: Any]{
-                        print("AdKey: \(key)")
+//                        print("AdKey: \(key)")
                         callBackUrl = callback_url
                         
                         razorpay = RazorpayCheckout.initWithKey(key, andDelegateWithData: self)
@@ -179,7 +179,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                         }
                     }
                 } catch {
-                    print("Error parsing JSON: \(error)")
+//                    print("Error parsing JSON: \(error)")
                 }
             }
         }
@@ -214,7 +214,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         pgService.setCallback(self)
         
         let environment = Environment.shared
-        print("Global Env: \(environment.env)")
+//        print("Global Env: \(environment.env)")
         //
         //        let myURL = URL(string:"https://erp-sdk.graydev.tech/instant-eligibility?gapik=b59bf799-2a82-4298-b901-09c512ea4aaa&abase=R1EtMGQyZWQyNGUtY2MxZi00MDBiLWE0ZTMtNzIwOGM4OGI5OWI1OmE5NmRkN2VhLTdkNGEtNDc3Mi05MmMzLWFjNDgxNzEzYmU0YQ==&sid=demo_12345&m=8625960119&env=test&cid=34863&ccode=0a6c1b84-0cd7-4844-8f77-cd1807520273&pc=&s=asdk&user=existing&_v=\"1.1\"")
         
@@ -238,7 +238,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             let session = try CFSession.CFSessionBuilder()
                 .setPaymentSessionId(paymentSessionId)
                 .setOrderID(orderId)
-                .setEnvironment(.SANDBOX)
+                .setEnvironment(Environment.shared.env == "live" ? .PRODUCTION : .SANDBOX)
                 .build()
             
             // Set Components
@@ -270,7 +270,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             try pgService.doPayment(webCheckoutPayment, viewController: self)
         } catch let e {
             let err = e as! CashfreeError
-            print(err.description)
+//            print(err.description)
         }
     }
     
@@ -279,17 +279,17 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         if ((callBackUrl?.isEmpty) != nil){
             userInfo?["callback_url"] = callBackUrl
         }
-        print("ErrorCode: \(code)")
-        print("ErrorDescription: \(str)")
-        print("ErrorResponse: \(String(describing: userInfo))")
+//        print("ErrorCode: \(code)")
+//        print("ErrorDescription: \(str)")
+//        print("ErrorResponse: \(String(describing: userInfo))")
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             if ((vName=="UNIPG") != nil) {
-                print("VName: \(String(describing: vName))")
+//                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
-                print("VNameCash; \(String(describing: vName))")
+//                print("VNameCash; \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendADPaymentResponse(\(jsonString));")
             }
             
@@ -303,19 +303,19 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         if ((callBackUrl?.isEmpty) != nil){
             userInfo?["callback_url"] = callBackUrl
         }
-        print("success: ", response)
+//        print("success: ", response)
         let paymentId = response?["razorpay_payment_id"] as! String
         let rezorSignature = response?["razorpay_signature"] as! String
-        print("SuccessPaymentID: \(payment_id)")
-        print("SuccessResponse: \(userInfo)")
+//        print("SuccessPaymentID: \(payment_id)")
+//        print("SuccessResponse: \(userInfo)")
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             if ((vName=="UNIPG") != nil) {
-                print("VName: \(String(describing: vName))")
+//                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
-                print("VNameCash; \(String(describing: vName))")
+//                print("VNameCash; \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendADPaymentResponse(\(jsonString));")
             }
             
@@ -325,10 +325,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     }
     
     func onError(_ error: CashfreePGCoreSDK.CFErrorResponse, order_id: String) {
-        print("ErrorResponse: ")
-        print(order_id)
-        print(error.status)
-        print(error.message)
+//        print("ErrorResponse: ")
+//        print(order_id)
+//        print(error.status)
+//        print(error.message)
         let paymentResponse: [String: Any] = [
             "status": error.status,
             "order_code": order_id,
@@ -336,10 +336,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             "code": error.code,
             "type": error.type
         ]
-        print("SuccessResponse: ")
-        print(order_id)
+//        print("SuccessResponse: ")
+//        print(order_id)
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: paymentResponse) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             
         } else {
@@ -352,13 +352,13 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             "status": "SUCCESS",
             "order_code": order_id
         ]
-        print("SuccessResponse: ")
-        print(order_id)
+//        print("SuccessResponse: ")
+//        print(order_id)
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: paymentResponse) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
         } else {
-            print("Conversion to JSON failed.")
+//            print("Conversion to JSON failed.")
         }
     }
     
@@ -373,11 +373,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //        }
         
         orderDetails["pay_mode"] = "production"
-        print("orderDetails: \(orderDetails)")
+//        print("orderDetails: \(orderDetails)")
         let payment = Payment.init(customerData: orderDetails)
         let paymentValid = payment.isValid().validity
         if !paymentValid {
-            print("Invalid records")
+//            print("Invalid records")
         }else{
             PayWithEasebuzz.setUp(pebCallback: self )
             PayWithEasebuzz.invokePaymentOptionsView(paymentObj: payment, isFrom: self)
@@ -386,16 +386,16 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     
     func PEBCallback(data: [String : AnyObject]) {
         let payment_response = data["payment_response"]
-        print(payment_response ?? "")
-        if payment_response as? [String:Any] != nil {
-            // payment_response is Json Response
-            print("Json response:\(payment_response)")
-        }else{
-            print("String response: \(payment_response)")
-        }
+//        print(payment_response ?? "")
+//        if payment_response as? [String:Any] != nil {
+//            // payment_response is Json Response
+//            print("Json response:\(payment_response)")
+//        }else{
+//            print("String response: \(payment_response)")
+//        }
         // Handle result Key : It should be in string
         let result = data["result"] as! String
-        print("result: \(result)")
+//        print("result: \(result)")
         
         var paymentResponse: [String: Any] = [:]
         
@@ -405,12 +405,12 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             paymentResponse["status"] = "FAILED"
         }
         paymentResponse["payment_response"] = payment_response
-        print("SuccessResponse: ")
+//        print("SuccessResponse: ")
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: paymentResponse) {
-            print("JSON String: \(jsonString)")
+//            print("JSON String: \(jsonString)")
             webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
         } else {
-            print("Conversion to JSON failed.")
+//            print("Conversion to JSON failed.")
         }
     }
 }
