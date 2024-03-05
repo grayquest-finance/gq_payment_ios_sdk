@@ -37,6 +37,14 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.hideLoader()
     }
+        
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let url = navigationAction.request.url else { return nil }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        return nil
+    }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 //        print("Received message from web -> \(message.body)")
@@ -192,6 +200,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     
     public override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.configuration.userContentController.add(self, name: "Gqsdk")
         webView.configuration.userContentController.add(self, name: "sdkSuccess")
@@ -203,7 +213,6 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-        webView.uiDelegate = self
         view = webView
     }
     
