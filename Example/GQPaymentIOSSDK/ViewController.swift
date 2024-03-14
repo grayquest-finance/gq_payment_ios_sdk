@@ -159,16 +159,22 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
         txtClientId.text = "<KEY>"
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
         
-        txtEnvironment.text = "test"
-        txtStudentID.text = "demo_00023"
-        txtCustomerNumber.text = "8425900023"
+//        txtEnvironment.text = "test"
+        txtEnvironment.text = "stage"
         
-        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+        txtStudentID.text = "sample_99"
+        txtCustomerNumber.text = "9025968023"
+        
+//        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+//        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
     }
     
     func converString(dataString: String) -> [String:Any] {

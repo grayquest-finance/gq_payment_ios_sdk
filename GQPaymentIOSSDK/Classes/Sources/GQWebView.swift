@@ -139,6 +139,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 "recurring": 0,
                                 "redirect": redirect,
                                 "notes": notes,
+                                "retry": [
+                                    "enabled": true,
+                                    "max_count": 4
+                                ],
                                 "prefill": [
                                     "contact": contact,
                                     "email": email
@@ -181,6 +185,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             "recurring": recuring_flag,
                             "redirect": redirect,
                             "notes": notes,
+                            "retry": [
+                                "enabled": true,
+                                "max_count": 4
+                            ],
                         ]
                         DispatchQueue.main.async {
                             self.razorpay!.open(options, displayController: self)
@@ -209,6 +217,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         webView.configuration.userContentController.add(self, name: "sdkCancel")
         webView.configuration.userContentController.add(self, name: "sendADOptions")
         webView.configuration.userContentController.add(self, name: "sendPGOptions")
+        
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
         
         webView.uiDelegate = self
         webView.navigationDelegate = self
@@ -294,7 +306,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if ((vName=="UNIPG") != nil) {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
@@ -320,7 +332,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if ((vName=="UNIPG") != nil) {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
