@@ -29,6 +29,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
+    var isUNIPGError: Bool = false
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
@@ -63,9 +64,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
-//                print("sdkError: \(con)")
-//                print("sdkErrordata: \(data)")
-                webDelegate?.sdError(data: con)
+                //                print("sdkError: \(con)")
+                //                print("sdkErrordata: \(data)")
+                if !isUNIPGError {
+                    webDelegate?.sdError(data: con)
+                }
                 //                delegate?.gqSuccessResponse(data: con)
             } catch {
 //                print(error)
@@ -308,6 +311,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //            print("JSON String: \(jsonString)")
             if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
+                isUNIPGError = true
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
 //                print("VNameCash; \(String(describing: vName))")
