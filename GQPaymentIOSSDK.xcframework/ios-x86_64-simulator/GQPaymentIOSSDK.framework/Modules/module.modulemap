@@ -1,0 +1,11 @@
+framework module GQPaymentIOSSDK {
+  umbrella header "GQPaymentIOSSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module GQPaymentIOSSDK.Swift {
+  header "GQPaymentIOSSDK-Swift.h"
+  requires objc
+}
