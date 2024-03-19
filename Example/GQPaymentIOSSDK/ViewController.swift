@@ -25,7 +25,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     func gqCancelResponse(data: [String : Any]?) {
@@ -159,22 +159,22 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
         txtClientId.text = "<KEY>"
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
         
-//        txtEnvironment.text = "test"
-        txtEnvironment.text = "stage"
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
+        txtEnvironment.text = "test"
+//        txtEnvironment.text = "stage"
         
         txtStudentID.text = "sample_99"
         txtCustomerNumber.text = "9025968023"
         
-//        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
     }
     
     func converString(dataString: String) -> [String:Any] {

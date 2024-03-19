@@ -4,3 +4,8 @@ framework module GQPaymentIOSSDK {
   export *
   module * { export * }
 }
+
+module GQPaymentIOSSDK.Swift {
+  header "GQPaymentIOSSDK-Swift.h"
+  requires objc
+}
