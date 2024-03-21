@@ -25,7 +25,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-        self.dismiss(animated: true, completion: nil)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     func gqCancelResponse(data: [String : Any]?) {
@@ -163,9 +163,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtClientSecretKey.text = "a96dd7ea-7d4a-4772-92c3-ac481713be4a"
         txtGqApiKey.text = "b59bf799-2a82-4298-b901-09c512ea4aaa"
         
+//        txtClientId.text = "GQ-70e832de-41f2-4937-b84c-86e3006fbb0d"
+//        txtClientSecretKey.text = "803acef6-d8cf-40f5-9ff7-c539cd8e91ef"
+//        txtGqApiKey.text = "9bc8d0f0-718e-4e51-b3cb-54e97aa228f0"
+        
         txtEnvironment.text = "test"
-        txtStudentID.text = "demo_00023"
-        txtCustomerNumber.text = "8425900023"
+//        txtEnvironment.text = "stage"
+        
+        txtStudentID.text = "sample_99"
+        txtCustomerNumber.text = "9025968023"
         
         txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
         txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"

@@ -10,3 +10,7 @@
 #endif
 #endif
 
+
+FOUNDATION_EXPORT double GQPaymentIOSSDKVersionNumber;
+FOUNDATION_EXPORT const unsigned char GQPaymentIOSSDKVersionString[];
+

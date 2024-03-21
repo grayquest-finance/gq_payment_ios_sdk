@@ -15,6 +15,8 @@ xcuserdata/
 *.xccheckout
 *.moved-aside
 DerivedData
+archives/
+BuildFramework.sh
 *.hmap
 *.ipa
 
