@@ -29,13 +29,34 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
+//    var isUNIPGError: Bool = false
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
     }
     
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            print(navigationAction.request)
+            if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+            decisionHandler(.cancel)
+            return
+        }
+        decisionHandler(.allow)
+    }
+    
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.hideLoader()
+    }
+        
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        guard let url = navigationAction.request.url else { return nil }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+        return nil
     }
     
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -55,9 +76,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
-//                print("sdkError: \(con)")
-//                print("sdkErrordata: \(data)")
-                webDelegate?.sdError(data: con)
+                //                print("sdkError: \(con)")
+                //                print("sdkErrordata: \(data)")
+//                if !isUNIPGError {
+                    webDelegate?.sdError(data: con)
+//                }
                 //                delegate?.gqSuccessResponse(data: con)
             } catch {
 //                print(error)
@@ -131,6 +154,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 "recurring": 0,
                                 "redirect": redirect,
                                 "notes": notes,
+                                "retry": [
+                                    "enabled": true,
+                                    "max_count": 4
+                                ],
                                 "prefill": [
                                     "contact": contact,
                                     "email": email
@@ -173,6 +200,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             "recurring": recuring_flag,
                             "redirect": redirect,
                             "notes": notes,
+                            "retry": [
+                                "enabled": true,
+                                "max_count": 4
+                            ],
                         ]
                         DispatchQueue.main.async {
                             self.razorpay!.open(options, displayController: self)
@@ -192,6 +223,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     
     public override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.configuration.userContentController.add(self, name: "Gqsdk")
         webView.configuration.userContentController.add(self, name: "sdkSuccess")
@@ -200,10 +233,13 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         webView.configuration.userContentController.add(self, name: "sendADOptions")
         webView.configuration.userContentController.add(self, name: "sendPGOptions")
         
+        if #available(iOS 16.4, *) {
+            webView.isInspectable = true
+        }
+        
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
-        webView.uiDelegate = self
         view = webView
     }
     
@@ -285,8 +321,9 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if ((vName=="UNIPG") != nil) {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
+//                isUNIPGError = true
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
 //                print("VNameCash; \(String(describing: vName))")
@@ -311,7 +348,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if ((vName=="UNIPG") != nil) {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
