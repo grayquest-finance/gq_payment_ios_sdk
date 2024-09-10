@@ -274,7 +274,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             let session = try CFSession.CFSessionBuilder()
                 .setPaymentSessionId(paymentSessionId)
                 .setOrderID(orderId)
-                .setEnvironment(Environment.shared.env == "live" ? .PRODUCTION : .SANDBOX)
+                .setEnvironment(Environment.shared.env == "live" || Environment.shared.env == "preprod" ? .PRODUCTION : .SANDBOX)
                 .build()
             
             // Set Components

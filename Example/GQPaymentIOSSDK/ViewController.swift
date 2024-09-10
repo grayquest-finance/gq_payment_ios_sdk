@@ -124,7 +124,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
         
         if let unwrapCustomization = customization, !unwrapCustomization.isEmpty{
-            config["customization"] = converString(dataString: unwrapCustomization)
+            config["customization"] = ["theme_color": unwrapCustomization]
         }
         
         if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
@@ -159,22 +159,17 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
-        txtClientId.text = "GQ-0d2ed24e-cc1f-400b-a4e3-7208c88b99b5"
-        txtClientSecretKey.text = "a96dd7ea-7d4a-4772-92c3-ac481713be4a"
-        txtGqApiKey.text = "b59bf799-2a82-4298-b901-09c512ea4aaa"
-        
-//        txtClientId.text = "GQ-70e832de-41f2-4937-b84c-86e3006fbb0d"
-//        txtClientSecretKey.text = "803acef6-d8cf-40f5-9ff7-c539cd8e91ef"
-//        txtGqApiKey.text = "9bc8d0f0-718e-4e51-b3cb-54e97aa228f0"
+        txtClientId.text = "GQ-e2daf990-c020-4162-9a2f-da9ec6423be5"
+        txtClientSecretKey.text = "51028d07-97aa-4498-8379-5c2e8e4d3716"
+        txtGqApiKey.text = "08051930-3621-42ff-858b-cb86383df2d5"
         
         txtEnvironment.text = "test"
-//        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "sample_99"
-        txtCustomerNumber.text = "9025968023"
+        txtStudentID.text = "demo_1000"
+        txtCustomerNumber.text = "9025168023"
         
-        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+//        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+//        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
     }
     
     func converString(dataString: String) -> [String:Any] {
