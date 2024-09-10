@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GQPaymentIOSSDK'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'GrayQuest Education Finance Pvt. Ltd. iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   #s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   s.dependency 'CashfreePG', '~> 2.0.3'
-  s.dependency 'razorpay-pod', '1.2.5'
+  s.dependency 'razorpay-pod', '1.3.7'
   s.dependency 'Easebuzz', '~> 1.1'
   
 #  s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
