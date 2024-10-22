@@ -274,6 +274,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 //        print("Complete WebUrl: \(webloadUrl)")
         
         let gqWebView = GQWebView()
+        gqWebView.isModalInPresentation = true
         gqWebView.webDelegate = self
         gqWebView.loadURL = webloadUrl
         DispatchQueue.main.async {
