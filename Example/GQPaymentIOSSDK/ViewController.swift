@@ -8,7 +8,6 @@
 
 import UIKit
 import GQPaymentIOSSDK
-import SwiftUI
 
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
