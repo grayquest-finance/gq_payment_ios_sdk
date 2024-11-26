@@ -158,14 +158,31 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
+//        UAT
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
+//        UAT: SDK v1
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
+//        Stage: SDK v1.1
         txtClientId.text = "<KEY>"
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
+
+//        Stage: SDK v1
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+
+//        txtEnvironment.text = "test"
+        txtEnvironment.text = "stage"
         
-        txtEnvironment.text = "test"
-        
-        txtStudentID.text = "demo_1000"
-        txtCustomerNumber.text = "9025168023"
+        txtStudentID.text = "demo_1195"
+        txtCustomerNumber.text = "9025145623"
         
 //        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"

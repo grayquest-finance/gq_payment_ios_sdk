@@ -176,7 +176,11 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             }else{
                 APIService.makeAPICall { responseObject, error in
                     DispatchQueue.main.async {
+                        if error != nil {
+                            self.dismiss(animated: true)
+                        }
                         self.handleAPIResult(responseObject: responseObject, error: error)
+//                        self.hideLoader()
                     }
                 }
             }
