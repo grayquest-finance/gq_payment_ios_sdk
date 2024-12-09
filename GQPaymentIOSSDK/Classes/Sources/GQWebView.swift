@@ -239,6 +239,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         webView.uiDelegate = self
         webView.navigationDelegate = self
+        webView.scrollView.bounces = false
         
         view = webView
     }

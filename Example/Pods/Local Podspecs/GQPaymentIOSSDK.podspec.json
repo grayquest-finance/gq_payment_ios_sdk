@@ -27,13 +27,13 @@
       "~> 2.0.3"
     ],
     "razorpay-pod": [
-      "1.3.13"
+      "~> 1.3.13"
     ],
     "Easebuzz": [
       "~> 1.1"
     ]
   },
-  "vendored_frameworks": "GQPaymentIOSSDK.xcframework",
+  "source_files": "GQPaymentIOSSDK/Classes/**/*",
   "exclude_files": "BuildFramework.sh",
   "swift_version": "5.0"
 }
