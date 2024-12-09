@@ -61,6 +61,10 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             errorMessage += ", Student Id is required"
                         }
                         
+                        if let referenceID = json["reference_id"] as? String {
+                            environment.updateReferenceID(referenceID: referenceID)
+                        }
+                        
                         if let env = json["env"] as? String {
                             if customInstance.containsAnyValidEnvironment(env){
                                 environment.update(environment: env)
@@ -76,17 +80,18 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 //                            print("Environment Not Available ")
                         }
                         
-                        if let customization = json["customization"] as? [String: Any],
-                           let theme_color = customization["theme_color"] as? String {
-//                            print("themeColor: \(theme_color)")
-                            environment.updateTheme(theme: theme_color)
-//                            print("customization: \(json["customization"] as? [String: Any])")
-                            if let customizationData = try? JSONSerialization.data(withJSONObject: customization as Any, options: .prettyPrinted),
+                        if let customization = json["customization"] as? [String: Any] {
+                            if let themeColor = customization["theme_color"] as? String {
+                                environment.updateTheme(theme: themeColor)
+                            }
+                            
+                            if let logoURL = customization["logo_url"] as? String {
+                                environment.updateLogoURL(url: logoURL)
+                            }
+                            
+                            if let customizationData = try? JSONSerialization.data(withJSONObject: customization, options: .prettyPrinted),
                                let customizationString = String(data: customizationData, encoding: .utf8) {
                                 environment.updateCustomization(customization: customizationString)
-//                                print("customizationString: \(customizationString)")
-                            } else {
-//                                print("Error converting customization to JSON string.")
                             }
                         }
                         
@@ -263,6 +268,10 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         if !environment.feeHeadersString.isEmpty {
             webloadUrl += "&_fee_headers=\(environment.feeHeadersString)"
+        }
+        
+        if let referenceID = environment.referenceID, !referenceID.isEmpty {
+            webloadUrl += "&reference_id=\(referenceID)"
         }
         
         if((prefillJSONObject?.isEmpty) != nil){

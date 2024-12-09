@@ -36,6 +36,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var txtClientId: UITextField!
     @IBOutlet weak var txtClientSecretKey: UITextField!
@@ -45,8 +46,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtCustomerNumber: UITextField!
     @IBOutlet weak var txtPPConfig: UITextField!
     @IBOutlet weak var txtFeeHeader: UITextField!
+    @IBOutlet weak var txtReferenceID: UITextField!
     @IBOutlet weak var txtCustomization: UITextField!
     @IBOutlet weak var txtOptionalData: UITextField!
+    @IBOutlet weak var txtLogoURL: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -60,6 +63,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var customization: String?
     var optionalObj: String?
     var callBackMessage: String = ""
+    var referenceID: String?
+    var logoURL: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -70,8 +75,17 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        addKeyboardObserver()
         callback.isHidden = true
+    }
+    
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func btnOpenSdk(_ sender: UIButton) {
@@ -91,6 +105,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         feeHeader = txtFeeHeader.text
         customization = txtCustomization.text
         optionalObj = txtOptionalData.text
+        
+        referenceID = txtReferenceID.text
+        logoURL = txtLogoURL.text
         
         openSDK()
         
@@ -117,13 +134,25 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         config["student_id"] = studentID
         config["env"] = environment
+        config["reference_id"] = referenceID
         
-        if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty{
+        if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty {
             config["customer_number"] = unwrapCustomerNumber
         }
         
-        if let unwrapCustomization = customization, !unwrapCustomization.isEmpty{
-            config["customization"] = ["theme_color": unwrapCustomization]
+        var customizationDict = [String: Any]()
+        
+        if let customization, !customization.isEmpty {
+//            config["customization"] = ["theme_color": unwrapCustomization]
+            customizationDict["theme_color"] = customization
+        }
+        
+        if let logoURL, !logoURL.isEmpty {
+            customizationDict["logo_url"] = logoURL
+        }
+        
+        if !customizationDict.isEmpty {
+            config["customization"] = customizationDict
         }
         
         if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
@@ -243,3 +272,27 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
 }
 
+extension ViewController {
+    
+    @objc func keyboardWillShow(notification: Notification){
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        DispatchQueue.main.async {
+            let keyboardScreenEndFrame = keyboardValue.cgRectValue
+            let keyboardViewEndFrame = self.view.convert(keyboardScreenEndFrame, from: self.view.window)
+
+            let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - self.view.safeAreaInsets.bottom, right: 0)
+
+            self.scrollView.contentInset = contentInset
+            self.scrollView.scrollIndicatorInsets = contentInset
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        DispatchQueue.main.async {
+            self.scrollView.contentInset = .zero
+            self.scrollView.scrollIndicatorInsets = .zero
+        }
+    }
+
+}
