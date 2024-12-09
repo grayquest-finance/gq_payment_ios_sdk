@@ -21,13 +21,11 @@ pod 'GQPaymentIOSSDK', '~> 1.3.13'
 ```
 
 
-# Initialising:
+## Initialising:
 
 Import the SDK on your viewcontroller, where you want to present the payment screen.
 
-```ruby
-import GQPaymentIOSSDK
-```
+    import GQPaymentIOSSDK
 
 
 Intialise the GQPaymentSDK class.
@@ -46,7 +44,7 @@ Intialise the GQPaymentSDK class.
     }
 
 
-# Add the following code for Delegates/ Callbacks:
+## Add the following code for Delegates/ Callbacks:
 
 Confirm your Viewcontroller to the GQPaymentDelegate protocol:
 
@@ -68,7 +66,7 @@ Use these methods to receive Success, Failure and Cancel response.
     }
     
 
-# Options
+## Options
 Available options that can be set while initiating the sdk.
 
 Must Have
@@ -98,14 +96,14 @@ Must Have
 |||1.  If a fee amount is provided then the fee editable can be true or false.|
 |||2.  If fee amount is not provided the fee editable should be true otherwise sdk will throw an error that can be seen in the network tab's console area.|
 
-# Payment Page
+## Payment Page
 
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
 |1|slug|Slug to activate the configuration of a specific payment page. (provided by GQ)|No|
 
-# Fee Headers
+## Fee Headers
 
 
 |Sr. No.| Option | Description | Mandatory |
@@ -116,9 +114,9 @@ Must Have
 |||Eg: Quarter 2 Payable fee|
 
 
-# Additional Options that can be used to ease the journey for your customers / parents / users.
+## Additional Options that can be used to ease the journey for your customers / parents / users.
 
-# Student Details
+## Student Details
 
 
 |Sr. No.| Option | Description | Mandatory |
@@ -131,7 +129,7 @@ Must Have
 |||1.  EXISTING|
 |||2.  NEW|
 
-# Applicant Details
+## Applicant Details
 
 
 
@@ -153,7 +151,7 @@ Must Have
 |||3.  OTHERS|
 |8|pan_number|Customer's PAN card number|No|
 
-# Residential Details
+## Residential Details
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
@@ -177,7 +175,7 @@ Must Have
 |6|residential_city|City|No
 |7|residential_state|State|No|
 
-# Employment Details - Salaried
+## Employment Details - Salaried
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
@@ -192,7 +190,7 @@ Must Have
 |||4.  GREATER THAN 10 YEARS|
 |4|net_monthly_salary|Monthly salary (Salary can only contain numeric values)|No|
 
-# Employment Details - Self Employed
+## Employment Details - Self Employed
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
@@ -236,21 +234,21 @@ Must Have
 |||Business state||
 |16|notes|Notes provided by customer|No|
 
-# Customizations
+## Customizations
 Texts
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
 |1|fee_helper_text|To add a custom fee helper text which is shown on the fee details section on the popup/sdk.|No|
 
-# Logo
+## Logo
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
 |1|logo_url|To add a custom institute logo which is shown on the popup/sdk.|No|
 |||**Ideal Image Size:** **100 X 100 px**||
 
-# Theme
+## Theme
 
 |Sr. No.| Option | Description | Mandatory |
 |--|--|--|--|
@@ -260,6 +258,105 @@ Texts
 
 Note: If data for a specific field is not available then you should not send the variable or key.
 
+    let auth: [String: Any] = [
+      "client_id": "<client_id>",
+      "client_secret_key": "<client_secret_key>",
+      "gq_api_key": "<gq_api_key>"
+    ]
+
+
+    let customization: [String: Any] = [
+      "fee_helper_text": "<fee_helper_text>",
+      "logo_url": "<logo_url>",
+      "theme_color": "<theme_color>"
+    ]
+
+
+    let ppConfig: [String: Any] = [
+      "slug": "<slug>"
+    ]
+
+
+    let feeHeaders: [String: Any] = [
+      "fee_type_1": <AMOUNT 1>,
+      "fee_type_2": <AMOUNT 2>,
+      .
+      .
+      .
+      "fee_type_n": <AMOUNT n>
+    ]
+
+
+    let config: [String: Any] = [
+      "auth": auth,
+      "student_id": "<student_id>",
+      "env": "<env>",
+      "customer_number": "<customer_number>",
+      "pp_config": ppConfig,
+      "fee_headers": feeHeaders,
+      "customization": customization
+    ]
+
+
+    let student_details: [String: Any] = [
+      "student_first_name": "<student_first_name>",
+      "student_last_name": "<student_last_name>",
+      "student_type": "<student_type>"
+    ]
+
+
+    let customer_details: [String: Any] = [
+      "customer_first_name": "<customer_first_name>",
+      "customer_last_name": "<customer_last_name>",
+      "customer_dob": "<customer_dob>",
+      "customer_gender": "<customer_gender>",
+      "customer_email": "<customer_email>",
+      "customer_marital_status": "<customer_marital_status>"
+    ]
+
+
+    let kyc_details: [String: Any] = [
+      "pan_number": "<pan_number>"
+    ]
+
+
+    let employment_details: [String: Any] = [
+      "income_type": "<income_type>",
+      "employer_name": "<employer_name>",
+      "work_experience": "<work_experience>",
+      "net_monthly_salary": "<net_monthly_salary>",
+
+
+      "business_name": "<business_name>",
+      "business_turnover": "<business_turnover>",
+      "business_annual_income": "<business_annual_income>",
+      "business_category": "<business_category>",
+      "business_type": "<business_type>",
+      "business_description": "<business_description>",
+      "business_employee_count": "<business_employee_count>",
+      "years_of_current_business": "<years_of_current_business>",
+      "same_as_residence_address": "<same_as_residence_address>",
+      "addr_line_1": "<addr_line_1>",
+      "addr_line_2": "<addr_line_2>",
+      "city": "<city>",
+      "state": "<state>"
+    ]
+
+
+    let notes: [String: Any] = [
+      "key": "<value>"
+    ]
+
+
+    let prefill: [String: Any] = [
+      "student_details": student_details,
+      "customer_details": customer_details,
+      "kyc_details": kyc_details,
+      "employment_details": employment_details,
+      "notes": notes
+    ]
+    
+    
 ## Author
 
 1410avi, avinash.soni@grayquest.com
