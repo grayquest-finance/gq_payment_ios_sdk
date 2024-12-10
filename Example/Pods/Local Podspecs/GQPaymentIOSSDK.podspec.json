@@ -33,7 +33,7 @@
       "~> 1.1"
     ]
   },
-  "source_files": "GQPaymentIOSSDK/Classes/**/*",
+  "vendored_frameworks": "GQPaymentIOSSDK.xcframework",
   "exclude_files": "BuildFramework.sh",
   "swift_version": "5.0"
 }

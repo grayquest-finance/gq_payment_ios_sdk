@@ -28,7 +28,6 @@ class Environment {
     var ppConfigString: String = ""
     var feeHeadersString: String = ""
     var referenceID: String?
-    var logoURL: String?
     
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
@@ -89,10 +88,6 @@ class Environment {
     
     func updateFeeHeaders(feeHeader: String){
         self.feeHeadersString = feeHeader
-    }
-    
-    func updateLogoURL(url: String?) {
-        self.logoURL = url
     }
     
     func updateReferenceID(referenceID: String?) {

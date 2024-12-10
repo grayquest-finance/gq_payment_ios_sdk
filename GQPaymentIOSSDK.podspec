@@ -38,9 +38,9 @@ Pod::Spec.new do |s|
   s.dependency 'razorpay-pod', '~> 1.3.13'
   s.dependency 'Easebuzz', '~> 1.1'
   
-  s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
+#  s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
   
-#  s.vendored_frameworks = 'GQPaymentIOSSDK.xcframework'
+  s.vendored_frameworks = 'GQPaymentIOSSDK.xcframework'
   s.exclude_files = 'BuildFramework.sh'
   
   # s.resource_bundles = {

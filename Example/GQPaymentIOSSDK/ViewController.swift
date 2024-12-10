@@ -49,7 +49,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtReferenceID: UITextField!
     @IBOutlet weak var txtCustomization: UITextField!
     @IBOutlet weak var txtOptionalData: UITextField!
-    @IBOutlet weak var txtLogoURL: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -64,7 +63,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var optionalObj: String?
     var callBackMessage: String = ""
     var referenceID: String?
-    var logoURL: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -107,7 +105,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
         optionalObj = txtOptionalData.text
         
         referenceID = txtReferenceID.text
-        logoURL = txtLogoURL.text
         
         openSDK()
         
@@ -143,19 +140,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
             config["customer_number"] = unwrapCustomerNumber
         }
         
-        var customizationDict = [String: Any]()
-        
         if let customization, !customization.isEmpty {
-//            config["customization"] = ["theme_color": unwrapCustomization]
-            customizationDict["theme_color"] = customization
-        }
-        
-        if let logoURL, !logoURL.isEmpty {
-            customizationDict["logo_url"] = logoURL
-        }
-        
-        if !customizationDict.isEmpty {
-            config["customization"] = customizationDict
+            config["customization"] = ["theme_color": customization]
         }
         
         if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
@@ -191,9 +177,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
 //        UAT
-//        txtClientId.text = "GQ-e2daf990-c020-4162-9a2f-da9ec6423be5"
-//        txtClientSecretKey.text = "51028d07-97aa-4498-8379-5c2e8e4d3716"
-//        txtGqApiKey.text = "08051930-3621-42ff-858b-cb86383df2d5"
+        txtClientId.text = "GQ-e2daf990-c020-4162-9a2f-da9ec6423be5"
+        txtClientSecretKey.text = "51028d07-97aa-4498-8379-5c2e8e4d3716"
+        txtGqApiKey.text = "08051930-3621-42ff-858b-cb86383df2d5"
         
 //        UAT: SDK v1
 //        txtClientId.text = "e4116a46-51c3-4996-b59e-4260ea33fa0c"
@@ -201,23 +187,23 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "4830c1b7-6164-4e2c-9715-7750307eb430"
         
 //        Stage: SDK v1.1
-        txtClientId.text = "GQ-9e02608d-45a6-44b4-aef0-d0a3e4713d3d"
-        txtClientSecretKey.text = "f4ba7495-42cb-4c73-93dc-b1f1ae77f031"
-        txtGqApiKey.text = "c8b6fe73-8d0a-4aea-8c3f-8a5a86610903"
+//        txtClientId.text = "GQ-9e02608d-45a6-44b4-aef0-d0a3e4713d3d"
+//        txtClientSecretKey.text = "f4ba7495-42cb-4c73-93dc-b1f1ae77f031"
+//        txtGqApiKey.text = "c8b6fe73-8d0a-4aea-8c3f-8a5a86610903"
 
 //        Stage: SDK v1
 //        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
 //        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
 //        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
-//        txtEnvironment.text = "test"
-        txtEnvironment.text = "stage"
+        txtEnvironment.text = "test"
+//        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1195"
-        txtCustomerNumber.text = "9025145623"
+        txtStudentID.text = "demo_1495"
+        txtCustomerNumber.text = "9067145623"
         
-//        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
     }
     
     func converString(dataString: String) -> [String:Any] {
