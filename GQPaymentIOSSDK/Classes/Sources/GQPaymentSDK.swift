@@ -84,15 +84,6 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             if let themeColor = customization["theme_color"] as? String {
                                 environment.updateTheme(theme: themeColor)
                             }
-                            
-                            if let logoURL = customization["logo_url"] as? String {
-                                environment.updateLogoURL(url: logoURL)
-                            }
-                            
-                            if let customizationData = try? JSONSerialization.data(withJSONObject: customization, options: .prettyPrinted),
-                               let customizationString = String(data: customizationData, encoding: .utf8) {
-                                environment.updateCustomization(customization: customizationString)
-                            }
                         }
                         
                         if var ppConfig = json["pp_config"] as? [String: Any]{
@@ -258,10 +249,6 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         webloadUrl += "&s=\(Environment.source)"
         webloadUrl += "&user=\(environment.customerType)"
         
-        if !environment.customizationString.isEmpty{
-            webloadUrl += ""
-        }
-        
         if !environment.ppConfigString.isEmpty {
             webloadUrl += "&_pp_config=\(environment.ppConfigString)"
         }
@@ -274,9 +261,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             webloadUrl += "&reference_id=\(referenceID)"
         }
         
-        if((prefillJSONObject?.isEmpty) != nil){
-            if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject!),
-               !optionalString.isEmpty{
+        if let prefillJSONObject = prefillJSONObject {
+            if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject),
+               !optionalString.isEmpty {
 //                print("optionalDataString: \(optionalString)")
                 webloadUrl += "&optional=\(optionalString)"
             }

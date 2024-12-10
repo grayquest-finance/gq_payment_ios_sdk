@@ -49,7 +49,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtReferenceID: UITextField!
     @IBOutlet weak var txtCustomization: UITextField!
     @IBOutlet weak var txtOptionalData: UITextField!
-    @IBOutlet weak var txtLogoURL: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -64,7 +63,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var optionalObj: String?
     var callBackMessage: String = ""
     var referenceID: String?
-    var logoURL: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -107,7 +105,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
         optionalObj = txtOptionalData.text
         
         referenceID = txtReferenceID.text
-        logoURL = txtLogoURL.text
         
         openSDK()
         
@@ -143,19 +140,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
             config["customer_number"] = unwrapCustomerNumber
         }
         
-        var customizationDict = [String: Any]()
-        
         if let customization, !customization.isEmpty {
-//            config["customization"] = ["theme_color": unwrapCustomization]
-            customizationDict["theme_color"] = customization
-        }
-        
-        if let logoURL, !logoURL.isEmpty {
-            customizationDict["logo_url"] = logoURL
-        }
-        
-        if !customizationDict.isEmpty {
-            config["customization"] = customizationDict
+            config["customization"] = ["theme_color": customization]
         }
         
         if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
@@ -191,9 +177,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
 //        UAT
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
+        txtClientId.text = "<KEY>"
+        txtClientSecretKey.text = "<KEY>"
+        txtGqApiKey.text = "<KEY>"
         
 //        UAT: SDK v1
 //        txtClientId.text = "<KEY>"
@@ -201,23 +187,23 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "<KEY>"
         
 //        Stage: SDK v1.1
-        txtClientId.text = "<KEY>"
-        txtClientSecretKey.text = "<KEY>"
-        txtGqApiKey.text = "<KEY>"
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
 
 //        Stage: SDK v1
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
 //        txtGqApiKey.text = "<KEY>"
 
-//        txtEnvironment.text = "test"
-        txtEnvironment.text = "stage"
+        txtEnvironment.text = "test"
+//        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1195"
-        txtCustomerNumber.text = "9025145623"
+        txtStudentID.text = "demo_1495"
+        txtCustomerNumber.text = "9067145623"
         
-//        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
+        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
     }
     
     func converString(dataString: String) -> [String:Any] {
