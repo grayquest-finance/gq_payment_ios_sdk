@@ -134,7 +134,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         config["student_id"] = studentID
         config["env"] = environment
-        config["reference_id"] = referenceID
+        
+        if let referenceID, !referenceID.isEmpty {
+            config["reference_id"] = referenceID
+        }
         
         if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty {
             config["customer_number"] = unwrapCustomerNumber
