@@ -23,6 +23,10 @@ pod 'GQPaymentIOSSDK', '~> 1.0.1'
 ```
 
 
+## Package Whitelisting
+The newest versions of our GQPaymentIOSSDK(1.0.1 and newer) will require your app package/bundle to be whitelisted in system to use the SDK Checkout. Whitelisting request can be made from GrayQuest Team
+
+
 ## Initialising
 
 Import the SDK on your viewcontroller, where you want to present the payment screen.
@@ -198,8 +202,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Cancel callback received with data: \(data)")
     }
     
-    var prefill: [String: Any]?
-    var config: [String: Any]?
+    var clientJSONObject: [String: Any]?
+    var prefillJSONObject: [String: Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -223,7 +227,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "fee_type_n": <AMOUNT n>
         ]
 
-        config = [
+        clientJSONObject = [
           "auth": auth,
           "student_id": "<student_id>",
           "env": "<env>",
@@ -281,7 +285,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "key": "<value>"
         ]
 
-        prefill = [
+        prefillJSONObject = [
           "student_details": student_details,
           "customer_details": customer_details,
           "kyc_details": kyc_details,
@@ -301,8 +305,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         gqPaymentSDK.modalTransitionStyle = .crossDissolve
         
         gqPaymentSDK.delegate = self
-        gqPaymentSDK.clientJSONObject = config
-        gqPaymentSDK.prefillJSONObject = prefill
+        gqPaymentSDK.clientJSONObject = clientJSONObject
+        gqPaymentSDK.prefillJSONObject = prefillJSONObject
         DispatchQueue.main.async {
             self.present(gqPaymentSDK, animated: true)
         }
