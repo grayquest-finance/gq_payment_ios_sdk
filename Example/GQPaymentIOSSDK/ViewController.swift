@@ -176,10 +176,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
-//        UAT
-        txtClientId.text = "GQ-e2daf990-c020-4162-9a2f-da9ec6423be5"
-        txtClientSecretKey.text = "51028d07-97aa-4498-8379-5c2e8e4d3716"
-        txtGqApiKey.text = "08051930-3621-42ff-858b-cb86383df2d5"
+//        UAT: With Fee Headers
+        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
+        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
+        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
         
 //        UAT: SDK v1
 //        txtClientId.text = "e4116a46-51c3-4996-b59e-4260ea33fa0c"
@@ -199,11 +199,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtEnvironment.text = "test"
 //        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1495"
+        txtStudentID.text = "demo_1497"
         txtCustomerNumber.text = "9067145623"
         
-        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+//        txtPPConfig.text = ""
+        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
     }
     
     func converString(dataString: String) -> [String:Any] {
