@@ -1,0 +1,6 @@
+framework module GQPaymentIOSSDK {
+  umbrella header "GQPaymentIOSSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}

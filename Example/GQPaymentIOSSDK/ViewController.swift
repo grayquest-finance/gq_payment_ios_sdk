@@ -74,6 +74,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         addKeyboardObserver()
+        handleTapGesture()
         callback.isHidden = true
     }
     
@@ -252,6 +253,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
             print("Error converting dictionary to JSON: \(error.localizedDescription)")
             return nil
         }
+    }
+    
+    private func handleTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
