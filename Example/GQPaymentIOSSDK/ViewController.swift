@@ -49,6 +49,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtReferenceID: UITextField!
     @IBOutlet weak var txtCustomization: UITextField!
     @IBOutlet weak var txtOptionalData: UITextField!
+    @IBOutlet weak var txtEMIPlanID: UITextField!
+    @IBOutlet weak var txtUDFDetails: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -63,6 +65,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var optionalObj: String?
     var callBackMessage: String = ""
     var referenceID: String?
+    var emiPlanID: String?
+    var udfDetails: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -106,6 +110,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         optionalObj = txtOptionalData.text
         
         referenceID = txtReferenceID.text
+        emiPlanID = txtEMIPlanID.text
+        udfDetails = txtUDFDetails.text
         
         openSDK()
         
@@ -135,6 +141,14 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         if let referenceID, !referenceID.isEmpty {
             config["reference_id"] = referenceID
+        }
+        
+        if let emiPlanID, !emiPlanID.isEmpty {
+            config["emi_plan_id"] = emiPlanID
+        }
+        
+        if let udfDetails, !udfDetails.isEmpty {
+            config["udf_details"] = converString(dataString: udfDetails)
         }
         
         if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty {
@@ -218,16 +232,16 @@ class ViewController: UIViewController, GQPaymentDelegate {
                     print(dataObj)
                     return dataObj
                 } else {
-                    return [:]
                     print("Failed to cast JSON object to [String: Any]")
+                    return [:]
                 }
             } catch {
-                return [:]
                 print("Error deserializing JSON: \(error)")
+                return [:]
             }
         } else {
-            return [:]
             print("Failed to convert JSON string to data")
+            return [:]
         }
     }
     

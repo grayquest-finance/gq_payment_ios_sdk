@@ -14,17 +14,17 @@
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GQPaymentIOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnB-jq-RvX">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="807"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-qQ-FmW">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="683"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="805"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j2Y-NB-71w">
-                                                <rect key="frame" x="0.0" y="5" width="393" height="663"/>
+                                                <rect key="frame" x="0.0" y="5" width="393" height="785"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GQ Payment iOS SDK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4t-sN-UlO">
                                                         <rect key="frame" x="19.666666666666657" y="0.0" width="353.66666666666674" height="35"/>
@@ -36,70 +36,80 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-mw-SK1">
-                                                        <rect key="frame" x="19.666666666666657" y="45" width="353.66666666666674" height="520"/>
+                                                        <rect key="frame" x="15.666666666666657" y="45" width="361.66666666666674" height="642"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client ID *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mbf-bv-lgr">
-                                                                <rect key="frame" x="0.0" y="0.0" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="361.66666666666669" height="42"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="40" id="JTk-20-pwB"/>
+                                                                    <constraint firstAttribute="height" constant="42" id="JTk-20-pwB"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client Secret Key *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="nue-i2-ZxA">
-                                                                <rect key="frame" x="0.0" y="48" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="50" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="GQ API Key *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="WMY-iT-d8t">
-                                                                <rect key="frame" x="0.0" y="96" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="100" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Environment *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="yXK-SH-io1">
-                                                                <rect key="frame" x="0.0" y="144" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="150" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Student ID *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Id1-lt-PM8">
-                                                                <rect key="frame" x="0.0" y="192" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="200" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Customer Number" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="08Z-7q-gh2">
-                                                                <rect key="frame" x="0.0" y="240" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="250" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PP Config" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="X2q-D5-6ig">
-                                                                <rect key="frame" x="0.0" y="288" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="300" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fee Header" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="qDq-fL-8dF">
-                                                                <rect key="frame" x="0.0" y="336" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="350" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Reference ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="fYn-tA-zhm">
-                                                                <rect key="frame" x="0.0" y="384" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="400" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="EMI Plan ID" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="JD6-SE-voW">
+                                                                <rect key="frame" x="0.0" y="450" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="UDF Details" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="bmi-ba-w1T">
+                                                                <rect key="frame" x="0.0" y="500" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Theme Colour" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="DX1-qf-d2t">
-                                                                <rect key="frame" x="0.0" y="432" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="550" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Optional Data" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hQZ-mU-m3q">
-                                                                <rect key="frame" x="0.0" y="480" width="353.66666666666669" height="40"/>
+                                                                <rect key="frame" x="0.0" y="600" width="361.66666666666669" height="42"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RyS-ma-WEZ">
-                                                        <rect key="frame" x="29.333333333333343" y="575" width="334.33333333333326" height="88"/>
+                                                        <rect key="frame" x="29.333333333333343" y="697" width="334.33333333333326" height="88"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-ln-i4q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="40"/>
@@ -141,7 +151,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="j2Y-NB-71w" secondAttribute="trailing" id="5WL-Sw-upG"/>
                                             <constraint firstItem="j2Y-NB-71w" firstAttribute="top" secondItem="fUM-qQ-FmW" secondAttribute="top" constant="5" id="EtK-2I-hBL"/>
-                                            <constraint firstItem="Mbf-bv-lgr" firstAttribute="width" secondItem="fUM-qQ-FmW" secondAttribute="width" multiplier="0.9" id="Ifz-1R-394"/>
+                                            <constraint firstItem="Mbf-bv-lgr" firstAttribute="width" secondItem="fUM-qQ-FmW" secondAttribute="width" multiplier="0.92" id="Ifz-1R-394"/>
                                             <constraint firstAttribute="bottom" secondItem="j2Y-NB-71w" secondAttribute="bottom" constant="15" id="VNf-vq-wN4"/>
                                             <constraint firstItem="ERm-ln-i4q" firstAttribute="width" secondItem="fUM-qQ-FmW" secondAttribute="width" multiplier="0.85" id="gW1-St-gbh"/>
                                             <constraint firstItem="j2Y-NB-71w" firstAttribute="leading" secondItem="fUM-qQ-FmW" secondAttribute="leading" id="jbW-JK-zcJ"/>
@@ -169,7 +179,7 @@
                             <constraint firstItem="YnB-jq-RvX" firstAttribute="top" secondItem="bdl-D0-4wz" secondAttribute="top" id="xE5-OH-JpF"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="852"/>
+                    <size key="freeformSize" width="393" height="900"/>
                     <connections>
                         <outlet property="callback" destination="rdq-1c-7BX" id="Lq1-gD-2lS"/>
                         <outlet property="scrollView" destination="YnB-jq-RvX" id="Mdi-t0-k0H"/>
@@ -177,6 +187,7 @@
                         <outlet property="txtClientSecretKey" destination="nue-i2-ZxA" id="lta-sj-Y8d"/>
                         <outlet property="txtCustomerNumber" destination="08Z-7q-gh2" id="tL3-5T-wTP"/>
                         <outlet property="txtCustomization" destination="DX1-qf-d2t" id="W0C-Cl-kBe"/>
+                        <outlet property="txtEMIPlanID" destination="JD6-SE-voW" id="LSp-4O-VTo"/>
                         <outlet property="txtEnvironment" destination="yXK-SH-io1" id="Bwz-sq-aWS"/>
                         <outlet property="txtFeeHeader" destination="qDq-fL-8dF" id="h0W-Io-PX1"/>
                         <outlet property="txtGqApiKey" destination="WMY-iT-d8t" id="jkT-6m-ZKV"/>
@@ -184,6 +195,7 @@
                         <outlet property="txtPPConfig" destination="X2q-D5-6ig" id="ANW-Yh-7aU"/>
                         <outlet property="txtReferenceID" destination="fYn-tA-zhm" id="vxw-cR-Tbg"/>
                         <outlet property="txtStudentID" destination="Id1-lt-PM8" id="K7O-hz-Sbq"/>
+                        <outlet property="txtUDFDetails" destination="bmi-ba-w1T" id="Fib-Xc-Vph"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
