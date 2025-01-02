@@ -228,6 +228,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
           .
           "fee_type_n": <AMOUNT n>
         ]
+        
+        let udfDetails: [String: Any] = [
+          "key_1": <Value 1>,
+          "key_2": <Value 2>,
+          .
+          .
+          .
+          "key_n": <Value n>
+        ]
 
         clientJSONObject = [
           "auth": auth,
@@ -236,6 +245,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "customer_number": "<customer_number>",
           "pp_config": ppConfig,
           "fee_headers": feeHeaders
+          "reference_id": "<reference_id>",
+          "emi_plan_id": "<emi_plan_id>"
+          "udf_details": udfDetails
         ]
 
         let student_details: [String: Any] = [
