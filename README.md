@@ -105,9 +105,11 @@ Available options that can be set while initiating the sdk.
      
 | Sr. No. | Option | Data Type | Description | Mandatory |
 |--|--|--|--|--|
-| 1 | student_id  | string | Unique id of the student used to create the gq application with reference to customer mobile number. | Yes |
+| 1 | student_id  | string | Unique ID of the student used to create the gq application with reference to customer mobile number. | Yes |
 | 2 | customer_number | string | Used to create a customer in the GrayQuest System | Yes |
 | 3 | reference_id | string | Unique ERP Order ID | No |
+| 4 | emi_plan_id | string | Unique EMI Plan ID | No |
+| 5 | udf_details | string | UDF Details | No |
 
 
 ### Payment Page

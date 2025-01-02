@@ -233,9 +233,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         webView.configuration.userContentController.add(self, name: "sendADOptions")
         webView.configuration.userContentController.add(self, name: "sendPGOptions")
         
+//        #if DEBUG
         if #available(iOS 16.4, *) {
             webView.isInspectable = true
         }
+//        #endif
         
         webView.uiDelegate = self
         webView.navigationDelegate = self
