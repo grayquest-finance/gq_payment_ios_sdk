@@ -65,6 +65,16 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             environment.updateReferenceID(referenceID: referenceID)
                         }
                         
+                        if let emiPlanID = json["emi_plan_id"] as? String {
+                            environment.updateEmiPlanID(emiPlanID: emiPlanID)
+                        }
+                        
+                        if let udfDetails = json["udf_details"] as? [String: Any] {
+                            if let udfDetailsString = customInstance.outputJSON(dictionary: udfDetails) {
+                                environment.updateUDFDetails(udfDetails: udfDetailsString)
+                            }
+                        }
+                        
                         if let env = json["env"] as? String {
                             if customInstance.containsAnyValidEnvironment(env){
                                 environment.update(environment: env)
@@ -259,6 +269,14 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         if let referenceID = environment.referenceID, !referenceID.isEmpty {
             webloadUrl += "&reference_id=\(referenceID)"
+        }
+        
+        if let emiPlanID = environment.emiPlanID, !emiPlanID.isEmpty {
+            webloadUrl += "&emi_plan_id=\(emiPlanID)"
+        }
+        
+        if let udfDetails = environment.udfDetailsString, !udfDetails.isEmpty {
+            webloadUrl += "&udf_details=\(udfDetails)"
         }
         
         if let prefillJSONObject = prefillJSONObject {

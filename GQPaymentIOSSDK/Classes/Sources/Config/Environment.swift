@@ -28,6 +28,8 @@ class Environment {
     var ppConfigString: String = ""
     var feeHeadersString: String = ""
     var referenceID: String?
+    var emiPlanID: String?
+    var udfDetailsString: String?
     
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
@@ -92,6 +94,14 @@ class Environment {
     
     func updateReferenceID(referenceID: String?) {
         self.referenceID = referenceID
+    }
+
+    func updateEmiPlanID(emiPlanID: String?) {
+        self.emiPlanID = emiPlanID
+    }
+
+    func updateUDFDetails(udfDetails: String?) {
+        self.udfDetailsString = udfDetails
     }
     
     func baseURL() -> String{
