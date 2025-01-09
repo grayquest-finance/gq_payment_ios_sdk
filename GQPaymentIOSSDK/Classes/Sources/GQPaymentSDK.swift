@@ -173,7 +173,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                 "error": errorMessage
             ]
             DispatchQueue.main.async {
-                self.delegate?.gqFailureResponse(data: errorObject)
+                self.dismiss(animated: true) {
+                    self.delegate?.gqFailureResponse(data: errorObject)
+                }
             }
         }else{
             if mobileNumber.isEmpty{

@@ -218,7 +218,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtCustomerNumber.text = "9067145623"
         
 //        txtPPConfig.text = ""
-        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
+//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
     }
     
     func converString(dataString: String) -> [String:Any] {
