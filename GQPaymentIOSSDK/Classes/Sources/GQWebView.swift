@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 import CashfreePGCoreSDK
 import CashfreePGUISDK
 import CashfreePG
@@ -134,6 +134,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //                                print("Easebuz Key: \(access_key)")
                                 
                                 initiatePaymentAction(access_key: access_key)
+                            }
+                        } else if name == "HDFC-SMART-GATEWAY" {
+                            if let pgOptions = json["pgOptions"] as? [String: Any], let paymentLink = pgOptions["payment_link_web"] as? String {
+                                navigateToPaymentPage(link: paymentLink)
                             }
                         } else if let pgOptions = json["pgOptions"] as? [String: Any],
                                   let key = pgOptions["key"] as? String,
@@ -271,6 +275,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func openPG(paymentSessionId: String, orderId: String) {
         
         do {
@@ -400,6 +409,27 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         } else {
 //            print("Conversion to JSON failed.")
         }
+    }
+    
+    @MainActor func navigateToPaymentPage(link: String?) {
+        guard let link else { return }
+        
+//        MARK: Redirection
+        let gqWebView = GQWeb()
+        gqWebView.loadURL = link
+        
+//        #warning("remove static link and change bundle identifier")
+//        gqWebView.loadURL = "https://payments.cashfree.com/links/c7v73bt760q0"
+        
+        self.navigationController?.pushViewController(gqWebView, animated: true)
+        
+        
+//        MARK: Deep Linking
+//        if let url = URL(string: link) {
+//            if UIApplication.shared.canOpenURL(url) {
+//                UIApplication.shared.open(url)
+//            }
+//        }
     }
     
     func initiatePaymentAction(access_key: String) {

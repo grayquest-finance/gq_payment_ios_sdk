@@ -294,11 +294,14 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 //        print("Complete WebUrl: \(webloadUrl)")
         
         let gqWebView = GQWebView()
-        gqWebView.isModalInPresentation = true
         gqWebView.webDelegate = self
         gqWebView.loadURL = webloadUrl
+        
+        let navigationController = UINavigationController(rootViewController: gqWebView)
+        navigationController.isModalInPresentation = true
+        
         DispatchQueue.main.async {
-            self.present(gqWebView, animated: true, completion: nil)
+            self.present(navigationController, animated: true, completion: nil)
             self.hideLoader()
         }
         
