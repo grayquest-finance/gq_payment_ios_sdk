@@ -333,7 +333,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if (vName == "UNIPG") {
+            if (vName == "UNIPG") || (vName == "RAZORPAY") {
 //                print("VName: \(String(describing: vName))")
 //                isUNIPGError = true
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
@@ -360,7 +360,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if (vName == "UNIPG") {
+            if (vName == "UNIPG") || (vName == "RAZORPAY") {
 //                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
