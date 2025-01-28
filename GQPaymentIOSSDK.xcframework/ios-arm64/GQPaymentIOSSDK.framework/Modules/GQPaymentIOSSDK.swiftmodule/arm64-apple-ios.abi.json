@@ -1358,21 +1358,21 @@
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 792,
+      "offset": 1133,
       "length": 6,
       "value": "\"isdk\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 832,
+      "offset": 1173,
       "length": 9,
       "value": "\"\"1.1\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 879,
+      "offset": 1220,
       "length": 29,
       "value": "\"v1\/customer\/create-customer\""
     },
@@ -1396,13 +1396,6 @@
       "offset": 547,
       "length": 5,
       "value": "false"
-    },
-    {
-      "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQWeb.swift",
-      "kind": "StringLiteral",
-      "offset": 276,
-      "length": 21,
-      "value": "\"svc-dp.graydev.tech\""
     }
   ]
 }

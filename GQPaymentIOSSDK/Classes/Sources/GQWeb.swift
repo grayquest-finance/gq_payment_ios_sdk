@@ -14,8 +14,6 @@ import UIKit
     
     var loadURL: String?
     
-    private let gqCallbackURL: String = "svc-dp.graydev.tech"
-    
     public override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
@@ -58,7 +56,7 @@ import UIKit
 extension GQWeb: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
-        if let urlString = webView.url?.absoluteString, urlString.contains(gqCallbackURL) {
+        if let urlString = webView.url?.absoluteString, urlString.contains(Environment.shared.juspayCallbackURL) {
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
