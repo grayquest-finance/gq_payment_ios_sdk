@@ -31,6 +31,19 @@ class Environment {
     var emiPlanID: String?
     var udfDetailsString: String?
     
+    var juspayCallbackURL: String {
+        switch env {
+        case "stage":
+            return "svc-dp-stage.graydev.tech"
+        case "preprod":
+            return "svc-dp-preprod.graydev.tech"
+        case "live":
+            return "svc-dp.grayquest.com"
+        default:
+            return "svc-dp.graydev.tech"
+        }
+    }
+    
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
     static var customerAPI: String = "v1/customer/create-customer"
