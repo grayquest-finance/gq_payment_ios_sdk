@@ -30,7 +30,7 @@ class Custom {
     }
     
     func outputJSON(dictionary: [String: Any]) -> String? {
-        if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary as Any, options: .prettyPrinted),
+        if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted),
            let jsonString = String(data: jsonData, encoding: .utf8) {
             //            print("customizationString: \(jsonString)")
             return jsonString

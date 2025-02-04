@@ -8,7 +8,6 @@
 
 import UIKit
 import GQPaymentIOSSDK
-import SwiftUI
 
 class ViewController: UIViewController, GQPaymentDelegate {
     func gqSuccessResponse(data: [String : Any]?) {
@@ -37,6 +36,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
     }
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var txtClientId: UITextField!
     @IBOutlet weak var txtClientSecretKey: UITextField!
@@ -46,8 +46,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtCustomerNumber: UITextField!
     @IBOutlet weak var txtPPConfig: UITextField!
     @IBOutlet weak var txtFeeHeader: UITextField!
+    @IBOutlet weak var txtReferenceID: UITextField!
     @IBOutlet weak var txtCustomization: UITextField!
     @IBOutlet weak var txtOptionalData: UITextField!
+    @IBOutlet weak var txtEMIPlanID: UITextField!
+    @IBOutlet weak var txtUDFDetails: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -61,6 +64,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var customization: String?
     var optionalObj: String?
     var callBackMessage: String = ""
+    var referenceID: String?
+    var emiPlanID: String?
+    var udfDetails: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -71,8 +77,18 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        addKeyboardObserver()
+        handleTapGesture()
         callback.isHidden = true
+    }
+    
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func btnOpenSdk(_ sender: UIButton) {
@@ -92,6 +108,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         feeHeader = txtFeeHeader.text
         customization = txtCustomization.text
         optionalObj = txtOptionalData.text
+        
+        referenceID = txtReferenceID.text
+        emiPlanID = txtEMIPlanID.text
+        udfDetails = txtUDFDetails.text
         
         openSDK()
         
@@ -119,12 +139,24 @@ class ViewController: UIViewController, GQPaymentDelegate {
         config["student_id"] = studentID
         config["env"] = environment
         
-        if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty{
+        if let referenceID, !referenceID.isEmpty {
+            config["reference_id"] = referenceID
+        }
+        
+        if let emiPlanID, !emiPlanID.isEmpty {
+            config["emi_plan_id"] = emiPlanID
+        }
+        
+        if let udfDetails, !udfDetails.isEmpty {
+            config["udf_details"] = converString(dataString: udfDetails)
+        }
+        
+        if let unwrapCustomerNumber = customerNumber, !unwrapCustomerNumber.isEmpty {
             config["customer_number"] = unwrapCustomerNumber
         }
         
-        if let unwrapCustomization = customization, !unwrapCustomization.isEmpty{
-            config["customization"] = converString(dataString: unwrapCustomization)
+        if let customization, !customization.isEmpty {
+            config["customization"] = ["theme_color": customization]
         }
         
         if let unwrapPPConifg = ppConfig, !unwrapPPConifg.isEmpty{
@@ -159,22 +191,34 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
-        txtClientId.text = "GQ-0d2ed24e-cc1f-400b-a4e3-7208c88b99b5"
-        txtClientSecretKey.text = "a96dd7ea-7d4a-4772-92c3-ac481713be4a"
-        txtGqApiKey.text = "b59bf799-2a82-4298-b901-09c512ea4aaa"
+//        UAT: With Fee Headers
+        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
+        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
+        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
         
-//        txtClientId.text = "GQ-70e832de-41f2-4937-b84c-86e3006fbb0d"
-//        txtClientSecretKey.text = "803acef6-d8cf-40f5-9ff7-c539cd8e91ef"
-//        txtGqApiKey.text = "9bc8d0f0-718e-4e51-b3cb-54e97aa228f0"
+//        UAT: SDK v1
+//        txtClientId.text = "e4116a46-51c3-4996-b59e-4260ea33fa0c"
+//        txtClientSecretKey.text = "27030e4d-1d9f-4fe0-9ff8-a2e14d69a8a6"
+//        txtGqApiKey.text = "4830c1b7-6164-4e2c-9715-7750307eb430"
         
+//        Stage: SDK v1.1
+//        txtClientId.text = "GQ-9e02608d-45a6-44b4-aef0-d0a3e4713d3d"
+//        txtClientSecretKey.text = "f4ba7495-42cb-4c73-93dc-b1f1ae77f031"
+//        txtGqApiKey.text = "c8b6fe73-8d0a-4aea-8c3f-8a5a86610903"
+
+//        Stage: SDK v1
+//        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
+//        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
+//        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
+
         txtEnvironment.text = "test"
 //        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "sample_99"
-        txtCustomerNumber.text = "9025968023"
+        txtStudentID.text = "demo_1497"
+        txtCustomerNumber.text = "9067145623"
         
-        txtPPConfig.text = "{\"slug\": \"masira-darvesh-gile\"}"
-        txtFeeHeader.text = "{\"Payable_fee_EMI\":12000,\"Payable_fee_Auto_Debit\":10000,\"Payable_fee_PG\": 100}"
+//        txtPPConfig.text = ""
+//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
     }
     
     func converString(dataString: String) -> [String:Any] {
@@ -188,16 +232,16 @@ class ViewController: UIViewController, GQPaymentDelegate {
                     print(dataObj)
                     return dataObj
                 } else {
-                    return [:]
                     print("Failed to cast JSON object to [String: Any]")
+                    return [:]
                 }
             } catch {
-                return [:]
                 print("Error deserializing JSON: \(error)")
+                return [:]
             }
         } else {
-            return [:]
             print("Failed to convert JSON string to data")
+            return [:]
         }
     }
     
@@ -225,6 +269,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
     }
     
+    private func handleTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -232,3 +285,27 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
 }
 
+extension ViewController {
+    
+    @objc func keyboardWillShow(notification: Notification){
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+
+        DispatchQueue.main.async {
+            let keyboardScreenEndFrame = keyboardValue.cgRectValue
+            let keyboardViewEndFrame = self.view.convert(keyboardScreenEndFrame, from: self.view.window)
+
+            let contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - self.view.safeAreaInsets.bottom, right: 0)
+
+            self.scrollView.contentInset = contentInset
+            self.scrollView.scrollIndicatorInsets = contentInset
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        DispatchQueue.main.async {
+            self.scrollView.contentInset = .zero
+            self.scrollView.scrollIndicatorInsets = .zero
+        }
+    }
+
+}
