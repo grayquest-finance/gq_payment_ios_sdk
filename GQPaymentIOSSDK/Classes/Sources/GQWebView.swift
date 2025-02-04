@@ -135,11 +135,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 
                                 initiatePaymentAction(access_key: access_key)
                             }
-                        } else if name == "HDFC-SMART-GATEWAY" {
-                            if let pgOptions = json["pgOptions"] as? [String: Any], let paymentLink = pgOptions["payment_link_web"] as? String {
-                                navigateToPaymentPage(link: paymentLink)
-                            }
-                        } else if let pgOptions = json["pgOptions"] as? [String: Any],
+                        } else if vName == "UNIPG",
+                                  let pgOptions = json["pgOptions"] as? [String: Any],
                                   let key = pgOptions["key"] as? String,
                                   let order_id = pgOptions["order_id"] as? String,
                                   var redirect = pgOptions["redirect"] as? Bool,
@@ -170,7 +167,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             DispatchQueue.main.async {
                                 self.razorpay!.open(options, displayController: self)
                             }
-                        }
+                        } else if let pgOptions = json["pgOptions"] as? [String: Any],
+                              let paymentLink = pgOptions["payment_link_web"] as? String {
+                                // Web Checkout - "HDFC-SMART-GATEWAY"
+                               navigateToPaymentPage(link: paymentLink)
+                       }
                     }
                 } catch {
 //                    print("Error parsing JSON: \(error)")
@@ -333,7 +334,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if (vName == "UNIPG") || (vName == "RAZORPAY") {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
 //                isUNIPGError = true
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
@@ -360,7 +361,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: userInfo!) {
 //            print("JSON String: \(jsonString)")
-            if (vName == "UNIPG") || (vName == "RAZORPAY") {
+            if (vName == "UNIPG") {
 //                print("VName: \(String(describing: vName))")
                 webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
             }else {
