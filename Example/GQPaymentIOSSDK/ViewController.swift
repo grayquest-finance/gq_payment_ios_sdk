@@ -191,15 +191,20 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
+//        UAT: Pranit Test
+        txtClientId.text = "GQ-d9167506-30ac-4a0d-bb61-8e487a596c43"
+        txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
+        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
+        
 //        UAT: With Fee Headers
 //        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
 //        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
 //        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
         
 //        UAT: SDK v1
-        txtClientId.text = "GQ-d9167506-30ac-4a0d-bb61-8e487a596c43"
-        txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
-        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
+//        txtClientId.text = "GQ-d9167506-30ac-4a0d-bb61-8e487a596c43"
+//        txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
+//        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
         
 //        Stage: SDK v1.1
 //        txtClientId.text = "GQ-9e02608d-45a6-44b4-aef0-d0a3e4713d3d"
@@ -214,8 +219,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtEnvironment.text = "test"
 //        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1929"
-        txtCustomerNumber.text = "9067158623"
+        txtStudentID.text = "demo_1234"
+        txtCustomerNumber.text = "9090909090"
         
 //        txtPPConfig.text = ""
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
