@@ -61,6 +61,20 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             errorMessage += ", Student Id is required"
                         }
                         
+                        if let referenceID = json["reference_id"] as? String {
+                            environment.updateReferenceID(referenceID: referenceID)
+                        }
+                        
+                        if let emiPlanID = json["emi_plan_id"] as? String {
+                            environment.updateEmiPlanID(emiPlanID: emiPlanID)
+                        }
+                        
+                        if let udfDetails = json["udf_details"] as? [String: Any] {
+                            if let udfDetailsString = customInstance.outputJSON(dictionary: udfDetails) {
+                                environment.updateUDFDetails(udfDetails: udfDetailsString)
+                            }
+                        }
+                        
                         if let env = json["env"] as? String {
                             if customInstance.containsAnyValidEnvironment(env){
                                 environment.update(environment: env)
@@ -76,17 +90,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 //                            print("Environment Not Available ")
                         }
                         
-                        if let customization = json["customization"] as? [String: Any],
-                           let theme_color = customization["theme_color"] as? String {
-//                            print("themeColor: \(theme_color)")
-                            environment.updateTheme(theme: theme_color)
-//                            print("customization: \(json["customization"] as? [String: Any])")
-                            if let customizationData = try? JSONSerialization.data(withJSONObject: customization as Any, options: .prettyPrinted),
-                               let customizationString = String(data: customizationData, encoding: .utf8) {
-                                environment.updateCustomization(customization: customizationString)
-//                                print("customizationString: \(customizationString)")
-                            } else {
-//                                print("Error converting customization to JSON string.")
+                        if let customization = json["customization"] as? [String: Any] {
+                            if let themeColor = customization["theme_color"] as? String {
+                                environment.updateTheme(theme: themeColor)
                             }
                         }
                         
@@ -167,7 +173,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                 "error": errorMessage
             ]
             DispatchQueue.main.async {
-                self.delegate?.gqFailureResponse(data: errorObject)
+                self.dismiss(animated: true) {
+                    self.delegate?.gqFailureResponse(data: errorObject)
+                }
             }
         }else{
             if mobileNumber.isEmpty{
@@ -176,7 +184,11 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             }else{
                 APIService.makeAPICall { responseObject, error in
                     DispatchQueue.main.async {
+                        if error != nil {
+                            self.dismiss(animated: true)
+                        }
                         self.handleAPIResult(responseObject: responseObject, error: error)
+//                        self.hideLoader()
                     }
                 }
             }
@@ -249,10 +261,6 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         webloadUrl += "&s=\(Environment.source)"
         webloadUrl += "&user=\(environment.customerType)"
         
-        if !environment.customizationString.isEmpty{
-            webloadUrl += ""
-        }
-        
         if !environment.ppConfigString.isEmpty {
             webloadUrl += "&_pp_config=\(environment.ppConfigString)"
         }
@@ -261,9 +269,21 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             webloadUrl += "&_fee_headers=\(environment.feeHeadersString)"
         }
         
-        if((prefillJSONObject?.isEmpty) != nil){
-            if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject!),
-               !optionalString.isEmpty{
+        if let referenceID = environment.referenceID, !referenceID.isEmpty {
+            webloadUrl += "&reference_id=\(referenceID)"
+        }
+        
+        if let emiPlanID = environment.emiPlanID, !emiPlanID.isEmpty {
+            webloadUrl += "&emi_plan_id=\(emiPlanID)"
+        }
+        
+        if let udfDetails = environment.udfDetailsString, !udfDetails.isEmpty {
+            webloadUrl += "&udf_details=\(udfDetails)"
+        }
+        
+        if let prefillJSONObject = prefillJSONObject {
+            if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject),
+               !optionalString.isEmpty {
 //                print("optionalDataString: \(optionalString)")
                 webloadUrl += "&optional=\(optionalString)"
             }
@@ -274,6 +294,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 //        print("Complete WebUrl: \(webloadUrl)")
         
         let gqWebView = GQWebView()
+        gqWebView.isModalInPresentation = true
         gqWebView.webDelegate = self
         gqWebView.loadURL = webloadUrl
         DispatchQueue.main.async {
