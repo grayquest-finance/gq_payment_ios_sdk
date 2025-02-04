@@ -192,9 +192,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
 //        UAT: With Fee Headers
-        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
-        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
-        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
+//        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
+//        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
+//        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
         
 //        UAT: SDK v1
 //        txtClientId.text = "e4116a46-51c3-4996-b59e-4260ea33fa0c"
@@ -207,15 +207,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "c8b6fe73-8d0a-4aea-8c3f-8a5a86610903"
 
 //        Stage: SDK v1
-//        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
-//        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
-//        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
+        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
+        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
+        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
-        txtEnvironment.text = "test"
-//        txtEnvironment.text = "stage"
+//        txtEnvironment.text = "test"
+        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1497"
-        txtCustomerNumber.text = "9067145623"
+        txtStudentID.text = "demo_1234"
+        txtCustomerNumber.text = "9090909090"
         
 //        txtPPConfig.text = ""
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
