@@ -13,11 +13,9 @@ class Custom {
             if let jsonString = String(data: jsonData, encoding: .utf8) {
                 return jsonString
             } else {
-//                print("Error converting JSON data to string.")
                 return nil
             }
         } catch {
-//            print("Error converting dictionary to JSON: \(error.localizedDescription)")
             return nil
         }
     }
@@ -32,10 +30,8 @@ class Custom {
     func outputJSON(dictionary: [String: Any]) -> String? {
         if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted),
            let jsonString = String(data: jsonData, encoding: .utf8) {
-            //            print("customizationString: \(jsonString)")
             return jsonString
         } else {
-//            print("Error converting customization to JSON string.")
             return nil
         }
     }
