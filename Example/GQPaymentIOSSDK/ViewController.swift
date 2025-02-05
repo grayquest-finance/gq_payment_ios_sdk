@@ -15,11 +15,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-        print("Success callback received with data: \(data)")
+        print("Success callback received with data: \(data ?? [:])")
     }
     
     func gqFailureResponse(data: [String : Any]?) {
-        print("Failure callback received with data: \(data)")
+        print("Failure callback received with data: \(data ?? [:])")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
             self.callback.isHidden = false
@@ -28,7 +28,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     func gqCancelResponse(data: [String : Any]?) {
-        print("Cancel callback received with data: \(data)")
+        print("Cancel callback received with data: \(data ?? [:])")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {

@@ -34,7 +34,6 @@ class APIService{
             
             // Check for HTTP response
             guard let httpResponse = response as? HTTPURLResponse else {
-//                print( "Unexpected response format")
                 return
             }
             
@@ -45,24 +44,16 @@ class APIService{
                         // Attempt to parse error response JSON
                         if let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                            let errorMessage = errorJSON["message"] as? String {
-//                            print("errorCode: \(httpResponse.statusCode)")
-//                            print("errorMessage: \(errorMessage)")
                             completion(nil, errorMessage)
-                        } else {
-//                            print("Unable to parse error response as JSON")
                         }
                     } catch {
-//                        print("Error parsing error JSON: \(error)")
                     }
-                } else {
-//                    print("No data in the error response")
                 }
                 return
             }
             
             // Process the successful response
             guard let responseData = data else {
-//                print("No data in the response")
                 return
             }
             
@@ -70,7 +61,6 @@ class APIService{
                 let responseObject = try JSONSerialization.jsonObject(with: responseData) as? [String: Any]
                 completion(responseObject, nil)
             } catch {
-//                print("Error parsing response JSON: \(error)")
             }
         }
         
