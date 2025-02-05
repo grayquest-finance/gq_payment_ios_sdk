@@ -304,7 +304,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "customer_details": customer_details,
           "kyc_details": kyc_details,
           "employment_details": employment_details,
-          "customization": customization
+          "customizations": customization
           "notes": notes
         ]
         
