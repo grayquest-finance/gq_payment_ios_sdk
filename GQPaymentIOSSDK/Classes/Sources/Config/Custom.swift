@@ -48,3 +48,14 @@ class Custom {
         return result
     }
 }
+
+extension Custom {
+    // Adding conditions to check if its a Deep Linking URL
+    static func validateDeepLinkingScheme(with url: URL?) -> Bool {
+        guard let url else { return false }
+        
+        let absoluteString = url.absoluteString
+        
+        return absoluteString.contains("://") && !absoluteString.hasPrefix("https://")
+    }
+}

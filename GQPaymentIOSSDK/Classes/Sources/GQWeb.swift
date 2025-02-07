@@ -57,10 +57,17 @@ extension GQWeb: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 //    MARK: For Deep Linking UPI Payment Applications.
         if navigationAction.navigationType == .other, let url = navigationAction.request.url {
-            let absoluteString = url.absoluteString
-//            if !url.absoluteString.hasPrefix("https://"), UIApplication.shared.canOpenURL(url) {  // Check by default
-            if !absoluteString.hasPrefix("https://"), absoluteString.contains("://") {  // Force Open
-                UIApplication.shared.open(url)
+            let isDeepLink = Custom.validateDeepLinkingScheme(with: url)
+            if isDeepLink {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url)
+                } else {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Could not find UPI APP", message: "UPI App might not be installed", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alert, animated: true)
+                    }
+                }
                 decisionHandler(.cancel)
                 return
             }
