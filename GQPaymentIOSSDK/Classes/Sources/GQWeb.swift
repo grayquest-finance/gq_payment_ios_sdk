@@ -54,8 +54,23 @@ import UIKit
 }
 
 extension GQWeb: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+//    MARK: For Deep Linking UPI Payment Applications.
+        if navigationAction.navigationType == .other, let url = navigationAction.request.url {
+            let absoluteString = url.absoluteString
+//            if !url.absoluteString.hasPrefix("https://"), UIApplication.shared.canOpenURL(url) {  // Check by default
+            if !absoluteString.hasPrefix("https://"), absoluteString.contains("://") {  // Force Open
+                UIApplication.shared.open(url)
+                decisionHandler(.cancel)
+                return
+            }
+        }
+        decisionHandler(.allow)
+    }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
+//    MARK: For Detecting Grayquest redirection URL.
         if let urlString = webView.url?.absoluteString, urlString.contains(Environment.shared.juspayCallbackURL) {
             self.navigationController?.popToRootViewController(animated: true)
         }
