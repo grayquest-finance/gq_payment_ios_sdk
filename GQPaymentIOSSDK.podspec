@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'grayquest-finance' => 'developer@grayquest.com' }
   s.source           = { :git => 'https://github.com/grayquest-finance/gq_payment_ios_sdk.git', :tag => s.version.to_s }
+  s.readme           = 'https://github.com/grayquest-finance/gq_payment_ios_sdk/blob/master/README.md'
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '13.0'
@@ -38,9 +39,9 @@ Pod::Spec.new do |s|
   s.dependency 'razorpay-pod', '~> 1.3.13'
   s.dependency 'Easebuzz', '~> 1.1'
   
-#  s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
+  s.source_files = 'GQPaymentIOSSDK/Classes/**/*'
   
-  s.vendored_frameworks = 'GQPaymentIOSSDK.xcframework'
+#  s.vendored_frameworks = 'GQPaymentIOSSDK.xcframework'
   s.exclude_files = 'BuildFramework.sh'
   
   # s.resource_bundles = {
