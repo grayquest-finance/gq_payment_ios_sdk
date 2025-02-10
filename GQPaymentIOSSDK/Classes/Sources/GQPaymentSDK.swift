@@ -109,6 +109,17 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             }
                         }
                         
+                        if let feeHeadersSplit = json["fee_headers_split"] as? [String: Any] {
+                            if let feeHeadersSplitData = try? JSONSerialization.data(withJSONObject: feeHeadersSplit, options: .prettyPrinted),
+                               let feeHeadersSplitString = String(data: feeHeadersSplitData, encoding: .utf8) {
+                                environment.updateFeeHeadersSplit(feeHeaderSplitString: feeHeadersSplitString)
+                            }
+                        }
+                        
+                        if let paymentMethods = json["payment_methods"] as? [String] {
+                            environment.updatePaymentMethods(paymentMethods: paymentMethods)
+                        }
+                        
                         if let customerNumber = json["customer_number"] as? String {
                             if customInstance.validate(value: customerNumber){
                                 environment.updateCustomerNumber(customerNumber: customerNumber)
@@ -244,6 +255,16 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         if let udfDetails = environment.udfDetailsString, !udfDetails.isEmpty {
             webloadUrl += "&udf_details=\(udfDetails)"
+        }
+        
+        // Adding Payment Methods
+        if let paymentMethods = environment.paymentMethods {
+            webloadUrl += "&payment_methods=\(paymentMethods)"
+        }
+        
+        // Adding Fee Headers Split
+        if let feeHeadersSplitString = environment.feeHeadersSplitString, !feeHeadersSplitString.isEmpty {
+            webloadUrl += "&fee_headers_split=\(feeHeadersSplitString)"
         }
         
         if let prefillJSONObject = prefillJSONObject {
