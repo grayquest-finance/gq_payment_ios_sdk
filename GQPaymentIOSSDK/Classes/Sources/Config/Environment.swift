@@ -27,6 +27,8 @@ class Environment {
     var customizationString: String = ""
     var ppConfigString: String = ""
     var feeHeadersString: String = ""
+    var feeHeadersSplitString: String?
+    var paymentMethods: [String]?
     var referenceID: String?
     var emiPlanID: String?
     var udfDetailsString: String?
@@ -103,6 +105,14 @@ class Environment {
     
     func updateFeeHeaders(feeHeader: String){
         self.feeHeadersString = feeHeader
+    }
+    
+    func updateFeeHeadersSplit(feeHeaderSplitString: String) {
+        self.feeHeadersSplitString = feeHeaderSplitString
+    }
+    
+    func updatePaymentMethods(paymentMethods: [String]) {
+        self.paymentMethods = paymentMethods
     }
     
     func updateReferenceID(referenceID: String?) {
