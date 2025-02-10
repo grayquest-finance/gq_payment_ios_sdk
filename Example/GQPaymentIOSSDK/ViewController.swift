@@ -51,6 +51,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtOptionalData: UITextField!
     @IBOutlet weak var txtEMIPlanID: UITextField!
     @IBOutlet weak var txtUDFDetails: UITextField!
+    @IBOutlet weak var txtPaymentMethods: UITextField!
+    @IBOutlet weak var txtFeeHeadersSplit: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -67,6 +69,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var referenceID: String?
     var emiPlanID: String?
     var udfDetails: String?
+    var paymentMethods: String?
+    var feeHeadersSplit: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -112,6 +116,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         referenceID = txtReferenceID.text
         emiPlanID = txtEMIPlanID.text
         udfDetails = txtUDFDetails.text
+        
+        paymentMethods = txtPaymentMethods.text
+        feeHeadersSplit = txtFeeHeadersSplit.text
         
         openSDK()
         
@@ -166,6 +173,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         if let unwrapFeeHeader = feeHeader, !unwrapFeeHeader.isEmpty{
             config["fee_headers"] = converString(dataString: unwrapFeeHeader)
+        }
+        
+        if let paymentMethods = paymentMethods?.split(separator: ",").compactMap({ $0.trimmingCharacters(in: .whitespaces) }), !paymentMethods.isEmpty {
+            config["payment_methods"] = paymentMethods
+        }
+
+        if let feeHeadersSplit, !feeHeadersSplit.isEmpty {
+            config["fee_headers_split"] = converString(dataString: feeHeadersSplit)
+            print("Fee Headers Split: \(config["fee_headers_split"] ?? "")")
         }
         
         print("Config Object: \(config)")
