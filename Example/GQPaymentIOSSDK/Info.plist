@@ -67,9 +67,13 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>tez</string>
-	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>bhim</string>
+      <string>paytmmp</string>
+      <string>phonepe</string>
+      <string>tez</string>
+      <string>credpay</string>
+    </array>
 </dict>
 </plist>
