@@ -56,6 +56,6 @@ extension Custom {
         
         let absoluteString = url.absoluteString
         
-        return absoluteString.contains("://") && !absoluteString.hasPrefix("https://")
+        return absoluteString.contains("://") && !absoluteString.hasPrefix("http")
     }
 }

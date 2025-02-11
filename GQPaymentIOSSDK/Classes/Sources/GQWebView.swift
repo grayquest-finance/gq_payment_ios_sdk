@@ -91,9 +91,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             
             if let jsonData = data.data(using: .utf8) {
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
-                       let name = json["name"] as? String{
-                        
+                    if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                        let name = json["name"] as? String
                         vName = name
                         
                         if name == "CASHFREE"{
@@ -148,7 +147,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             }
                         } else if let pgOptions = json["pgOptions"] as? [String: Any],
                               let paymentLink = pgOptions["payment_link_web"] as? String {
-                                // Web Checkout - "HDFC-SMART-GATEWAY"
+//                              Webcheckout page
                                navigateToPaymentPage(link: paymentLink)
                        }
                     }
