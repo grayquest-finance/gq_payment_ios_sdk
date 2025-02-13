@@ -362,8 +362,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //        MARK: Redirection
         let gqWebView = GQWeb()
         gqWebView.loadURL = link
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         self.navigationController?.pushViewController(gqWebView, animated: true)
-        
         
 //        MARK: Deep Linking
 //        if let url = URL(string: link) {

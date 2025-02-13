@@ -52,10 +52,11 @@ class Custom {
 extension Custom {
     // Adding conditions to check if its a Deep Linking URL
     static func validateDeepLinkingScheme(with url: URL?) -> Bool {
-        guard let url else { return false }
+        guard let url, let scheme = url.scheme else { return false }
         
-        let absoluteString = url.absoluteString
+        let excludedSchemes: Set<String> = ["http", "https", "about"]
         
-        return absoluteString.contains("://") && !absoluteString.hasPrefix("http")
+        return !(excludedSchemes.contains(scheme))
+        
     }
 }
