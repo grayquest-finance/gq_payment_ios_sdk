@@ -238,6 +238,36 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "key_n": <Value n>
         ]
 
+        let feeHeadersSplit: [String: Any] = [
+          "header_split_1": [
+            "bank_id": "<bank_id_1>",
+            "type": "<type_1>",
+            "value": "<value_1>"
+                            ],
+          "header_split_2": [
+            "bank_id": "<bank_id_2>",
+            "type": "<type_2>",
+            "value": "<value_2>"
+                            ],
+          .
+          .
+          .
+          "header_split_n": [
+            "bank_id": "<bank_id_n>",
+            "type": "<type_n>",
+            "value": "<value_n>"
+                            ]
+        ]
+        
+        let paymentMethods = [
+            "<payment_method_1>",
+            "<payment_method_2>",
+            .
+            .
+            .
+            "<payment_method_n>"
+        ]
+
         clientJSONObject = [
           "auth": auth,
           "student_id": "<student_id>",
@@ -246,8 +276,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "pp_config": ppConfig,
           "fee_headers": feeHeaders
           "reference_id": "<reference_id>",
-          "emi_plan_id": "<emi_plan_id>"
-          "udf_details": udfDetails
+          "emi_plan_id": "<emi_plan_id>",
+          "udf_details": udfDetails,
+          "payment_methods": paymentMethods,
+          "fee_headers_split": feeHeadersSplit
         ]
 
         let student_details: [String: Any] = [
