@@ -109,7 +109,16 @@ Available options that can be set while initiating the sdk.
 | 2 | customer_number | string | Used to create a customer in the GrayQuest System | Yes |
 | 3 | reference_id | string | Unique ERP Order ID | No |
 | 4 | emi_plan_id | string | Unique EMI Plan ID | No |
-| 5 | udf_details | string | UDF Details | No |
+
+
+### Additional Details
+
+| Sr. No. | Option | Data Type | Description | Mandatory |
+|--|--|--|--|--|
+| 1 | pp_config | dictionary | PP Config | No |
+| 2 | udf_details | dictionary | UDF Details | No |
+| 3 | payment_methods | array | Payment methods to be enabled | No |
+| 4 | fee_headers_split | dictionary | Fee Headers Split | No |
 
 
 ### Payment Page
@@ -259,7 +268,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
                             ]
         ]
         
-        let paymentMethods = [
+        let paymentMethods: [String] = [
             "<payment_method_1>",
             "<payment_method_2>",
             .
