@@ -212,6 +212,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
         
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
 //        UAT: With Fee Headers
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
@@ -233,6 +237,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "<KEY>"
 
         txtEnvironment.text = "test"
+//        txtEnvironment.text = "live"
 //        txtEnvironment.text = "stage"
         
         txtStudentID.text = "demo_1234"
