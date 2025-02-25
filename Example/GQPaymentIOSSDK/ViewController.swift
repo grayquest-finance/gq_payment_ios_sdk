@@ -212,6 +212,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
         txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
         
+//        txtClientId.text = "GQ-d5b973bc-015f-468b-940b-edd7c9ed4b7d"
+//        txtClientSecretKey.text = "190ed75a-3108-45b6-8da5-c9da9f85054d"
+//        txtGqApiKey.text = "2ebc4f3f-0e04-4bbc-b904-7fe6838fd2e4"
+        
 //        UAT: With Fee Headers
 //        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
 //        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
@@ -233,6 +237,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
         txtEnvironment.text = "test"
+//        txtEnvironment.text = "live"
 //        txtEnvironment.text = "stage"
         
         txtStudentID.text = "demo_1234"
