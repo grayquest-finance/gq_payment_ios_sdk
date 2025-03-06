@@ -28,7 +28,7 @@ class Environment {
     var ppConfigString: String = ""
     var feeHeadersString: String = ""
     var feeHeadersSplitString: String?
-    var paymentMethods: [String]?
+    var paymentMethods: String?
     var referenceID: String?
     var emiPlanID: String?
     var udfDetailsString: String?
@@ -111,7 +111,7 @@ class Environment {
         self.feeHeadersSplitString = feeHeaderSplitString
     }
     
-    func updatePaymentMethods(paymentMethods: [String]) {
+    func updatePaymentMethods(paymentMethods: String) {
         self.paymentMethods = paymentMethods
     }
     
