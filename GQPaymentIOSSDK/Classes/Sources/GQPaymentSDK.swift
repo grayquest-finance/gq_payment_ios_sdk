@@ -45,7 +45,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             errorMessage += "Auth is missing"
                         }
                         
-                        if let studentID = json["student_id"] as? String {
+                        if let studentID = json["student_id"] as? String, !studentID.isEmpty {
                             environment.updateStudentID(stdId: studentID)
                         }else {
                             isInValid = true
@@ -116,7 +116,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             }
                         }
                         
-                        if let paymentMethods = json["payment_methods"] as? [String] {
+                        if let paymentMethods = json["payment_methods"] as? String {
                             environment.updatePaymentMethods(paymentMethods: paymentMethods)
                         }
                         

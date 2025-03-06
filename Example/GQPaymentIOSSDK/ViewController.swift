@@ -175,7 +175,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
             config["fee_headers"] = converString(dataString: unwrapFeeHeader)
         }
         
-        if let paymentMethods = paymentMethods?.split(separator: ",").compactMap({ $0.trimmingCharacters(in: .whitespaces) }), !paymentMethods.isEmpty {
+        if let paymentMethods = paymentMethods, !paymentMethods.isEmpty {
             config["payment_methods"] = paymentMethods
         }
 
@@ -208,13 +208,14 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
 //        UAT: Pranit Test
-        txtClientId.text = "<KEY>"
-        txtClientSecretKey.text = "<KEY>"
-        txtGqApiKey.text = "<KEY>"
-        
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
 //        txtGqApiKey.text = "<KEY>"
+        
+//        UAT: GQ-Avinash
+        txtClientId.text = "<KEY>"
+        txtClientSecretKey.text = "<KEY>"
+        txtGqApiKey.text = "<KEY>"
         
 //        UAT: With Fee Headers
 //        txtClientId.text = "<KEY>"
@@ -230,6 +231,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
 //        txtGqApiKey.text = "<KEY>"
+        
+//      Stage: Arjun - GILE
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
 
 //        Stage: SDK v1
 //        txtClientId.text = "<KEY>"
@@ -237,11 +243,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "<KEY>"
 
         txtEnvironment.text = "test"
-//        txtEnvironment.text = "live"
 //        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1234"
-        txtCustomerNumber.text = "9090909090"
+        txtStudentID.text = "demo_12345"
+        txtCustomerNumber.text = "9090909096"
         
 //        txtPPConfig.text = ""
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
