@@ -117,7 +117,7 @@ Available options that can be set while initiating the sdk.
 |--|--|--|--|--|
 | 1 | pp_config | dictionary | PP Config | No |
 | 2 | udf_details | dictionary | UDF Details | No |
-| 3 | payment_methods | array | Payment methods to be enabled | No |
+| 3 | payment_methods | String | Payment methods to be enabled. <br> **Example:** `"[\"upi\", \"net_banking\", \"credit_card\", \"debit_card\"]"` <br> | No |
 | 4 | fee_headers_split | dictionary | Fee Headers Split | No |
 
 
@@ -267,15 +267,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
             "value": "<value_n>"
                             ]
         ]
-        
-        let paymentMethods: [String] = [
-            "<payment_method_1>",
-            "<payment_method_2>",
-            .
-            .
-            .
-            "<payment_method_n>"
-        ]
 
         clientJSONObject = [
           "auth": auth,
@@ -287,7 +278,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "reference_id": "<reference_id>",
           "emi_plan_id": "<emi_plan_id>",
           "udf_details": udfDetails,
-          "payment_methods": paymentMethods,
+          "payment_methods": "<payment_methods>",
           "fee_headers_split": feeHeadersSplit
         ]
 
