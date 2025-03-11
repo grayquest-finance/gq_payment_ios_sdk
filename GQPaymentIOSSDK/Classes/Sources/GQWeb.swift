@@ -79,12 +79,8 @@ extension GQWeb: WKNavigationDelegate {
         self.hideLoader()
 //    MARK: For Detecting Grayquest redirection URL.
         if let urlString = webView.url?.absoluteString, urlString.contains(Environment.shared.juspayCallbackURL) {
-            Task {
-//                MARK: Adding delay (3s) for displaying the page.
-                try await Task.sleep(nanoseconds: 3000000000)
-                await MainActor.run(resultType: Void.self) {
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
+            DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }

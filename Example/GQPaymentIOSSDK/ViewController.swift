@@ -213,9 +213,13 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
         
 //        UAT: GQ-Avinash
-        txtClientId.text = "GQ-ca53b5ef-b3ca-4ad0-a939-ece58d321aae"
-        txtClientSecretKey.text = "9f0b6da6-8d44-4646-82ee-6700d5deb412"
-        txtGqApiKey.text = "288c59c4-a7bc-4731-a856-0684cc335730"
+//        txtClientId.text = "GQ-ca53b5ef-b3ca-4ad0-a939-ece58d321aae"
+//        txtClientSecretKey.text = "9f0b6da6-8d44-4646-82ee-6700d5deb412"
+//        txtGqApiKey.text = "288c59c4-a7bc-4731-a856-0684cc335730"
+        
+        txtClientId.text = "GQ-0f81714a-902e-480b-a7cf-dc6efa2c7c3f"
+        txtClientSecretKey.text = "44c4d4ea-a40b-44a2-a1e2-67a77ae1e245"
+        txtGqApiKey.text = "fba2411b-ed05-4820-878d-a42c4475efac"
         
 //        UAT: With Fee Headers
 //        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
@@ -242,8 +246,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
 //        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
-        txtEnvironment.text = "test"
-//        txtEnvironment.text = "stage"
+//        txtEnvironment.text = "test"
+        txtEnvironment.text = "stage"
         
         txtStudentID.text = "demo_12345"
         txtCustomerNumber.text = "9090909096"
