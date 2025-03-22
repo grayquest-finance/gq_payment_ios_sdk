@@ -27,9 +27,24 @@ class Environment {
     var customizationString: String = ""
     var ppConfigString: String = ""
     var feeHeadersString: String = ""
+    var feeHeadersSplitString: String?
+    var paymentMethods: String?
     var referenceID: String?
     var emiPlanID: String?
     var udfDetailsString: String?
+    
+    var juspayCallbackURL: String {
+        switch env {
+        case "stage":
+            return "svc-dp-stage.graydev.tech"
+        case "preprod":
+            return "svc-dp-preprod.graydev.tech"
+        case "live":
+            return "svc-dp.grayquest.com"
+        default:
+            return "svc-dp.graydev.tech"
+        }
+    }
     
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
@@ -90,6 +105,14 @@ class Environment {
     
     func updateFeeHeaders(feeHeader: String){
         self.feeHeadersString = feeHeader
+    }
+    
+    func updateFeeHeadersSplit(feeHeaderSplitString: String) {
+        self.feeHeadersSplitString = feeHeaderSplitString
+    }
+    
+    func updatePaymentMethods(paymentMethods: String) {
+        self.paymentMethods = paymentMethods
     }
     
     func updateReferenceID(referenceID: String?) {

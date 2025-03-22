@@ -15,11 +15,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-        print("Success callback received with data: \(data)")
+        print("Success callback received with data: \(data ?? [:])")
     }
     
     func gqFailureResponse(data: [String : Any]?) {
-        print("Failure callback received with data: \(data)")
+        print("Failure callback received with data: \(data ?? [:])")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
             self.callback.isHidden = false
@@ -28,7 +28,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     func gqCancelResponse(data: [String : Any]?) {
-        print("Cancel callback received with data: \(data)")
+        print("Cancel callback received with data: \(data ?? [:])")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
@@ -51,6 +51,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtOptionalData: UITextField!
     @IBOutlet weak var txtEMIPlanID: UITextField!
     @IBOutlet weak var txtUDFDetails: UITextField!
+    @IBOutlet weak var txtPaymentMethods: UITextField!
+    @IBOutlet weak var txtFeeHeadersSplit: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -67,6 +69,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var referenceID: String?
     var emiPlanID: String?
     var udfDetails: String?
+    var paymentMethods: String?
+    var feeHeadersSplit: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -112,6 +116,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         referenceID = txtReferenceID.text
         emiPlanID = txtEMIPlanID.text
         udfDetails = txtUDFDetails.text
+        
+        paymentMethods = txtPaymentMethods.text
+        feeHeadersSplit = txtFeeHeadersSplit.text
         
         openSDK()
         
@@ -168,6 +175,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
             config["fee_headers"] = converString(dataString: unwrapFeeHeader)
         }
         
+        if let paymentMethods = paymentMethods, !paymentMethods.isEmpty {
+            config["payment_methods"] = paymentMethods
+        }
+
+        if let feeHeadersSplit, !feeHeadersSplit.isEmpty {
+            config["fee_headers_split"] = converString(dataString: feeHeadersSplit)
+            print("Fee Headers Split: \(config["fee_headers_split"] ?? "")")
+        }
+        
         print("Config Object: \(config)")
         
         let gqPaymentSDK = GQPaymentSDK()
@@ -191,31 +207,50 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
+//        UAT: Pranit Test
+//        txtClientId.text = "GQ-d9167506-30ac-4a0d-bb61-8e487a596c43"
+//        txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
+//        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
+        
+//        UAT: GQ-Avinash
+//        txtClientId.text = "GQ-ca53b5ef-b3ca-4ad0-a939-ece58d321aae"
+//        txtClientSecretKey.text = "9f0b6da6-8d44-4646-82ee-6700d5deb412"
+//        txtGqApiKey.text = "288c59c4-a7bc-4731-a856-0684cc335730"
+        
+        txtClientId.text = "GQ-0f81714a-902e-480b-a7cf-dc6efa2c7c3f"
+        txtClientSecretKey.text = "44c4d4ea-a40b-44a2-a1e2-67a77ae1e245"
+        txtGqApiKey.text = "fba2411b-ed05-4820-878d-a42c4475efac"
+        
 //        UAT: With Fee Headers
 //        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
 //        txtClientSecretKey.text = "c1fd2b30-3fda-419b-b7ac-87f5a188b793"
 //        txtGqApiKey.text = "6d139a48-1c33-461d-a3f0-c2e32837ec5e"
         
 //        UAT: SDK v1
-//        txtClientId.text = "e4116a46-51c3-4996-b59e-4260ea33fa0c"
-//        txtClientSecretKey.text = "27030e4d-1d9f-4fe0-9ff8-a2e14d69a8a6"
-//        txtGqApiKey.text = "4830c1b7-6164-4e2c-9715-7750307eb430"
+//        txtClientId.text = "GQ-d9167506-30ac-4a0d-bb61-8e487a596c43"
+//        txtClientSecretKey.text = "4a937d7a-5b41-445c-94ae-4289efff2237"
+//        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
         
 //        Stage: SDK v1.1
 //        txtClientId.text = "GQ-9e02608d-45a6-44b4-aef0-d0a3e4713d3d"
 //        txtClientSecretKey.text = "f4ba7495-42cb-4c73-93dc-b1f1ae77f031"
 //        txtGqApiKey.text = "c8b6fe73-8d0a-4aea-8c3f-8a5a86610903"
+        
+//      Stage: Arjun - GILE
+//        txtClientId.text = "GQ-0f81714a-902e-480b-a7cf-dc6efa2c7c3f"
+//        txtClientSecretKey.text = "44c4d4ea-a40b-44a2-a1e2-67a77ae1e245"
+//        txtGqApiKey.text = "fba2411b-ed05-4820-878d-a42c4475efac"
 
 //        Stage: SDK v1
-        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
-        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
-        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
+//        txtClientId.text = "GQ-3d5276ae-bb21-46b7-b86f-1decab6e0843"
+//        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
+//        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
 //        txtEnvironment.text = "test"
         txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1234"
-        txtCustomerNumber.text = "9090909090"
+        txtStudentID.text = "demo_12345"
+        txtCustomerNumber.text = "9090909096"
         
 //        txtPPConfig.text = ""
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"

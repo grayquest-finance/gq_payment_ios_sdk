@@ -45,7 +45,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             errorMessage += "Auth is missing"
                         }
                         
-                        if let studentID = json["student_id"] as? String {
+                        if let studentID = json["student_id"] as? String, !studentID.isEmpty {
                             environment.updateStudentID(stdId: studentID)
                         }else {
                             isInValid = true
@@ -107,6 +107,17 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                                 isInValid = true
                                 errorMessage += ", Invalid Fee Headers Object"
                             }
+                        }
+                        
+                        if let feeHeadersSplit = json["fee_headers_split"] as? [String: Any] {
+                            if let feeHeadersSplitData = try? JSONSerialization.data(withJSONObject: feeHeadersSplit, options: .prettyPrinted),
+                               let feeHeadersSplitString = String(data: feeHeadersSplitData, encoding: .utf8) {
+                                environment.updateFeeHeadersSplit(feeHeaderSplitString: feeHeadersSplitString)
+                            }
+                        }
+                        
+                        if let paymentMethods = json["payment_methods"] as? String {
+                            environment.updatePaymentMethods(paymentMethods: paymentMethods)
                         }
                         
                         if let customerNumber = json["customer_number"] as? String {
@@ -246,6 +257,16 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             webloadUrl += "&udf_details=\(udfDetails)"
         }
         
+        // Adding Payment Methods
+        if let paymentMethods = environment.paymentMethods {
+            webloadUrl += "&payment_methods=\(paymentMethods)"
+        }
+        
+        // Adding Fee Headers Split
+        if let feeHeadersSplitString = environment.feeHeadersSplitString, !feeHeadersSplitString.isEmpty {
+            webloadUrl += "&fee_headers_split=\(feeHeadersSplitString)"
+        }
+        
         if let prefillJSONObject = prefillJSONObject {
             if let optionalString = customInstance.convertDictionaryToJson(dictionary: prefillJSONObject),
                !optionalString.isEmpty {
@@ -257,11 +278,14 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         
         let gqWebView = GQWebView()
-        gqWebView.isModalInPresentation = true
         gqWebView.webDelegate = self
         gqWebView.loadURL = webloadUrl
+        
+        let navigationController = UINavigationController(rootViewController: gqWebView)
+        navigationController.isModalInPresentation = true
+        
         DispatchQueue.main.async {
-            self.present(gqWebView, animated: true, completion: nil)
+            self.present(navigationController, animated: true, completion: nil)
             self.hideLoader()
         }
         

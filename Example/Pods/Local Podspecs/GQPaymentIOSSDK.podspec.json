@@ -1,6 +1,6 @@
 {
   "name": "GQPaymentIOSSDK",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "summary": "GrayQuest Education Finance Pvt. Ltd. iOS SDK",
   "description": "\"The SDK is an integrated flow in ERP that will enable users to avail multiple payment options in a seamless manner, with faster integration and deployment times.\"",
   "homepage": "https://github.com/grayquest-finance/gq_payment_ios_sdk",
@@ -13,8 +13,9 @@
   },
   "source": {
     "git": "https://github.com/grayquest-finance/gq_payment_ios_sdk.git",
-    "tag": "1.0.1"
+    "tag": "1.0.2"
   },
+  "readme": "https://github.com/grayquest-finance/gq_payment_ios_sdk/blob/master/README.md",
   "platforms": {
     "ios": "13.0"
   },
