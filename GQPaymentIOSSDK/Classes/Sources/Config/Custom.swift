@@ -48,3 +48,15 @@ class Custom {
         return result
     }
 }
+
+extension Custom {
+    // Adding conditions to check if its a Deep Linking URL
+    static func validateDeepLinkingScheme(with url: URL?) -> Bool {
+        guard let url, let scheme = url.scheme else { return false }
+        
+        let excludedSchemes: Set<String> = ["http", "https", "about"]
+        
+        return !(excludedSchemes.contains(scheme))
+        
+    }
+}

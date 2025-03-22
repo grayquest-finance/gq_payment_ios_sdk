@@ -109,7 +109,16 @@ Available options that can be set while initiating the sdk.
 | 2 | customer_number | string | Used to create a customer in the GrayQuest System | Yes |
 | 3 | reference_id | string | Unique ERP Order ID | No |
 | 4 | emi_plan_id | string | Unique EMI Plan ID | No |
-| 5 | udf_details | string | UDF Details | No |
+
+
+### Additional Details
+
+| Sr. No. | Option | Data Type | Description | Mandatory |
+|--|--|--|--|--|
+| 1 | pp_config | dictionary | PP Config | No |
+| 2 | udf_details | dictionary | UDF Details | No |
+| 3 | payment_methods | String | Payment methods to be enabled. <br> **Example:** `"[\"upi\", \"net_banking\", \"credit_card\", \"debit_card\"]"` <br> | No |
+| 4 | fee_headers_split | dictionary | Fee Headers Split | No |
 
 
 ### Payment Page
@@ -238,6 +247,27 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "key_n": <Value n>
         ]
 
+        let feeHeadersSplit: [String: Any] = [
+          "header_split_1": [
+            "bank_id": "<bank_id_1>",
+            "type": "<type_1>",
+            "value": "<value_1>"
+                            ],
+          "header_split_2": [
+            "bank_id": "<bank_id_2>",
+            "type": "<type_2>",
+            "value": "<value_2>"
+                            ],
+          .
+          .
+          .
+          "header_split_n": [
+            "bank_id": "<bank_id_n>",
+            "type": "<type_n>",
+            "value": "<value_n>"
+                            ]
+        ]
+
         clientJSONObject = [
           "auth": auth,
           "student_id": "<student_id>",
@@ -246,8 +276,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
           "pp_config": ppConfig,
           "fee_headers": feeHeaders
           "reference_id": "<reference_id>",
-          "emi_plan_id": "<emi_plan_id>"
-          "udf_details": udfDetails
+          "emi_plan_id": "<emi_plan_id>",
+          "udf_details": udfDetails,
+          "payment_methods": "<payment_methods>",
+          "fee_headers_split": feeHeadersSplit
         ]
 
         let student_details: [String: Any] = [

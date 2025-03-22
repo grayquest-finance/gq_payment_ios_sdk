@@ -19,6 +19,7 @@ archives/
 BuildFramework.sh
 *.hmap
 *.ipa
+*.lock
 
 # Bundler
 .bundle

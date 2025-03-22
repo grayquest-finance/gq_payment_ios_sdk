@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 import CashfreePGCoreSDK
 import CashfreePGUISDK
 import CashfreePG
@@ -91,9 +91,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             
             if let jsonData = data.data(using: .utf8) {
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
-                       let name = json["name"] as? String{
-                        
+                    if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                        let name = json["name"] as? String
                         vName = name
                         
                         if name == "CASHFREE"{
@@ -115,7 +114,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 
                                 initiatePaymentAction(access_key: access_key)
                             }
-                        } else if let pgOptions = json["pgOptions"] as? [String: Any],
+                        } else if name == "UNIPG",
+                                  let pgOptions = json["pgOptions"] as? [String: Any],
                                   let key = pgOptions["key"] as? String,
                                   let order_id = pgOptions["order_id"] as? String,
                                   var redirect = pgOptions["redirect"] as? Bool,
@@ -145,7 +145,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             DispatchQueue.main.async {
                                 self.razorpay!.open(options, displayController: self)
                             }
-                        }
+                        } else if let pgOptions = json["pgOptions"] as? [String: Any],
+                              let paymentLink = pgOptions["payment_link_web"] as? String {
+//                              Webcheckout page
+                               navigateToPaymentPage(link: paymentLink)
+                       }
                     }
                 } catch {
 
@@ -246,6 +250,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func openPG(paymentSessionId: String, orderId: String) {
         
         do {
@@ -324,11 +333,11 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
     
     func onError(_ error: CashfreePGCoreSDK.CFErrorResponse, order_id: String) {
         let paymentResponse: [String: Any] = [
-            "status": error.status,
+            "status": error.status ?? "",
             "order_code": order_id,
-            "message": error.message,
-            "code": error.code,
-            "type": error.type
+            "message": error.message ?? "",
+            "code": error.code ?? "",
+            "type": error.type ?? ""
         ]
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: paymentResponse) {
             webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
@@ -345,6 +354,23 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             webView.evaluateJavaScript("javascript:sendPGPaymentResponse(\(jsonString));")
         } else {
         }
+    }
+    
+    @MainActor func navigateToPaymentPage(link: String?) {
+        guard let link else { return }
+        
+//        MARK: Redirection
+        let gqWebView = GQWeb()
+        gqWebView.loadURL = link
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.pushViewController(gqWebView, animated: true)
+        
+//        MARK: Deep Linking
+//        if let url = URL(string: link) {
+//            if UIApplication.shared.canOpenURL(url) {
+//                UIApplication.shared.open(url)
+//            }
+//        }
     }
     
     func initiatePaymentAction(access_key: String) {
