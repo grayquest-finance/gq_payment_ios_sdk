@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GQPaymentIOSSDK'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'GrayQuest Education Finance Pvt. Ltd. iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'grayquest-finance' => 'developer@grayquest.com' }
   s.source           = { :git => 'https://github.com/grayquest-finance/gq_payment_ios_sdk.git', :tag => s.version.to_s }
+  s.readme           = 'https://github.com/grayquest-finance/gq_payment_ios_sdk/blob/master/README.md'
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '13.0'

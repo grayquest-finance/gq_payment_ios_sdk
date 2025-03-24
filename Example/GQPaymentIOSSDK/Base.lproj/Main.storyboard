@@ -12,19 +12,19 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="GQPaymentIOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="GQPaymentIOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="900"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1050"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnB-jq-RvX">
-                                <rect key="frame" x="0.0" y="59" width="393" height="807"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="957"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-qQ-FmW">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="805"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="905"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j2Y-NB-71w">
-                                                <rect key="frame" x="0.0" y="5" width="393" height="785"/>
+                                                <rect key="frame" x="0.0" y="5" width="393" height="885"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GQ Payment iOS SDK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4t-sN-UlO">
                                                         <rect key="frame" x="19.666666666666657" y="0.0" width="353.66666666666674" height="35"/>
@@ -36,7 +36,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-mw-SK1">
-                                                        <rect key="frame" x="15.666666666666657" y="45" width="361.66666666666674" height="642"/>
+                                                        <rect key="frame" x="15.666666666666657" y="45" width="361.66666666666674" height="742"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client ID *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mbf-bv-lgr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361.66666666666669" height="42"/>
@@ -106,10 +106,20 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Payment Methods" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="hTe-hD-dJC">
+                                                                <rect key="frame" x="0.0" y="650" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fee Headers Split" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="F57-Dx-rrh">
+                                                                <rect key="frame" x="0.0" y="700" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RyS-ma-WEZ">
-                                                        <rect key="frame" x="29.333333333333343" y="697" width="334.33333333333326" height="88"/>
+                                                        <rect key="frame" x="29.333333333333343" y="797" width="334.33333333333326" height="88"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-ln-i4q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="40"/>
@@ -179,7 +189,7 @@
                             <constraint firstItem="YnB-jq-RvX" firstAttribute="top" secondItem="bdl-D0-4wz" secondAttribute="top" id="xE5-OH-JpF"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="900"/>
+                    <size key="freeformSize" width="393" height="1050"/>
                     <connections>
                         <outlet property="callback" destination="rdq-1c-7BX" id="Lq1-gD-2lS"/>
                         <outlet property="scrollView" destination="YnB-jq-RvX" id="Mdi-t0-k0H"/>
@@ -190,9 +200,11 @@
                         <outlet property="txtEMIPlanID" destination="JD6-SE-voW" id="LSp-4O-VTo"/>
                         <outlet property="txtEnvironment" destination="yXK-SH-io1" id="Bwz-sq-aWS"/>
                         <outlet property="txtFeeHeader" destination="qDq-fL-8dF" id="h0W-Io-PX1"/>
+                        <outlet property="txtFeeHeadersSplit" destination="F57-Dx-rrh" id="GSw-tD-IXv"/>
                         <outlet property="txtGqApiKey" destination="WMY-iT-d8t" id="jkT-6m-ZKV"/>
                         <outlet property="txtOptionalData" destination="hQZ-mU-m3q" id="Ic5-nC-oAI"/>
                         <outlet property="txtPPConfig" destination="X2q-D5-6ig" id="ANW-Yh-7aU"/>
+                        <outlet property="txtPaymentMethods" destination="hTe-hD-dJC" id="2Iz-eM-tSX"/>
                         <outlet property="txtReferenceID" destination="fYn-tA-zhm" id="vxw-cR-Tbg"/>
                         <outlet property="txtStudentID" destination="Id1-lt-PM8" id="K7O-hz-Sbq"/>
                         <outlet property="txtUDFDetails" destination="bmi-ba-w1T" id="Fib-Xc-Vph"/>
