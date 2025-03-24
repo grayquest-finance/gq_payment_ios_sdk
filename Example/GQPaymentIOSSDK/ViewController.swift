@@ -15,11 +15,11 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-        print("Success callback received with data: \(data)")
+        print("Success callback received with data: \(data ?? [:])")
     }
     
     func gqFailureResponse(data: [String : Any]?) {
-        print("Failure callback received with data: \(data)")
+        print("Failure callback received with data: \(data ?? [:])")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
             self.callback.isHidden = false
@@ -28,7 +28,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     func gqCancelResponse(data: [String : Any]?) {
-        print("Cancel callback received with data: \(data)")
+        print("Cancel callback received with data: \(data ?? [:])")
 //        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
@@ -51,6 +51,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtOptionalData: UITextField!
     @IBOutlet weak var txtEMIPlanID: UITextField!
     @IBOutlet weak var txtUDFDetails: UITextField!
+    @IBOutlet weak var txtPaymentMethods: UITextField!
+    @IBOutlet weak var txtFeeHeadersSplit: UITextField!
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -67,6 +69,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var referenceID: String?
     var emiPlanID: String?
     var udfDetails: String?
+    var paymentMethods: String?
+    var feeHeadersSplit: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -112,6 +116,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         referenceID = txtReferenceID.text
         emiPlanID = txtEMIPlanID.text
         udfDetails = txtUDFDetails.text
+        
+        paymentMethods = txtPaymentMethods.text
+        feeHeadersSplit = txtFeeHeadersSplit.text
         
         openSDK()
         
@@ -168,6 +175,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
             config["fee_headers"] = converString(dataString: unwrapFeeHeader)
         }
         
+        if let paymentMethods = paymentMethods, !paymentMethods.isEmpty {
+            config["payment_methods"] = paymentMethods
+        }
+
+        if let feeHeadersSplit, !feeHeadersSplit.isEmpty {
+            config["fee_headers_split"] = converString(dataString: feeHeadersSplit)
+            print("Fee Headers Split: \(config["fee_headers_split"] ?? "")")
+        }
+        
         print("Config Object: \(config)")
         
         let gqPaymentSDK = GQPaymentSDK()
@@ -191,10 +207,24 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        }
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
-//        UAT: With Fee Headers
+//        UAT: Pranit Test
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
+//        UAT: GQ-Avinash
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
+        
         txtClientId.text = "<KEY>"
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
+        
+//        UAT: With Fee Headers
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
         
 //        UAT: SDK v1
 //        txtClientId.text = "<KEY>"
@@ -205,17 +235,22 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
 //        txtGqApiKey.text = "<KEY>"
+        
+//      Stage: Arjun - GILE
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
 
 //        Stage: SDK v1
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
 //        txtGqApiKey.text = "<KEY>"
 
-        txtEnvironment.text = "test"
-//        txtEnvironment.text = "stage"
+//        txtEnvironment.text = "test"
+        txtEnvironment.text = "stage"
         
-        txtStudentID.text = "demo_1497"
-        txtCustomerNumber.text = "9067145623"
+        txtStudentID.text = "demo_12345"
+        txtCustomerNumber.text = "9090909096"
         
 //        txtPPConfig.text = ""
 //        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
