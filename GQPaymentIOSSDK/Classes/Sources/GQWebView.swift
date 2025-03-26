@@ -264,32 +264,10 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                 .setEnvironment(Environment.shared.env == "live" || Environment.shared.env == "preprod" ? .PRODUCTION : .SANDBOX)
                 .build()
             
-            // Set Components
-            let paymentComponents = try CFPaymentComponent.CFPaymentComponentBuilder()
-                .enableComponents([
-                    "order-details",
-                    "card",
-                    "paylater",
-                    "wallet",
-                    "emi",
-                    "netbanking",
-                    "upi"
-                ])
+            let webCheckoutPayment = try CFWebCheckoutPayment.CFWebCheckoutPaymentBuilder()
+                .setSession(session)
                 .build()
             
-            // Set Theme
-            let theme = try CFTheme.CFThemeBuilder()
-                .setNavigationBarBackgroundColor("#4563cb")
-                .setNavigationBarTextColor("#FFFFFF")
-                .setButtonBackgroundColor("#4563cb")
-                .setButtonTextColor("#FFFFFF")
-                .setPrimaryTextColor("#000000")
-                .setSecondaryTextColor("#000000")
-                .build()
-            
-            let webCheckoutPayment = try CFDropCheckoutPayment.CFDropCheckoutPaymentBuilder()
-                .setSession(session).setComponent(paymentComponents).setTheme(theme)
-                .build()
             try pgService.doPayment(webCheckoutPayment, viewController: self)
         } catch let e {
             let err = e as! CashfreeError
