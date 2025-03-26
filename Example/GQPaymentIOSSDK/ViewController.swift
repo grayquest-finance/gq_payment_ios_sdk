@@ -213,13 +213,14 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtGqApiKey.text = "513476f6-dfa9-4bc4-9ae3-8da925a1207d"
         
 //        UAT: GQ-Avinash
-//        txtClientId.text = "GQ-ca53b5ef-b3ca-4ad0-a939-ece58d321aae"
-//        txtClientSecretKey.text = "9f0b6da6-8d44-4646-82ee-6700d5deb412"
-//        txtGqApiKey.text = "288c59c4-a7bc-4731-a856-0684cc335730"
+        txtClientId.text = "GQ-ca53b5ef-b3ca-4ad0-a939-ece58d321aae"
+        txtClientSecretKey.text = "9f0b6da6-8d44-4646-82ee-6700d5deb412"
+        txtGqApiKey.text = "288c59c4-a7bc-4731-a856-0684cc335730"
         
-        txtClientId.text = "GQ-0f81714a-902e-480b-a7cf-dc6efa2c7c3f"
-        txtClientSecretKey.text = "44c4d4ea-a40b-44a2-a1e2-67a77ae1e245"
-        txtGqApiKey.text = "fba2411b-ed05-4820-878d-a42c4475efac"
+//        txtClientId.text = "GQ-d5b973bc-015f-468b-940b-edd7c9ed4b7d"
+//        txtClientSecretKey.text = "190ed75a-3108-45b6-8da5-c9da9f85054d"
+//        txtGqApiKey.text = "2ebc4f3f-0e04-4bbc-b904-7fe6838fd2e4"
+        
         
 //        UAT: With Fee Headers
 //        txtClientId.text = "GQ-2c854cb5-8c84-4cfd-a73a-4748703b0b1a"
@@ -246,14 +247,15 @@ class ViewController: UIViewController, GQPaymentDelegate {
 //        txtClientSecretKey.text = "dc8f6764-f6a1-47ba-ab23-dbea9254474f"
 //        txtGqApiKey.text = "964ee5b7-4ab5-448f-9e83-40d773bc6141"
 
-//        txtEnvironment.text = "test"
-        txtEnvironment.text = "stage"
+        txtEnvironment.text = "test"
+//        txtEnvironment.text = "live"
         
         txtStudentID.text = "demo_12345"
         txtCustomerNumber.text = "9090909096"
         
-//        txtPPConfig.text = ""
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 20, \"Payable_fee_PG\": 150}"
+//        txtPPConfig.text = "{\"slug\": \"gq-avinash-rbse\"}"
+//        txtFeeHeader.text = "{\"Payabel EMI\": 120000.00, \"Payabel AD\": 5, \"Payabel PG\": 5}"
+//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 5, \"Payable_fee_PG\": 5}"
     }
     
     func converString(dataString: String) -> [String:Any] {

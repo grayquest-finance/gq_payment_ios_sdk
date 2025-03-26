@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   #s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
-  s.dependency 'CashfreePG', '~> 2.0.19'
+  s.dependency 'CashfreePG', '~> 2.2.0'
   s.dependency 'razorpay-pod', '~> 1.3.13'
   s.dependency 'Easebuzz', '~> 1.1'
   
