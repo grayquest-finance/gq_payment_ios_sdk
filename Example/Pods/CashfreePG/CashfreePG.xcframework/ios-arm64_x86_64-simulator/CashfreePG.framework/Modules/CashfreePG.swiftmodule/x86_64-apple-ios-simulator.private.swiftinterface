@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CashfreePG
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface
 @_exported import CashfreePG
@@ -15,5 +15,6 @@ import _SwiftConcurrencyShims
   public static func getInstance() -> CashfreePG.CFPaymentGatewayService
   @objc final public func setCallback(_ callback: any CashfreePGCoreSDK.CFResponseDelegate)
   @objc final public func doPayment(_ payment: CashfreePGCoreSDK.CFPayment, viewController: UIKit.UIViewController) throws
+  @objc final public func startSubscription(_ payment: CashfreePGCoreSDK.CFPayment, viewController: UIKit.UIViewController) throws
   @objc deinit
 }
