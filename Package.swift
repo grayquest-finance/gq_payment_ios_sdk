@@ -1,3 +1,6 @@
+// swift-tools-version:5.10
+
+
 import PackageDescription
 
 
@@ -12,32 +15,34 @@ let package = Package(
     products: [
         .library(
             name: "GQPaymentIOSSDK",
-            targets: ["GQPaymentIOSSDK"]
+            targets: [
+                "GQPaymentSDK",
+                "GQPaymentIOSSDK"
+            ]
         )
     ],
     dependencies: [
         .package(
             url: "https://github.com/razorpay/razorpay-pod.git",
-            from: "1.3.13"
+            exact: "1.3.13"
         ),
         .package(
             url: "https://github.com/cashfree/core-ios-sdk.git",
-            from: "2.2.0"
+            exact: "2.2.0"
         ),
         .package(
             url: "https://github.com/easebuzz/paywitheasebuzz-ios-lib.git",
-            from: "1.1.0"
-        ),
-        .packa
+            exact: "1.1.0"
+        )
     ],
     targets: [
         .target(
-            name: "GQPaymentIOSSDK",
-            path: "GQPaymentIOSSDK/Classes/**/*"
+            name: "GQPaymentSDK",
+            path: "GQPaymentIOSSDK/Classes/Sources"
         ),
         .binaryTarget(
             name: "GQPaymentIOSSDK",
-            path: "GQPaymentIOSSDK.xcframework"
+            path: "Pod/GQPaymentIOSSDK.xcframework"
         )
     ],
     swiftLanguageVersions: [.v5]
