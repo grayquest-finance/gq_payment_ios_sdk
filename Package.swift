@@ -8,16 +8,15 @@ let packageVersion = "1.0.3"
 
 
 let package = Package(
-    name: "GQPaymentIOSSDK",
+    name: "GQPaymentIOS",
     platforms: [
         .iOS(.v13)
     ],
     products: [
         .library(
-            name: "GQPaymentIOSSDK",
+            name: "GQPaymentIOS",
             targets: [
                 "GQPaymentSDK",
-                "GQPaymentIOSSDK"
             ]
         )
     ],
@@ -36,13 +35,18 @@ let package = Package(
         )
     ],
     targets: [
-        .target(
-            name: "GQPaymentSDK",
-            path: "GQPaymentIOSSDK/Classes/Sources"
-        ),
         .binaryTarget(
             name: "GQPaymentIOSSDK",
-            path: "Pod/GQPaymentIOSSDK.xcframework"
+            path: "GQPaymentIOSSDK.xcframework"
+        ),
+        .target(
+            name: "GQPaymentSDK",
+            dependencies: [
+                "GQPaymentIOSSDK",
+                "razorpay-pod",
+                "core-ios-sdk",
+                "paywitheasebuzz-ios-lib"
+            ]
         )
     ],
     swiftLanguageVersions: [.v5]
