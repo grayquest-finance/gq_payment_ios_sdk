@@ -199,7 +199,8 @@
         "mangledName": "$s15GQPaymentIOSSDK0A8DelegateP",
         "moduleName": "GQPaymentIOSSDK",
         "declAttributes": [
-          "AccessControl"
+          "AccessControl",
+          "Custom"
         ],
         "conformances": [
           {
@@ -273,7 +274,6 @@
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
               "HasInitialValue",
-              "Preconcurrency",
               "Custom",
               "HasStorage",
               "AccessControl"
@@ -398,7 +398,6 @@
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
               "HasInitialValue",
-              "Preconcurrency",
               "Custom",
               "HasStorage",
               "AccessControl"
@@ -549,7 +548,6 @@
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
               "HasInitialValue",
-              "Preconcurrency",
               "Custom",
               "HasStorage",
               "AccessControl"
@@ -681,7 +679,6 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
-              "Preconcurrency",
               "Custom",
               "AccessControl",
               "Override"
@@ -738,7 +735,6 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
-              "Preconcurrency",
               "Custom",
               "Override"
             ],
@@ -780,7 +776,6 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
-              "Preconcurrency",
               "Custom",
               "Required"
             ],
@@ -792,7 +787,6 @@
         "mangledName": "$s15GQPaymentIOSSDK0A3SDKC",
         "moduleName": "GQPaymentIOSSDK",
         "declAttributes": [
-          "Preconcurrency",
           "Custom",
           "AccessControl",
           "ObjC"
@@ -909,7 +903,6 @@
             "mangledName": "$s15GQPaymentIOSSDK16GQViewControllerC10showLoaderyyF",
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
-              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -931,7 +924,6 @@
             "mangledName": "$s15GQPaymentIOSSDK16GQViewControllerC10hideLoaderyyF",
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
-              "Preconcurrency",
               "Custom",
               "AccessControl"
             ],
@@ -987,7 +979,6 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
-              "Preconcurrency",
               "Custom",
               "Override"
             ],
@@ -1029,7 +1020,6 @@
             "declAttributes": [
               "Dynamic",
               "ObjC",
-              "Preconcurrency",
               "Custom",
               "Required"
             ],
@@ -1041,9 +1031,8 @@
         "mangledName": "$s15GQPaymentIOSSDK16GQViewControllerC",
         "moduleName": "GQPaymentIOSSDK",
         "declAttributes": [
-          "Preconcurrency",
-          "Custom",
           "AccessControl",
+          "Custom",
           "ObjC"
         ],
         "superclassUsr": "c:objc(cs)UIViewController",
@@ -1225,35 +1214,35 @@
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3033,
+      "offset": 3105,
       "length": 7,
       "value": "\":#[]@\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3138,
+      "offset": 3210,
       "length": 13,
       "value": "\"!$&'()*+,;=\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3251,
+      "offset": 3323,
       "length": 54,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3280,
+      "offset": 3352,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3304,
+      "offset": 3376,
       "length": 2,
       "value": "\"\""
     },

@@ -54,34 +54,29 @@ import UIKit
 }
 
 extension GQWeb: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-//    MARK: For Deep Linking UPI Payment Applications.
-        if navigationAction.navigationType == .other, let url = navigationAction.request.url {
-            let isDeepLink = Custom.validateDeepLinkingScheme(with: url)
-            if isDeepLink {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
-                } else {
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Could not find UPI APP", message: "UPI App might not be installed", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
+        //    MARK: For Deep Linking UPI Payment Applications.
+                if navigationAction.navigationType == .other, let url = navigationAction.request.url {
+                    let isDeepLink = Custom.validateDeepLinkingScheme(with: url)
+                    if isDeepLink {
+                        if UIApplication.shared.canOpenURL(url) {
+                            await UIApplication.shared.open(url)
+                        } else {
+                            let alert = UIAlertController(title: "Could not find UPI APP", message: "UPI App might not be installed", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(alert, animated: true)
+                        }
+                        return .cancel
                     }
                 }
-                decisionHandler(.cancel)
-                return
-            }
-        }
-        decisionHandler(.allow)
+        return .allow
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
 //    MARK: For Detecting Grayquest redirection URL.
         if let urlString = webView.url?.absoluteString, urlString.contains(Environment.shared.juspayCallbackURL) {
-            DispatchQueue.main.async {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
 }
