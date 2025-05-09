@@ -37,7 +37,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             environment.updateClientId(clientID: clientId)
                             environment.updateClientSecret(clientSecret: clientSecret)
                             environment.updateApiKey(apiKey: apiKey)
-                            var abase = customInstance.encodeStringToBase64(environment.clientID+":"+environment.clientSecret)
+                            let abase = customInstance.encodeStringToBase64(environment.clientID+":"+environment.clientSecret)
                             
                             environment.updateAbase(abase: abase!)
                         } else {
@@ -84,9 +84,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             }
                         }
                         
-                        if var ppConfig = json["pp_config"] as? [String: Any]{
+                        if let ppConfig = json["pp_config"] as? [String: Any]{
                             if let slug = ppConfig["slug"] as? String, !slug.isEmpty {
-                                if let ppConfigData = try? JSONSerialization.data(withJSONObject: ppConfig as Any, options: .prettyPrinted),
+                                if let ppConfigData = try? JSONSerialization.data(withJSONObject: ppConfig, options: .prettyPrinted),
                                    let ppConfigString = String(data: ppConfigData, encoding: .utf8) {
                                     environment.updatePpConfig(ppConfig: ppConfigString)
                                 } else {
@@ -99,7 +99,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
                             }
                         }
                         
-                        if var feeHeaders = json["fee_headers"] as? [String: Any]{
+                        if let feeHeaders = json["fee_headers"] as? [String: Any]{
                             if let feeHeadersData = try? JSONSerialization.data(withJSONObject: feeHeaders as Any, options: .prettyPrinted),
                                let feeHeadersString = String(data: feeHeadersData, encoding: .utf8) {
                                 environment.updateFeeHeaders(feeHeader: feeHeadersString)
@@ -152,57 +152,60 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
             let errorObject: [String: Any] = [
                 "error": errorMessage
             ]
-            DispatchQueue.main.async {
-                self.dismiss(animated: true) {
-                    self.delegate?.gqFailureResponse(data: errorObject)
-                }
+            self.dismiss(animated: true) {
+                self.delegate?.gqFailureResponse(data: errorObject)
             }
         }else{
             if mobileNumber.isEmpty{
                 environment.updateCustomerType(custType: "new")
                 getURL()
-            }else{
-                APIService.makeAPICall { responseObject, error in
-                    DispatchQueue.main.async {
-                        if error != nil {
-                            self.dismiss(animated: true)
-                        }
-                        self.handleAPIResult(responseObject: responseObject, error: error)
-//                        self.hideLoader()
-                    }
-                }
+            } else {
+                performCustomerSession()
             }
         }
     }
     
-    func handleAPIResult(responseObject: [String: Any]?, error: String?) {
-        if let error = error {
-            // Handle error
-            let errorObject: [String: Any] = [
-                "error": error
-            ]
-            self.delegate?.gqFailureResponse(data: errorObject)
-        } else if let responseObject = responseObject {
-            DispatchQueue.main.async {
-                let message = responseObject["message"] as! String
-                
-                if (message == "Customer Exists") {
-                    self.environment.updateCustomerType(custType: "existing")
-                }
-                else {
-                    self.environment.updateCustomerType(custType: "new")
-                }
-                
-                let data = responseObject["data"] as! [String:AnyObject]
-                self.environment.updateCustomerCode(custCode: data["customer_code"] as! String)
-                self.environment.updateCustomerId(custId: data["customer_id"] as! Int)
-                
-                self.getURL()
+    private func performCustomerSession() {
+        Task(priority: .userInitiated) {
+            do {
+                let responseData = try await APIService.makeAPICall()
+                handleCustomerSession(responseData: responseData)
+            } catch (let error) {
+                handleCustomerSession(error: error.localizedDescription)
             }
         }
     }
     
-    private func getURL(){
+    private func handleCustomerSession(error: String?) {
+        guard let error else { return }
+        
+        // Handle error
+        let errorObject: [String: Any] = [
+            "error": error
+        ]
+        self.delegate?.gqFailureResponse(data: errorObject)
+    }
+    
+    private func handleCustomerSession(responseData: [String: Any]?) {
+        guard let responseData else { return }
+        
+        let message = responseData["message"] as! String
+        
+        if (message == "Customer Exists") {
+            self.environment.updateCustomerType(custType: "existing")
+        }
+        else {
+            self.environment.updateCustomerType(custType: "new")
+        }
+        
+        let data = responseData["data"] as! [String: Any]
+        self.environment.updateCustomerCode(custCode: data["customer_code"] as! String)
+        self.environment.updateCustomerId(custId: data["customer_id"] as! Int)
+        
+        self.getURL()
+    }
+    
+    @MainActor private func getURL() {
         
         var webloadUrl: String = ""
         
@@ -284,11 +287,8 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         let navigationController = UINavigationController(rootViewController: gqWebView)
         navigationController.isModalInPresentation = true
         
-        DispatchQueue.main.async {
-            self.present(navigationController, animated: true, completion: nil)
-            self.hideLoader()
-        }
-        
+        self.present(navigationController, animated: true, completion: nil)
+        self.hideLoader()
     }
     
     func eraseEnvironment (){

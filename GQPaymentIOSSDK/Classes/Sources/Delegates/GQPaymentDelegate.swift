@@ -6,7 +6,8 @@
 //
 
 import Foundation
-public protocol GQPaymentDelegate
+
+@MainActor public protocol GQPaymentDelegate
 {
     func gqSuccessResponse(data: [String: Any]?)
     

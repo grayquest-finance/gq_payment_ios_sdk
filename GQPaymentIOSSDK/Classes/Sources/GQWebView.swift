@@ -104,9 +104,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 paymentSessionId = paymentSessionId1
                                 orderId = orderCode1
                                 
-                                DispatchQueue.main.async {
-                                    self.openPG(paymentSessionId: paymentSessionId1, orderId: orderCode1)
-                                }
+                                self.openPG(paymentSessionId: paymentSessionId1, orderId: orderCode1)
                             }
                         } else if name == "EASEBUZZ"{
                             if let pgOptions = json["pgOptions"] as? [String: Any],
@@ -118,7 +116,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                   let pgOptions = json["pgOptions"] as? [String: Any],
                                   let key = pgOptions["key"] as? String,
                                   let order_id = pgOptions["order_id"] as? String,
-                                  var redirect = pgOptions["redirect"] as? Bool,
+                                  let redirect = pgOptions["redirect"] as? Bool,
                                   let prefillObj = pgOptions["prefill"] as? [String: Any],
                                   let notes = pgOptions["notes"] as? [String: Any] {
                             let name = prefillObj["name"] as? String
@@ -142,7 +140,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                     "email": email
                                 ]
                             ]
-                            DispatchQueue.main.async {
+                            Task { @MainActor in
                                 self.razorpay!.open(options, displayController: self)
                             }
                         } else if let pgOptions = json["pgOptions"] as? [String: Any],
@@ -187,7 +185,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                 "max_count": 4
                             ],
                         ]
-                        DispatchQueue.main.async {
+                        Task { @MainActor in
                             self.razorpay!.open(options, displayController: self)
                         }
                     }
@@ -255,7 +253,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func openPG(paymentSessionId: String, orderId: String) {
+    @MainActor func openPG(paymentSessionId: String, orderId: String) {
         
         do {
             let session = try CFSession.CFSessionBuilder()

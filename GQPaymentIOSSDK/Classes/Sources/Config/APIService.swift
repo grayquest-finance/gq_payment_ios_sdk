@@ -6,11 +6,33 @@
 //
 
 import Foundation
-class APIService{
-    static func makeAPICall(completion: @escaping ([String: Any]?, String?) -> Void) {
+
+enum NetworkError: Error, LocalizedError {
+    case invalidURL
+    case badURLResponse(String)
+    case decodingError
+    case somethingWentWrong(String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .invalidURL:
+            return "Invalid URL"
+        case .badURLResponse(let message):
+            return message
+        case .decodingError:
+            return "Decoding Error"
+        case .somethingWentWrong(let message):
+            return message
+        }
+    }
+}
+
+class APIService {
+    
+    static func makeAPICall() async throws -> [String: Any]? {
         let environment = Environment.shared
         
-        let url = URL(string:environment.baseURL()+Environment.customerAPI)!
+        guard let url = URL(string:environment.baseURL() + Environment.customerAPI) else { throw NetworkError.invalidURL }
         // Prepare request
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -26,46 +48,26 @@ class APIService{
         request.httpBody = parameters.percentEncoded()
         
         // Make API request
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            // Check for fundamental networking error
-            guard error == nil else {
-                return
-            }
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
             
             // Check for HTTP response
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-            
-            // Check for HTTP errors
-            guard (200 ... 299) ~= httpResponse.statusCode else {
-                if let data = data {
-                    do {
-                        // Attempt to parse error response JSON
-                        if let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                           let errorMessage = errorJSON["message"] as? String {
-                            completion(nil, errorMessage)
-                        }
-                    } catch {
-                    }
+            guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
+                if let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let errorMessage = errorJSON["message"] as? String {
+                    throw NetworkError.badURLResponse(errorMessage)
                 }
-                return
+                throw NetworkError.somethingWentWrong("Something went wrong")
             }
             
-            // Process the successful response
-            guard let responseData = data else {
-                return
-            }
+            let responseObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return responseObject
             
-            do {
-                let responseObject = try JSONSerialization.jsonObject(with: responseData) as? [String: Any]
-                completion(responseObject, nil)
-            } catch {
-            }
+        } catch is DecodingError {
+            throw NetworkError.decodingError
+        } catch {
+            throw NetworkError.somethingWentWrong(error.localizedDescription)
         }
-        
-        
-        task.resume()
     }
 }
 
