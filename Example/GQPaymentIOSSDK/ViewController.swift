@@ -95,11 +95,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @IBAction func btnOpenSdk(_ sender: UIButton) {
-        callBackMessage = ""
-        if !callback.isHidden {
-            callback.isHidden.toggle()
-        }
+    private func configureValues() {
         clientID = txtClientId.text
         clientSecretKey = txtClientSecretKey.text
         gqApiKey = txtGqApiKey.text
@@ -119,11 +115,34 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         paymentMethods = txtPaymentMethods.text
         feeHeadersSplit = txtFeeHeadersSplit.text
-        
-        openSDK()
-        
     }
-    func openSDK(){
+    
+    @IBAction func btnOpenSdk(_ sender: UIButton) {
+        callBackMessage = ""
+        if !callback.isHidden {
+            callback.isHidden.toggle()
+        }
+
+        configureValues()
+        validateToConfig()
+        openSDK()
+    }
+    
+    @IBAction func clickedOpenModalScreen(_ sender: UIButton) {
+        configureValues()
+        validateToConfig()
+        
+//    MARK: Present On top of other viewcontrollers
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
+        controller.config = config
+        if let wrapOption = optionalObj, !wrapOption.isEmpty {
+            controller.optionalDataObj = converString(dataString: wrapOption)
+        }
+        self.present(controller, animated: true)
+    }
+    
+    private func validateToConfig() {
         auth = [:]
         config = [:]
         
@@ -185,7 +204,9 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
         
         print("Config Object: \(config)")
-        
+    }
+    
+    private func openSDK() {
         let gqPaymentSDK = GQPaymentSDK()
         
         gqPaymentSDK.modalPresentationStyle = .overFullScreen
@@ -201,6 +222,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
         
     }
+    
     @IBAction func callback(_ sender: UIButton) {
 //        if var wrapCallBack = callBackMessage, !wrapCallBack.isEmpty{
             openAlert(title: "CallBack Listner", message: callBackMessage)
