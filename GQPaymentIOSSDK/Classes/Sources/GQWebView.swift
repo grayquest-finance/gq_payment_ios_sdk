@@ -65,7 +65,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
                 webDelegate?.sdSuccess(data: con)
             } catch {
-                self.dismiss(animated: true, completion: nil)
+                self.dismissNavigationController(data: nil)
             }
         }else  if (message.name == "sdkError") {
             do {
@@ -75,16 +75,15 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                     webDelegate?.sdError(data: con)
 //                }
             } catch {
-                self.dismiss(animated: true, completion: nil)
+                self.dismissNavigationController(data: nil)
             }
         }else if (message.name == "sdkCancel") {
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as? [String: Any]
-                webDelegate?.sdCancel(data: con)
-                self.dismiss(animated: true, completion: nil)
+                self.dismissNavigationController(data: con)
             } catch {
-                self.dismiss(animated: true, completion: nil)
+                self.dismissNavigationController(data: nil)
             }
         }else if (message.name == "sendPGOptions") {
             let data = message.body as! String
@@ -271,6 +270,12 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             try pgService.doPayment(webCheckoutPayment, viewController: self)
         } catch let e {
             let err = e as! CashfreeError
+        }
+    }
+    
+    @MainActor private func dismissNavigationController(data: [String: Any]?) {
+        self.navigationController?.dismiss(animated: true) {
+            self.webDelegate?.sdCancel(data: data)
         }
     }
     
