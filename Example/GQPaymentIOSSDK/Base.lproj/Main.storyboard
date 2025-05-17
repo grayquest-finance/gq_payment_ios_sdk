@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnB-jq-RvX">
-                                <rect key="frame" x="0.0" y="59" width="393" height="957"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="864"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-qQ-FmW">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="905"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="953"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j2Y-NB-71w">
-                                                <rect key="frame" x="0.0" y="5" width="393" height="885"/>
+                                                <rect key="frame" x="0.0" y="5" width="393" height="933"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GQ Payment iOS SDK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4t-sN-UlO">
                                                         <rect key="frame" x="19.666666666666657" y="0.0" width="353.66666666666674" height="35"/>
@@ -119,7 +119,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RyS-ma-WEZ">
-                                                        <rect key="frame" x="29.333333333333343" y="797" width="334.33333333333326" height="88"/>
+                                                        <rect key="frame" x="29.333333333333343" y="797" width="334.33333333333326" height="136"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-ln-i4q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="40"/>
@@ -144,8 +144,18 @@
                                                                     <action selector="btnPrefill:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sEk-04-VXn"/>
                                                                 </connections>
                                                             </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c86-mn-DQd">
+                                                                <rect key="frame" x="0.0" y="96" width="334.33333333333331" height="40"/>
+                                                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Open Modal Screen"/>
+                                                                <connections>
+                                                                    <action selector="clickedOpenModalScreen:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="gwU-fz-y65"/>
+                                                                </connections>
+                                                            </button>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdq-1c-7BX">
-                                                                <rect key="frame" x="0.0" y="88" width="334.33333333333331" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="136" width="334.33333333333331" height="0.0"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" title="See Callback Messages"/>
                                                                 <connections>
@@ -214,10 +224,83 @@
             </objects>
             <point key="canvasLocation" x="6.9767441860465116" y="-37.33905579399142"/>
         </scene>
+        <!--Modal View Controller-->
+        <scene sceneID="rLi-4X-AZt">
+            <objects>
+                <viewController storyboardIdentifier="ModalViewController" id="GeO-at-JAf" customClass="ModalViewController" customModule="GQPaymentIOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fRA-P1-Keu">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vdK-9M-xTy">
+                                <rect key="frame" x="111" y="352.33333333333331" width="171" height="197.33333333333331"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cK-tg-czN">
+                                        <rect key="frame" x="34" y="0.0" width="103" height="34.333333333333336"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open SDK"/>
+                                        <connections>
+                                            <action selector="clickedOpenSDKButton:" destination="GeO-at-JAf" eventType="touchUpInside" id="ucZ-0R-4Hy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNq-Ag-Yby">
+                                        <rect key="frame" x="13" y="54.333333333333371" width="145.33333333333337" height="34.333333333333343"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open New View"/>
+                                        <connections>
+                                            <action selector="clickedOpenNewView:" destination="GeO-at-JAf" eventType="touchUpInside" id="m1f-nG-4F8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnL-AR-Tc9">
+                                        <rect key="frame" x="23.333333333333336" y="108.66666666666669" width="124.33333333333331" height="34.333333333333343"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Dismiss View"/>
+                                        <connections>
+                                            <action selector="clickedClosedSDK:" destination="GeO-at-JAf" eventType="touchUpInside" id="Kfi-VC-O5x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tv2-ZV-Sos">
+                                        <rect key="frame" x="0.0" y="163.00000000000006" width="171" height="34.333333333333343"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Callback Messages"/>
+                                        <connections>
+                                            <action selector="callback:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="wrm-UE-uy0"/>
+                                            <action selector="clickedDisplayCallbackButton:" destination="GeO-at-JAf" eventType="touchUpInside" id="3EZ-5P-Cd7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="pUn-fl-9ed"/>
+                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstItem="vdK-9M-xTy" firstAttribute="centerX" secondItem="pUn-fl-9ed" secondAttribute="centerX" id="QUN-A2-Kk5"/>
+                            <constraint firstItem="vdK-9M-xTy" firstAttribute="centerY" secondItem="pUn-fl-9ed" secondAttribute="centerY" id="YO7-aR-bqi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="openNewView" destination="PNq-Ag-Yby" id="EQu-Np-WG6"/>
+                        <outlet property="openSDKButton" destination="9cK-tg-czN" id="IJ7-wC-6QZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uid-9d-QZv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="933.58778625954199" y="-107.04225352112677"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
