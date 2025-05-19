@@ -310,28 +310,18 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     }
     
     func sdSuccess(data: [String : Any]?) {
-            self.hideLoader()
-            delegate?.gqSuccessResponse(data: data)
-    //        if let rootViewController = self.view.window?.rootViewController {
-    //            rootViewController.dismiss(animated: false, completion: nil)
-    //        }
-        }
+        self.hideLoader()
+        delegate?.gqSuccessResponse(data: data)
+    }
         
-        func sdCancel(data: [String : Any]?) {
-            self.hideLoader()
-            delegate?.gqCancelResponse(data: data)
-            if let rootViewController = self.view.window?.rootViewController {
-                rootViewController.dismiss(animated: false, completion: nil)
-            }
-    //        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+    func sdCancel(data: [String : Any]?) {
+        self.dismiss(animated: true) {
+            self.delegate?.gqCancelResponse(data: data)
         }
+    }
         
-        func sdError(data: [String : Any]?) {
-            self.hideLoader()
-            delegate?.gqFailureResponse(data: data)
-//            if let rootViewController = self.view.window?.rootViewController {
-//                rootViewController.dismiss(animated: false, completion: nil)
-//            }
-    //        self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
-        }
+    func sdError(data: [String : Any]?) {
+        self.hideLoader()
+        delegate?.gqFailureResponse(data: data)
+    }
 }
