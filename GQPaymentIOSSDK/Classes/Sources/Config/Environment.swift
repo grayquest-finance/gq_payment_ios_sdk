@@ -9,7 +9,7 @@ import Foundation
 
 class Environment {
     
-    static let shared = Environment()
+    nonisolated(unsafe) static let shared = Environment()
     
     private init() {}
     
@@ -46,9 +46,9 @@ class Environment {
         }
     }
     
-    static var source: String = "isdk"
-    static var version: String = "\"1.1\""
-    static var customerAPI: String = "v1/customer/create-customer"
+    static let source: String = "isdk"
+    static let version: String = "\"1.1\""
+    static let customerAPI: String = "v1/customer/create-customer"
     
     // Method to update values
     func update(environment: String) {

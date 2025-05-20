@@ -9,7 +9,7 @@ PODS:
     - CashfreePGCoreSDK (= 2.2.1)
   - CFNetworkSDK (2.2.0)
   - Easebuzz (1.1.3)
-  - GQPaymentIOSSDK (1.0.3):
+  - GQPaymentIOSSDK (1.0.4):
     - CashfreePG (~> 2.2.0)
     - Easebuzz (~> 1.1)
     - razorpay-pod (~> 1.3.13)
@@ -42,9 +42,9 @@ SPEC CHECKSUMS:
   CashfreePGUISDK: 74f9af785d215b24bb675b330347b3e0c44c4f67
   CFNetworkSDK: 4e431b55f607544f5ca45bc1a36a13e602f51841
   Easebuzz: 6998f306bc582213c7bf79c2db75130706abadab
-  GQPaymentIOSSDK: a0c58ebebf7b15faa157ca22109fb8c04ad1a4d0
+  GQPaymentIOSSDK: 3fed4f13759da04e6ab88da8db5aa1f223545869
   razorpay-pod: ffee2198928e2a5ed2556863af4db6b79722cea3
 
-PODFILE CHECKSUM: 3df242b42bd034368364f173ff6e42db2754e4b3
+PODFILE CHECKSUM: 47e43f2667840343723ccdf446632fa649b5e030
 
 COCOAPODS: 1.16.2

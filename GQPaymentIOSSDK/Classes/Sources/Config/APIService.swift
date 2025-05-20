@@ -29,7 +29,7 @@ enum NetworkError: Error, LocalizedError {
 
 class APIService {
     
-    static func makeAPICall() async throws -> [String: Any]? {
+    @MainActor static func makeAPICall() async throws -> [String: Any]? {
         let environment = Environment.shared
         
         guard let url = URL(string:environment.baseURL() + Environment.customerAPI) else { throw NetworkError.invalidURL }
