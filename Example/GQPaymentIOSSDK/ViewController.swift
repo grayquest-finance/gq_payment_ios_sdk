@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import GQPaymentIOSSDK
 
 class ViewController: UIViewController, GQPaymentDelegate {
@@ -53,6 +54,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtUDFDetails: UITextField!
     @IBOutlet weak var txtPaymentMethods: UITextField!
     @IBOutlet weak var txtFeeHeadersSplit: UITextField!
+    @IBOutlet weak var txtAuthToken: UITextField!
+    
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -71,6 +74,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var udfDetails: String?
     var paymentMethods: String?
     var feeHeadersSplit: String?
+    var authToken: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -115,6 +119,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         paymentMethods = txtPaymentMethods.text
         feeHeadersSplit = txtFeeHeadersSplit.text
+        
+        authToken = txtAuthToken.text
     }
     
     @IBAction func btnOpenSdk(_ sender: UIButton) {
@@ -124,8 +130,16 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
 
         configureValues()
-        validateToConfig()
-        openSDK()
+        
+        if let authToken {
+            openSDK(
+                with: authToken,
+                env: environment ?? "test"
+            )
+        } else {
+            validateToConfig()
+            openSDK()
+        }
     }
     
     @IBAction func clickedOpenModalScreen(_ sender: UIButton) {
@@ -206,7 +220,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Config Object: \(config)")
     }
     
-    private func openSDK() {
+    @MainActor private func openSDK() {
         let gqPaymentSDK = GQPaymentSDK()
         
         gqPaymentSDK.modalPresentationStyle = .overFullScreen
@@ -217,10 +231,20 @@ class ViewController: UIViewController, GQPaymentDelegate {
         if let wrapOption = optionalObj, !wrapOption.isEmpty{
             gqPaymentSDK.prefillJSONObject = converString(dataString: wrapOption)
         }
-        DispatchQueue.main.async {
-            self.present(gqPaymentSDK, animated: true)
-        }
+        self.present(gqPaymentSDK, animated: true)
         
+    }
+    
+    @MainActor private func openSDK(with token: String?, env: String) {
+        let gqPaymentSDK = GQPaymentSDK()
+        
+        gqPaymentSDK.modalPresentationStyle = .overFullScreen
+        gqPaymentSDK.modalTransitionStyle = .crossDissolve
+        
+        gqPaymentSDK.delegate = self
+        gqPaymentSDK.authToken = token
+        gqPaymentSDK.env = env
+        self.present(gqPaymentSDK, animated: true)
     }
     
     @IBAction func callback(_ sender: UIButton) {

@@ -6,7 +6,9 @@
 //
 
 import Foundation
-class APIService{
+
+class APIService {
+    
     static func makeAPICall(completion: @escaping ([String: Any]?, String?) -> Void) {
         let environment = Environment.shared
         
@@ -66,6 +68,86 @@ class APIService{
         
         
         task.resume()
+    }
+    
+//    static func performCreateCustomer() async throws -> [String: Any]? {
+//        let environment = Environment.shared
+//        
+//        guard let url = URL(string:environment.baseURL() + Environment.customerAPI) else { return nil }
+//        
+//        // Prepare request
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        
+//        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+//        request.setValue("application/json", forHTTPHeaderField: "Accept")
+//        request.setValue("\(environment.gqApiKey)", forHTTPHeaderField: "GQ-API-Key")
+//        request.setValue("Basic \(environment.abase)", forHTTPHeaderField: "Authorization")
+//        
+//        let parameters: [String: Any] = [
+//            "customer_mobile": "\(environment.customerNumber)",
+//        ]
+//        request.httpBody = parameters.percentEncoded()
+//        
+//        // Make API request
+//        let (data, response) = try await URLSession.shared.data(for: request)
+//        
+//        // Check for HTTP response
+//        guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
+//            do {
+//                // Attempt to parse error response JSON
+//                let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+//                let errorMessage = errorJSON?["message"] as? String
+//                throw GQError.somethingWentWrong(errorMessage)
+//            } catch {
+//                throw GQError.decodeError(error.localizedDescription)
+//            }
+//        }
+//        
+//        do {
+//            let responseObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+//            return responseObject
+//        } catch {
+//            throw GQError.decodeError(error.localizedDescription)
+//        }
+//        
+//    }
+    
+    static func fetchSessionCode(token: String) async throws -> [String: Any]? {
+        let environment = Environment.shared
+
+        guard let url = URL(string: environment.baseURL() + Environment.sessionCodeAPI) else { return nil }
+
+        // Prepare request
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+
+        // Make API request
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        // Check for HTTP response
+        guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
+            do {
+                // Attempt to parse error response JSON
+                let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                let errorMessage = errorJSON?["message"] as? String
+                throw GQError.somethingWentWrong(errorMessage)
+            } catch {
+                throw GQError.decodeError(error.localizedDescription)
+            }
+        }
+
+        do {
+            let responseObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return responseObject
+        } catch {
+            throw GQError.decodeError(error.localizedDescription)
+        }
     }
 }
 

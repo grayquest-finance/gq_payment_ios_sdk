@@ -14,17 +14,17 @@
             <objects>
                 <viewController storyboardIdentifier="ViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="GQPaymentIOSSDK_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="1050"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="1180"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YnB-jq-RvX">
-                                <rect key="frame" x="0.0" y="118" width="393" height="864"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="994"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fUM-qQ-FmW">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="953"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1053"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="j2Y-NB-71w">
-                                                <rect key="frame" x="0.0" y="5" width="393" height="933"/>
+                                                <rect key="frame" x="0.0" y="5" width="393" height="1033"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GQ Payment iOS SDK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4t-sN-UlO">
                                                         <rect key="frame" x="19.666666666666657" y="0.0" width="353.66666666666674" height="35"/>
@@ -36,7 +36,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JvK-mw-SK1">
-                                                        <rect key="frame" x="15.666666666666657" y="45" width="361.66666666666674" height="742"/>
+                                                        <rect key="frame" x="15.666666666666657" y="45" width="361.66666666666674" height="842"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Client ID *" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mbf-bv-lgr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="361.66666666666669" height="42"/>
@@ -116,10 +116,21 @@
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8g-e1-iNI">
+                                                                <rect key="frame" x="0.0" y="750" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Auth Token*" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="wM8-4r-wPz">
+                                                                <rect key="frame" x="0.0" y="800" width="361.66666666666669" height="42"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="RyS-ma-WEZ">
-                                                        <rect key="frame" x="29.333333333333343" y="797" width="334.33333333333326" height="136"/>
+                                                        <rect key="frame" x="29.333333333333343" y="897" width="334.33333333333326" height="136"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ERm-ln-i4q">
                                                                 <rect key="frame" x="0.0" y="0.0" width="334.33333333333331" height="40"/>
@@ -199,10 +210,12 @@
                             <constraint firstItem="YnB-jq-RvX" firstAttribute="top" secondItem="bdl-D0-4wz" secondAttribute="top" id="xE5-OH-JpF"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="393" height="1050"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="393" height="1180"/>
                     <connections>
                         <outlet property="callback" destination="rdq-1c-7BX" id="Lq1-gD-2lS"/>
                         <outlet property="scrollView" destination="YnB-jq-RvX" id="Mdi-t0-k0H"/>
+                        <outlet property="txtAuthToken" destination="wM8-4r-wPz" id="oHc-WL-ONB"/>
                         <outlet property="txtClientId" destination="Mbf-bv-lgr" id="lgi-0A-6eb"/>
                         <outlet property="txtClientSecretKey" destination="nue-i2-ZxA" id="lta-sj-Y8d"/>
                         <outlet property="txtCustomerNumber" destination="08Z-7q-gh2" id="tL3-5T-wTP"/>
@@ -245,7 +258,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNq-Ag-Yby">
-                                        <rect key="frame" x="13" y="54.333333333333371" width="145.33333333333337" height="34.333333333333343"/>
+                                        <rect key="frame" x="13" y="54.333333333333371" width="145.33333333333334" height="34.333333333333343"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Open New View"/>

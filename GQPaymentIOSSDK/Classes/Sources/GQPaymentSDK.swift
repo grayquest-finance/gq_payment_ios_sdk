@@ -21,9 +21,74 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     private var errorMessage: String = ""
     private var isInValid: Bool = false
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        self.showLoader()
+// Auth Token
+    public var authToken: String?
+// Environment to be used with Auth token
+    public var env: String = "test" {
+        didSet {
+            guard clientJSONObject?.isEmpty ?? true else { return }
+            environment.update(environment: env)
+        }
+    }
+    
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        redirectToWebSDK()
+    }
+    
+    private func redirectToWebSDK() {
+        if let authToken {
+            guard customInstance.containsAnyValidEnvironment(env) else {
+                handleError(message: "Invalid environment")
+                return
+            }
+
+            environment.updateAuthToken(authToken: authToken)
+            fetchSessionCode(token: authToken)
+        } else {
+            configureEnvironmentData()
+        }
+    }
+    
+//MARK: Login using Auth Token and Environment
+    private func fetchSessionCode(token: String) {
+        Task(priority: .userInitiated) {
+            do {
+                let sessionResponse = try await APIService.fetchSessionCode(token: token)
+                if let sessionURL = fetchSessionWebURL(response: sessionResponse) {
+                    redirectToGQWebView(webloadUrl: sessionURL)
+                }
+            } catch (let error) {
+                handleError(message: error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchSessionWebURL(response: [String: Any]?) -> String? {
+        guard let response,
+              let data = response["data"] as? [String: Any],
+              let sessionCode = data["session_code"] as? String
+        else {
+            return nil
+        }
+        
+        var webloadUrl = self.environment.webLoadURL()
+        webloadUrl += "instant-eligibility?_code=\(sessionCode)"
+        webloadUrl += "&s=\(Environment.source)"
+        
+        return webloadUrl
+    }
+    
+    @MainActor private func handleError(message: String) {
+        let errorObject: [String: Any] = [
+            "error": message
+        ]
+        self.dismiss(animated: true) {
+            self.delegate?.gqFailureResponse(data: errorObject)
+        }
+    }
+    
+    private func configureEnvironmentData() {
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["error":"Invalid JSON Object"]) {
             eraseEnvironment()
             if let jsonData = jsonString.data(using: .utf8) {
@@ -202,7 +267,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
     }
     
-    private func getURL(){
+    private func getURL() {
         
         var webloadUrl: String = ""
         
@@ -276,7 +341,10 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         
         webloadUrl += "&_v=\(Environment.version)"
         
-        
+        redirectToGQWebView(webloadUrl: webloadUrl)
+    }
+    
+    @MainActor private func redirectToGQWebView(webloadUrl: String) {
         let gqWebView = GQWebView()
         gqWebView.webDelegate = self
         gqWebView.loadURL = webloadUrl
@@ -284,11 +352,8 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         let navigationController = UINavigationController(rootViewController: gqWebView)
         navigationController.isModalInPresentation = true
         
-        DispatchQueue.main.async {
-            self.present(navigationController, animated: true, completion: nil)
-            self.hideLoader()
-        }
-        
+        self.present(navigationController, animated: true, completion: nil)
+        self.hideLoader()
     }
     
     func eraseEnvironment (){

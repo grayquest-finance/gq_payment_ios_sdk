@@ -32,6 +32,7 @@ class Environment {
     var referenceID: String?
     var emiPlanID: String?
     var udfDetailsString: String?
+    var authToken: String?
     
     var juspayCallbackURL: String {
         switch env {
@@ -49,6 +50,7 @@ class Environment {
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
     static var customerAPI: String = "v1/customer/create-customer"
+    static var sessionCodeAPI: String = "/v1/pp/get-session-data"
     
     // Method to update values
     func update(environment: String) {
@@ -127,7 +129,12 @@ class Environment {
         self.udfDetailsString = udfDetails
     }
     
+    func updateAuthToken(authToken: String?) {
+        self.authToken = authToken
+    }
+    
     func baseURL() -> String{
+//        http://erp-sdk.uat.graydev.in
         switch env{
         case "stage":
             return "https://erp-api-stage.graydev.tech/"
