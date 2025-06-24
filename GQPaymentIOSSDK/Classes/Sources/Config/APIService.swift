@@ -9,10 +9,11 @@ import Foundation
 
 class APIService {
     
-    static func makeAPICall(completion: @escaping ([String: Any]?, String?) -> Void) {
+    static func performCreateCustomer() async throws -> [String: Any]? {
         let environment = Environment.shared
         
-        let url = URL(string:environment.baseURL()+Environment.customerAPI)!
+        guard let url = URL(string:environment.baseURL() + Environment.customerAPI) else { return nil }
+        
         // Prepare request
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -28,90 +29,24 @@ class APIService {
         request.httpBody = parameters.percentEncoded()
         
         // Make API request
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            // Check for fundamental networking error
-            guard error == nil else {
-                return
-            }
-            
-            // Check for HTTP response
-            guard let httpResponse = response as? HTTPURLResponse else {
-                return
-            }
-            
-            // Check for HTTP errors
-            guard (200 ... 299) ~= httpResponse.statusCode else {
-                if let data = data {
-                    do {
-                        // Attempt to parse error response JSON
-                        if let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                           let errorMessage = errorJSON["message"] as? String {
-                            completion(nil, errorMessage)
-                        }
-                    } catch {
-                    }
-                }
-                return
-            }
-            
-            // Process the successful response
-            guard let responseData = data else {
-                return
-            }
-            
-            do {
-                let responseObject = try JSONSerialization.jsonObject(with: responseData) as? [String: Any]
-                completion(responseObject, nil)
-            } catch {
-            }
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        // Check for HTTP response
+        guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
+            // Attempt to parse error response JSON
+            let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let errorMessage = errorJSON?["message"] as? String
+            throw GQError.somethingWentWrong(errorMessage)
         }
         
+        do {
+            let responseObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            return responseObject
+        } catch {
+            throw GQError.decodeError(error.localizedDescription)
+        }
         
-        task.resume()
     }
-    
-//    static func performCreateCustomer() async throws -> [String: Any]? {
-//        let environment = Environment.shared
-//        
-//        guard let url = URL(string:environment.baseURL() + Environment.customerAPI) else { return nil }
-//        
-//        // Prepare request
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        
-//        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        request.setValue("application/json", forHTTPHeaderField: "Accept")
-//        request.setValue("\(environment.gqApiKey)", forHTTPHeaderField: "GQ-API-Key")
-//        request.setValue("Basic \(environment.abase)", forHTTPHeaderField: "Authorization")
-//        
-//        let parameters: [String: Any] = [
-//            "customer_mobile": "\(environment.customerNumber)",
-//        ]
-//        request.httpBody = parameters.percentEncoded()
-//        
-//        // Make API request
-//        let (data, response) = try await URLSession.shared.data(for: request)
-//        
-//        // Check for HTTP response
-//        guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
-//            do {
-//                // Attempt to parse error response JSON
-//                let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-//                let errorMessage = errorJSON?["message"] as? String
-//                throw GQError.somethingWentWrong(errorMessage)
-//            } catch {
-//                throw GQError.decodeError(error.localizedDescription)
-//            }
-//        }
-//        
-//        do {
-//            let responseObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-//            return responseObject
-//        } catch {
-//            throw GQError.decodeError(error.localizedDescription)
-//        }
-//        
-//    }
     
     static func fetchSessionCode(token: String) async throws -> [String: Any]? {
         let environment = Environment.shared
@@ -132,14 +67,10 @@ class APIService {
 
         // Check for HTTP response
         guard let httpResponse = response as? HTTPURLResponse, (200 ... 299) ~= httpResponse.statusCode else {
-            do {
-                // Attempt to parse error response JSON
-                let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                let errorMessage = errorJSON?["message"] as? String
-                throw GQError.somethingWentWrong(errorMessage)
-            } catch {
-                throw GQError.decodeError(error.localizedDescription)
-            }
+            // Attempt to parse error response JSON
+            let errorJSON = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let errorMessage = errorJSON?["message"] as? String
+            throw GQError.somethingWentWrong(errorMessage)
         }
 
         do {
