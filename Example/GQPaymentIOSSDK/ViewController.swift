@@ -119,8 +119,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
         
         paymentMethods = txtPaymentMethods.text
         feeHeadersSplit = txtFeeHeadersSplit.text
-        
-        authToken = txtAuthToken.text
     }
     
     @IBAction func btnOpenSdk(_ sender: UIButton) {
@@ -130,16 +128,23 @@ class ViewController: UIViewController, GQPaymentDelegate {
         }
 
         configureValues()
-        
-        if let authToken {
-            openSDK(
-                with: authToken,
-                env: environment ?? "test"
-            )
-        } else {
-            validateToConfig()
-            openSDK()
+        validateToConfig()
+        openSDK()
+    }
+    
+    @IBAction func clickedOpenSDKWithToken(_ sender: UIButton) {
+        callBackMessage = ""
+        if !callback.isHidden {
+            callback.isHidden.toggle()
         }
+        
+        authToken = txtAuthToken.text
+        environment = txtEnvironment.text
+        
+        openSDK(
+            with: authToken ?? "",
+            env: environment ?? ""
+        )
     }
     
     @IBAction func clickedOpenModalScreen(_ sender: UIButton) {
@@ -254,14 +259,14 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     @IBAction func btnPrefill(_ sender: UIButton) {
 //        UAT: Pranit Test
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        UAT: GQ-Avinash
         txtClientId.text = "<KEY>"
         txtClientSecretKey.text = "<KEY>"
         txtGqApiKey.text = "<KEY>"
+        
+//        UAT: GQ-Avinash
+//        txtClientId.text = "<KEY>"
+//        txtClientSecretKey.text = "<KEY>"
+//        txtGqApiKey.text = "<KEY>"
         
 //        txtClientId.text = "<KEY>"
 //        txtClientSecretKey.text = "<KEY>"
@@ -296,8 +301,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         txtEnvironment.text = "test"
 //        txtEnvironment.text = "live"
         
-        txtStudentID.text = "demo_12345"
-        txtCustomerNumber.text = "9090909096"
+        txtStudentID.text = "demo12345"
+        txtCustomerNumber.text = "9999199999"
         
 //        txtPPConfig.text = "{\"slug\": \"gq-avinash-rbse\"}"
 //        txtFeeHeader.text = "{\"Payabel EMI\": 120000.00, \"Payabel AD\": 5, \"Payabel PG\": 5}"

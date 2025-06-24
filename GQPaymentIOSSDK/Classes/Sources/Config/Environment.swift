@@ -32,7 +32,7 @@ class Environment {
     var referenceID: String?
     var emiPlanID: String?
     var udfDetailsString: String?
-    var authToken: String?
+//    var authToken: String?
     
     var juspayCallbackURL: String {
         switch env {
@@ -129,9 +129,9 @@ class Environment {
         self.udfDetailsString = udfDetails
     }
     
-    func updateAuthToken(authToken: String?) {
-        self.authToken = authToken
-    }
+//    func updateAuthToken(authToken: String?) {
+//        self.authToken = authToken
+//    }
     
     func baseURL() -> String{
 //        http://erp-sdk.uat.graydev.in

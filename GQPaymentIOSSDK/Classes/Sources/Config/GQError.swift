@@ -7,15 +7,16 @@
 
 import Foundation
 
-enum GQError: Error {
+enum GQError: Error, LocalizedError {
     case noInternet
     case noData
     case somethingWentWrong(String?)
     case decodeError(String)
+    case validationError(String)
     
     static let somethingWentWrong = "Something went wrong"
     
-    var message: String {
+    var errorDescription: String? {
         switch self {
         case .noInternet:
             return "No internet connection"
@@ -23,9 +24,11 @@ enum GQError: Error {
             return "No data available"
         case .somethingWentWrong(let message):
             return message ?? GQError.somethingWentWrong
-        case .decodeError(let message):
+        case .decodeError:
 //            return "Decoding error: \(message)"
             return GQError.somethingWentWrong
+        case .validationError(let message):
+            return message
         }
     }
 }
