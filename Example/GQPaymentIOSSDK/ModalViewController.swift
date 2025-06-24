@@ -19,6 +19,8 @@ class ModalViewController: UIViewController, GQPaymentDelegate {
     var config: [String: Any] = [:]
     var optionalDataObj: [String: Any] = [:]
 
+    var token: String?
+    var env: String?
     
     @IBAction func clickedOpenNewView(_ sender: UIButton) {
         DispatchQueue.main.async {
@@ -26,11 +28,21 @@ class ModalViewController: UIViewController, GQPaymentDelegate {
             let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
             controller.config = self.config
             controller.optionalDataObj = self.optionalDataObj
+            controller.token = self.token
+            controller.env = self.env
             self.present(controller, animated: true)
         }
     }
     
     @IBAction func clickedOpenSDKButton(_ sender: UIButton) {
+        openSDK()
+    }
+    
+    @IBAction func clickedOpenSDKWithTokenButton(_ sender: UIButton) {
+        openSDK(with: token, env: env ?? "")
+    }
+    
+    @MainActor private func openSDK() {
         let gqPaymentSDK = GQPaymentSDK()
         
         gqPaymentSDK.modalPresentationStyle = .overFullScreen
@@ -40,9 +52,20 @@ class ModalViewController: UIViewController, GQPaymentDelegate {
         gqPaymentSDK.clientJSONObject = config
         gqPaymentSDK.prefillJSONObject = optionalDataObj
         
-        DispatchQueue.main.async {
-            self.present(gqPaymentSDK, animated: true)
-        }
+        self.present(gqPaymentSDK, animated: true)
+    }
+    
+    @MainActor private func openSDK(with token: String?, env: String) {
+        let gqPaymentSDK = GQPaymentSDK()
+        
+        gqPaymentSDK.modalPresentationStyle = .overFullScreen
+        gqPaymentSDK.modalTransitionStyle = .crossDissolve
+        
+        gqPaymentSDK.delegate = self
+        gqPaymentSDK.authToken = token
+        gqPaymentSDK.env = env
+        
+        self.present(gqPaymentSDK, animated: true)
     }
     
     @IBAction func clickedClosedSDK(_ sender: UIButton) {

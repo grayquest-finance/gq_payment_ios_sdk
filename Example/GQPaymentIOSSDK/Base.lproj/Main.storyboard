@@ -259,19 +259,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vdK-9M-xTy">
-                                <rect key="frame" x="111" y="352.33333333333331" width="171" height="197.33333333333331"/>
+                                <rect key="frame" x="111" y="325.33333333333331" width="171" height="251.66666666666669"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cK-tg-czN">
-                                        <rect key="frame" x="34" y="0.0" width="103" height="34.333333333333336"/>
+                                        <rect key="frame" x="0.6666666666666714" y="0.0" width="169.66666666666663" height="34.333333333333336"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Open SDK"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open SDK (Config)"/>
                                         <connections>
                                             <action selector="clickedOpenSDKButton:" destination="GeO-at-JAf" eventType="touchUpInside" id="ucZ-0R-4Hy"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrq-sB-8R1">
+                                        <rect key="frame" x="3" y="54.333333333333371" width="165" height="34.333333333333343"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Open SDK (Token)"/>
+                                        <connections>
+                                            <action selector="clickedOpenSDKWithTokenButton:" destination="GeO-at-JAf" eventType="touchUpInside" id="nFa-DU-fah"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNq-Ag-Yby">
-                                        <rect key="frame" x="13" y="54.333333333333371" width="145.33333333333334" height="34.333333333333343"/>
+                                        <rect key="frame" x="13" y="108.66666666666669" width="145.33333333333334" height="34.333333333333343"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Open New View"/>
@@ -280,7 +289,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HnL-AR-Tc9">
-                                        <rect key="frame" x="23.333333333333336" y="108.66666666666669" width="124.33333333333331" height="34.333333333333343"/>
+                                        <rect key="frame" x="23.333333333333336" y="163" width="124.33333333333331" height="34.333333333333343"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Dismiss View"/>
@@ -289,7 +298,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tv2-ZV-Sos">
-                                        <rect key="frame" x="0.0" y="163.00000000000006" width="171" height="34.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="217.33333333333331" width="171" height="34.333333333333343"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Callback Messages"/>

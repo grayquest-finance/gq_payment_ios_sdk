@@ -152,13 +152,17 @@ class ViewController: UIViewController, GQPaymentDelegate {
         validateToConfig()
         
 //    MARK: Present On top of other viewcontrollers
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
-        controller.config = config
-        if let wrapOption = optionalObj, !wrapOption.isEmpty {
-            controller.optionalDataObj = converString(dataString: wrapOption)
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
+            controller.config = self.config
+            if let wrapOption = self.optionalObj, !wrapOption.isEmpty {
+                controller.optionalDataObj = self.converString(dataString: wrapOption)
+            }
+            controller.token = self.txtAuthToken.text
+            controller.env = self.environment
+            self.present(controller, animated: true)
         }
-        self.present(controller, animated: true)
     }
     
     private func validateToConfig() {
