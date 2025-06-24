@@ -20,9 +20,6 @@
     "ios": "13.0"
   },
   "swift_versions": "5.0",
-  "pod_target_xcconfig": {
-    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "arm64"
-  },
   "dependencies": {
     "CashfreePG": [
       "~> 2.2.0"
