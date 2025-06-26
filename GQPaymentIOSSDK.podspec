@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GQPaymentIOSSDK'
-  s.version          = '1.0.5'
+  s.version          = '1.1.0'
   s.summary          = 'GrayQuest Education Finance Pvt. Ltd. iOS SDK'
 
 # This description is used to generate tags and improve search results.

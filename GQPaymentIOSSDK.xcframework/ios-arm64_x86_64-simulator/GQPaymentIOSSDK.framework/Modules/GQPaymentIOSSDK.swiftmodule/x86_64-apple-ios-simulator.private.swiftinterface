@@ -24,7 +24,7 @@ public protocol GQPaymentDelegate {
   @_Concurrency.MainActor @preconcurrency public var delegate: (any GQPaymentIOSSDK.GQPaymentDelegate)?
   @_Concurrency.MainActor @preconcurrency public var clientJSONObject: [Swift.String : Any]?
   @_Concurrency.MainActor @preconcurrency public var prefillJSONObject: [Swift.String : Any]?
-  @_Concurrency.MainActor @preconcurrency public var authToken: Swift.String?
+  @_Concurrency.MainActor @preconcurrency public var token: Swift.String?
   @_Concurrency.MainActor @preconcurrency public var env: Swift.String {
     get
     set

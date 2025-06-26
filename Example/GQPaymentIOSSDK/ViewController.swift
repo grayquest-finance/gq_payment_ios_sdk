@@ -251,7 +251,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         gqPaymentSDK.modalTransitionStyle = .crossDissolve
         
         gqPaymentSDK.delegate = self
-        gqPaymentSDK.authToken = token
+        gqPaymentSDK.token = token
         gqPaymentSDK.env = env
         self.present(gqPaymentSDK, animated: true)
     }
