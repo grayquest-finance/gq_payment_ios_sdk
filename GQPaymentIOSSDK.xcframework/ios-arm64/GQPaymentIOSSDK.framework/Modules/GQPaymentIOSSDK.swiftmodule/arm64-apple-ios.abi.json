@@ -673,8 +673,8 @@
           },
           {
             "kind": "Var",
-            "name": "authToken",
-            "printedName": "authToken",
+            "name": "token",
+            "printedName": "token",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -692,8 +692,8 @@
               }
             ],
             "declKind": "Var",
-            "usr": "s:15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvp",
-            "mangledName": "$s15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvp",
+            "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvp",
+            "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvp",
             "moduleName": "GQPaymentIOSSDK",
             "declAttributes": [
               "HasInitialValue",
@@ -726,8 +726,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvg",
-                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvg",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvg",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvg",
                 "moduleName": "GQPaymentIOSSDK",
                 "implicit": true,
                 "accessorKind": "get"
@@ -758,8 +758,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvs",
-                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvs",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvs",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvs",
                 "moduleName": "GQPaymentIOSSDK",
                 "implicit": true,
                 "accessorKind": "set"
@@ -776,8 +776,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvM",
-                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC9authTokenSSSgvM",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvM",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvM",
                 "moduleName": "GQPaymentIOSSDK",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -1659,14 +1659,14 @@
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQPaymentSDK.swift",
       "kind": "BooleanLiteral",
-      "offset": 754,
+      "offset": 750,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQPaymentSDK.swift",
       "kind": "StringLiteral",
-      "offset": 685,
+      "offset": 681,
       "length": 2,
       "value": "\"\""
     }

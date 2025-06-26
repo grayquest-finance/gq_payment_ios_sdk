@@ -22,7 +22,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     private var isInValid: Bool = false
     
     // Auth Token
-    public var authToken: String?
+    public var token: String?
     // Environment to be used with Auth token
     public var env: String = "" {
         didSet {
@@ -44,8 +44,8 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
     private func redirectToWebSDK() {
         Task(priority: .userInitiated) {
             do {
-                if let authToken {
-                    let webURL = try await fetchURLFromSessionCode(token: authToken)
+                if let token {
+                    let webURL = try await fetchURLFromSessionCode(token: token)
                     redirectToGQWebView(webloadUrl: webURL)
                 } else {
                     let webURL = try await getURLFromEnvironmentData()
