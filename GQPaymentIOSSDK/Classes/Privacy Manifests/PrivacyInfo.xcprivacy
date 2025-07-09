@@ -4,7 +4,7 @@
 <dict>
 	<key>NSPrivacyTrackingDomains</key>
 	<array>
-		<string>*.graydev.tech</string>
+		<string>*.graydev.in</string>
 		<string>*.grayquest.com</string>
 	</array>
 	<key>NSPrivacyCollectedDataTypes</key>

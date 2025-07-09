@@ -37,20 +37,21 @@ class Environment {
     var juspayCallbackURL: String {
         switch env {
         case "stage":
+//            return "svc-dp.stage.graydev.in"
             return "svc-dp-stage.graydev.tech"
         case "preprod":
-            return "svc-dp-preprod.graydev.tech"
+            return "svc-dp.preprod.graydev.in"
         case "live":
             return "svc-dp.grayquest.com"
         default:
-            return "svc-dp.graydev.tech"
+            return "svc-dp.uat.graydev.in"
         }
     }
     
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
     static var customerAPI: String = "v1/customer/create-customer"
-    static var sessionCodeAPI: String = "/v1/pp/get-session-data"
+    static var sessionCodeAPI: String = "v1/pp/get-session-data"
     
     // Method to update values
     func update(environment: String) {
@@ -137,26 +138,28 @@ class Environment {
 //        http://erp-sdk.uat.graydev.in
         switch env{
         case "stage":
+//            return "https://erp-api.stage.graydev.in/"
             return "https://erp-api-stage.graydev.tech/"
         case "preprod":
-            return "https://erp-api-preprod.graydev.tech/"
+            return "https://erp-api.preprod.graydev.in/"
         case "live":
             return "https://erp-api.grayquest.com/"
         default:
-            return "https://erp-api.graydev.tech/"
+            return "https://erp-api.uat.graydev.in/"
         }
     }
     
     func webLoadURL() -> String{
         switch env{
         case "stage":
+//            return "https://erp-sdk.stage.graydev.in/"
             return "https://erp-sdk-stage.graydev.tech/"
         case "preprod":
-            return "https://erp-sdk-preprod.graydev.tech/"
+            return "https://erp-sdk.preprod.graydev.in/"
         case "live":
             return "https://erp-sdk.grayquest.com/"
         default:
-            return "https://erp-sdk.graydev.tech/"
+            return "https://erp-sdk.uat.graydev.in/"
         }
     }
 }

@@ -14,7 +14,7 @@ enum GQError: Error, LocalizedError {
     case decodeError(String)
     case validationError(String)
     
-    static let somethingWentWrong = "Something went wrong"
+    static let somethingWentWrongText = "Something went wrong"
     
     var errorDescription: String? {
         switch self {
@@ -23,10 +23,10 @@ enum GQError: Error, LocalizedError {
         case .noData:
             return "No data available"
         case .somethingWentWrong(let message):
-            return message ?? GQError.somethingWentWrong
+            return message ?? GQError.somethingWentWrongText
         case .decodeError:
 //            return "Decoding error: \(message)"
-            return GQError.somethingWentWrong
+            return GQError.somethingWentWrongText
         case .validationError(let message):
             return message
         }
