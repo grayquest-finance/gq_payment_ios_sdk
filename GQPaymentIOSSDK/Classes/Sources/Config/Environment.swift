@@ -40,7 +40,7 @@ class Environment {
 //            return "svc-dp.stage.graydev.in"
             return "svc-dp-stage.graydev.tech"
         case "preprod":
-            return "svc-dp.preprod.graydev.in"
+            return "svc-dp.ppd.graydev.in"
         case "live":
             return "svc-dp.grayquest.com"
         default:
@@ -141,7 +141,7 @@ class Environment {
 //            return "https://erp-api.stage.graydev.in/"
             return "https://erp-api-stage.graydev.tech/"
         case "preprod":
-            return "https://erp-api.preprod.graydev.in/"
+            return "https://erp-api.ppd.graydev.in/"
         case "live":
             return "https://erp-api.grayquest.com/"
         default:
@@ -155,7 +155,7 @@ class Environment {
 //            return "https://erp-sdk.stage.graydev.in/"
             return "https://erp-sdk-stage.graydev.tech/"
         case "preprod":
-            return "https://erp-sdk.preprod.graydev.in/"
+            return "https://erp-sdk.ppd.graydev.in/"
         case "live":
             return "https://erp-sdk.grayquest.com/"
         default:

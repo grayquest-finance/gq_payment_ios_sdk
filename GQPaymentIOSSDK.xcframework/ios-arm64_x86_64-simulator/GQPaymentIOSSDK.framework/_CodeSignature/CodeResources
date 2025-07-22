@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		HPaOKGDGXSYlbstH3e1JF7goN7M=
+		FwkOKnOCnnAh4j/d23zCMGbwUd4=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		HPaOKGDGXSYlbstH3e1JF7goN7M=
+		FwkOKnOCnnAh4j/d23zCMGbwUd4=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -81,7 +81,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			24LniIzPI0kQ4uevYNiSgnHMZvhvBSIFP80ReCQ9myk=
+			UFTqs2MagoUPvNkQDNtShvIrl5bBrvO1t28WyOfdlSE=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -116,7 +116,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			24LniIzPI0kQ4uevYNiSgnHMZvhvBSIFP80ReCQ9myk=
+			UFTqs2MagoUPvNkQDNtShvIrl5bBrvO1t28WyOfdlSE=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>

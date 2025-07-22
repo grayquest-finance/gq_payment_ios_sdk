@@ -176,23 +176,23 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework"
   install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

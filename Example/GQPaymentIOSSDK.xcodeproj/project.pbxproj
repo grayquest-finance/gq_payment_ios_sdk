@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		522FDB3E36F8A57A30093947 /* Pods_GQPaymentIOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D0191F5CE4A1671F75B1CE /* Pods_GQPaymentIOSSDK_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -16,8 +17,7 @@
 		A323DF4B2D37A82A00908E94 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		A3ABA01B2D5342290010731A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3ABA01A2D5342290010731A /* SceneDelegate.swift */; };
 		A3B1CE0D2DD5D43E008CFF33 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B1CE0C2DD5D434008CFF33 /* ModalViewController.swift */; };
-		D2B0A6003049176B9AEC6AAB /* Pods_GQPaymentIOSSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07968D54D9C30339D93A8D0 /* Pods_GQPaymentIOSSDK_Tests.framework */; };
-		E91247E8EAA01232469C3AEB /* Pods_GQPaymentIOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E6B55A405E6ED541E2DA852 /* Pods_GQPaymentIOSSDK_Example.framework */; };
+		F537CF4E5A4DF05AEE6828FD /* Pods_GQPaymentIOSSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD123619505E7C6A6388CEC /* Pods_GQPaymentIOSSDK_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,10 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D370E9B81B0CD2B1621956B /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		188F06A7FAC298A0732F22CF /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Tests/Pods-GQPaymentIOSSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		34195310A7E81E42B15D9016 /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Tests/Pods-GQPaymentIOSSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4E6B55A405E6ED541E2DA852 /* Pods_GQPaymentIOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GQPaymentIOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C2FE970B9FED6F3875F2EC /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Example.debug.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		3CD123619505E7C6A6388CEC /* Pods_GQPaymentIOSSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GQPaymentIOSSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C88B01105675493883C0391 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* GQPaymentIOSSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GQPaymentIOSSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,12 +44,14 @@
 		607FACE51AFB9204008FA782 /* GQPaymentIOSSDK_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GQPaymentIOSSDK_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		A07968D54D9C30339D93A8D0 /* Pods_GQPaymentIOSSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GQPaymentIOSSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82D0191F5CE4A1671F75B1CE /* Pods_GQPaymentIOSSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GQPaymentIOSSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88B69A3F7DCE523B8DE79F3C /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Tests.debug.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Tests/Pods-GQPaymentIOSSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3ABA01A2D5342290010731A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3B1CE0C2DD5D434008CFF33 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		A5A63C450645630E8D95F044 /* GQPaymentIOSSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GQPaymentIOSSDK.podspec; path = ../GQPaymentIOSSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A7A97904B3D67A6948EEBD2E /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		A7D17ABFC02E2C9C4A10F89D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		AED9D50EB9347C3CB4138487 /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Example.release.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
+		B1093CB9C17355EDF7D7E5C1 /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GQPaymentIOSSDK_Tests.release.xcconfig"; path = "Target Support Files/Pods-GQPaymentIOSSDK_Tests/Pods-GQPaymentIOSSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E91247E8EAA01232469C3AEB /* Pods_GQPaymentIOSSDK_Example.framework in Frameworks */,
+				F537CF4E5A4DF05AEE6828FD /* Pods_GQPaymentIOSSDK_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2B0A6003049176B9AEC6AAB /* Pods_GQPaymentIOSSDK_Tests.framework in Frameworks */,
+				522FDB3E36F8A57A30093947 /* Pods_GQPaymentIOSSDK_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +77,21 @@
 		0B59E45F3F4D0D6A770AAA2E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				0D370E9B81B0CD2B1621956B /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */,
-				A7A97904B3D67A6948EEBD2E /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */,
-				34195310A7E81E42B15D9016 /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */,
-				188F06A7FAC298A0732F22CF /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */,
+				29C2FE970B9FED6F3875F2EC /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */,
+				AED9D50EB9347C3CB4138487 /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */,
+				88B69A3F7DCE523B8DE79F3C /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */,
+				B1093CB9C17355EDF7D7E5C1 /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		0D6E8F4E1B25245BFCCDB3A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CD123619505E7C6A6388CEC /* Pods_GQPaymentIOSSDK_Example.framework */,
+				82D0191F5CE4A1671F75B1CE /* Pods_GQPaymentIOSSDK_Tests.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		607FACC71AFB9204008FA782 = {
@@ -93,7 +102,7 @@
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				0B59E45F3F4D0D6A770AAA2E /* Pods */,
-				6ACA2C80DF5838CA5BA87C3A /* Frameworks */,
+				0D6E8F4E1B25245BFCCDB3A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -157,15 +166,6 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		6ACA2C80DF5838CA5BA87C3A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4E6B55A405E6ED541E2DA852 /* Pods_GQPaymentIOSSDK_Example.framework */,
-				A07968D54D9C30339D93A8D0 /* Pods_GQPaymentIOSSDK_Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,11 +173,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GQPaymentIOSSDK_Example" */;
 			buildPhases = (
-				A3F0938D982AD983195ACAD6 /* [CP] Check Pods Manifest.lock */,
+				FE73D934CE8BF36D7417DD5D /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				A49242E7630099198B917C9F /* [CP] Embed Pods Frameworks */,
+				2063C7E0F7B383D763E40ECD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,7 +192,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "GQPaymentIOSSDK_Tests" */;
 			buildPhases = (
-				2BBED75DFC27FF822B0E1009 /* [CP] Check Pods Manifest.lock */,
+				1F3F2CEC96250E4187D8D32F /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
@@ -272,7 +272,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2BBED75DFC27FF822B0E1009 /* [CP] Check Pods Manifest.lock */ = {
+		1F3F2CEC96250E4187D8D32F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -294,7 +294,39 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3F0938D982AD983195ACAD6 /* [CP] Check Pods Manifest.lock */ = {
+		2063C7E0F7B383D763E40ECD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework/CFNetworkSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework/CashfreeAnalyticsSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework/CashfreePG",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework/CashfreePGCoreSDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework/CashfreePGUISDK",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework/Easebuzz",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework/Razorpay",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GQPaymentIOSSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CFNetworkSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreeAnalyticsSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePG.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGCoreSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGUISDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Easebuzz.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE73D934CE8BF36D7417DD5D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -314,38 +346,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A49242E7630099198B917C9F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CFNetworkSDK/CFNetworkSDK.framework/CFNetworkSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreeAnalyticsSDK/CashfreeAnalyticsSDK.framework/CashfreeAnalyticsSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePG/CashfreePG.framework/CashfreePG",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGCoreSDK/CashfreePGCoreSDK.framework/CashfreePGCoreSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CashfreePGUISDK/CashfreePGUISDK.framework/CashfreePGUISDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Easebuzz/Easebuzz.framework/Easebuzz",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/GQPaymentIOSSDK/GQPaymentIOSSDK.framework/GQPaymentIOSSDK",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/razorpay-pod/Razorpay.framework/Razorpay",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CFNetworkSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreeAnalyticsSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePG.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGCoreSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CashfreePGUISDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Easebuzz.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GQPaymentIOSSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GQPaymentIOSSDK_Example/Pods-GQPaymentIOSSDK_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -504,7 +504,7 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D370E9B81B0CD2B1621956B /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */;
+			baseConfigurationReference = 29C2FE970B9FED6F3875F2EC /* Pods-GQPaymentIOSSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -531,7 +531,7 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7A97904B3D67A6948EEBD2E /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */;
+			baseConfigurationReference = AED9D50EB9347C3CB4138487 /* Pods-GQPaymentIOSSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -557,7 +557,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34195310A7E81E42B15D9016 /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */;
+			baseConfigurationReference = 88B69A3F7DCE523B8DE79F3C /* Pods-GQPaymentIOSSDK_Tests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEVELOPMENT_TEAM = HWWL8VC89L;
@@ -582,7 +582,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 188F06A7FAC298A0732F22CF /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */;
+			baseConfigurationReference = B1093CB9C17355EDF7D7E5C1 /* Pods-GQPaymentIOSSDK_Tests.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				DEVELOPMENT_TEAM = HWWL8VC89L;
