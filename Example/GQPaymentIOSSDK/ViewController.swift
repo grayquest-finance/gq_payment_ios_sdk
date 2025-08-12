@@ -25,12 +25,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-//        self.dismiss(animated: true, completion: nil)
     }
     
     func gqCancelResponse(data: [String : Any]?) {
         print("Cancel callback received with data: \(data ?? [:])")
-//        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
             self.callback.isHidden = false
@@ -257,60 +255,12 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     @IBAction func callback(_ sender: UIButton) {
-//        if var wrapCallBack = callBackMessage, !wrapCallBack.isEmpty{
-            openAlert(title: "CallBack Listner", message: callBackMessage)
-//        }
+        openAlert(title: "CallBack Listner", message: callBackMessage)
+        UIPasteboard.general.string = callBackMessage
     }
+    
     @IBAction func btnPrefill(_ sender: UIButton) {
-//        UAT: Pranit Test
-        txtClientId.text = "<KEY>"
-        txtClientSecretKey.text = "<KEY>"
-        txtGqApiKey.text = "<KEY>"
-        
-//        UAT: GQ-Avinash
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-        
-//        UAT: With Fee Headers
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        UAT: SDK v1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        Stage: SDK v1.1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//      Stage: Arjun - GILE
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
 
-//        Stage: SDK v1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-
-        txtEnvironment.text = "test"
-//        txtEnvironment.text = "live"
-        
-        txtStudentID.text = "demo12345"
-        txtCustomerNumber.text = "9999199999"
-        
-//        txtPPConfig.text = "{\"slug\": \"gq-avinash-rbse\"}"
-//        txtFeeHeader.text = "{\"Payabel EMI\": 120000.00, \"Payabel AD\": 5, \"Payabel PG\": 5}"
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 5, \"Payable_fee_PG\": 5}"
     }
     
     func converString(dataString: String) -> [String:Any] {
