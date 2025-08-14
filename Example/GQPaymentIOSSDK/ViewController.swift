@@ -256,7 +256,6 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
     @IBAction func callback(_ sender: UIButton) {
         openAlert(title: "CallBack Listner", message: callBackMessage)
-        UIPasteboard.general.string = callBackMessage
     }
     
     @IBAction func btnPrefill(_ sender: UIButton) {
@@ -288,12 +287,19 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     func openAlert(title: String, message: String){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { [weak self] _ in
+                self?.handleCopyAction(message: message)
+            }))
             
-            self?.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    private func handleCopyAction(message: String?) {
+        UIPasteboard.general.string = message
     }
     
     func convertDictionaryToJson(dictionary: [String: Any]) -> String? {
