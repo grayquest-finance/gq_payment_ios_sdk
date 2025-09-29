@@ -1,0 +1,7 @@
+# CODEOWNERS file for gq_payment_ios_sdk repository
+
+# This file defines code owners for the repository
+
+# All files in the repository require review from the code owner
+
+* @1410avi @valentine-miranda-grayquest
