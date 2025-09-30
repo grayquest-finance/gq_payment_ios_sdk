@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/GQPaymentIOSSDK-Swift.h</key>
 		<data>
-		neXtdLQJTolnWd76GZP5thHG1Us=
+		MjIYcFAY8fApcAb+N+5hIADxo3k=
 		</data>
 		<key>Headers/GQPaymentIOSSDK-umbrella.h</key>
 		<data>
@@ -14,27 +14,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		hpHoidZ4TNgCtehJsz7U5vtYoHI=
+		pWS8WchOJnjyBRVwftemZ7SlR2g=
+		</data>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		FwkOKnOCnnAh4j/d23zCMGbwUd4=
+		</data>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		qnXk+wKYdpUlNIldakjfjWuG2yY=
+		</data>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		3G6FWZsNwq89y0BbHlu1kPRCjUs=
+		</data>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		qnXk+wKYdpUlNIldakjfjWuG2yY=
+		</data>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		+A1a7wAWmw8M/zig0biB+9vvsAs=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		v06aMh7aV+xJTtLhy7N9mYTEJVI=
+		FwkOKnOCnnAh4j/d23zCMGbwUd4=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		+C5ZEw0enk1hzDns+8+Qj/sQgJs=
+		W32cWoQYE7pqcHkouaQ8Si9TfCE=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		Z4IpPVN2Za/T9PLBFUIWhT8jyCY=
+		fAwEyFPovnnmuFzZxl0hO7b03Xc=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		+C5ZEw0enk1hzDns+8+Qj/sQgJs=
+		W32cWoQYE7pqcHkouaQ8Si9TfCE=
 		</data>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		eLclpBP1jdt0+iRV+wZ4SQJjWyU=
+		PGVzgRhy78G0sxELHNqNyL7cRVU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -47,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AGf5V6UYbzGj6f9WsxM5lZqy7luCCo/FMFSus4nJzUE=
+			lolH7fnY0XDyAe+b8nwIvZb1/0qxigLlTfJC9MBgSC0=
 			</data>
 		</dict>
 		<key>Headers/GQPaymentIOSSDK-umbrella.h</key>
@@ -57,39 +77,74 @@
 			4W6XotweLlaXPYhPPnRQ/CDxqTgQ96TTWeJ0P2wBCrU=
 			</data>
 		</dict>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			UFTqs2MagoUPvNkQDNtShvIrl5bBrvO1t28WyOfdlSE=
+			</data>
+		</dict>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BsS+pK1EydBcDi+O8Xtxj9yQbHymYapz6K+7wwELM6w=
+			</data>
+		</dict>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GL4MQWp5c0i+NWtkp2fEsMThp1o18mydvPtmN33YOp8=
+			</data>
+		</dict>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			BsS+pK1EydBcDi+O8Xtxj9yQbHymYapz6K+7wwELM6w=
+			</data>
+		</dict>
+		<key>Modules/GQPaymentIOSSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gR/aVrj9QvI5ZQVLzWmoV1BySpyqBzebjBYz/BnAV3c=
+			</data>
+		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			G1wN5C2W4C/U/IL6PjKwg3Qabaz0fAkXCkiTYqi15M4=
+			UFTqs2MagoUPvNkQDNtShvIrl5bBrvO1t28WyOfdlSE=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+0pAirodi4Fo+DQbPYx3sEyNIxM6Uyvy5AKXIfAeScc=
+			zTgFQuzw1piGamsW3qDoNPkd9iHEz3QBOurYN5hBIeM=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AK38t0EVgzEbcCgCPcTqm/olqpRx06TLffQuprQyaFs=
+			4dZdtcY5GqikDg+b6JUdmun7rKg0DmhZ2KdcGL86+zI=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+0pAirodi4Fo+DQbPYx3sEyNIxM6Uyvy5AKXIfAeScc=
+			zTgFQuzw1piGamsW3qDoNPkd9iHEz3QBOurYN5hBIeM=
 			</data>
 		</dict>
 		<key>Modules/GQPaymentIOSSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5ZiMdkk4RdLNC8sSENF/DRSCB+IAncmHNu1tov3W1tc=
+			ju+Y5xBg7nPrQTzhjEW9TXZc50kaWK/Kb/mBvgY3OAk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

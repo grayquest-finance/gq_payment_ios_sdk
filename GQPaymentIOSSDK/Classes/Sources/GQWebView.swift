@@ -232,9 +232,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         self.showLoader()
         pgService.setCallback(self)
         
-        let environment = Environment.shared
-        //
-        //        let myURL = URL(string:"https://erp-sdk.graydev.tech/instant-eligibility?gapik=<KEY>&abase=<KEY>&sid=demo_12345&m=8625960119&env=test&cid=34863&ccode=<KEY>&pc=&s=asdk&user=existing&_v=\"1.1\"")
+        //        let myURL = URL(string:"https://erp-sdk.graydev.in/instant-eligibility?gapik=<KEY>&abase=<KEY>&sid=demo_12345&m=8625960119&env=test&cid=34863&ccode=<KEY>&pc=&s=asdk&user=existing&_v=\"1.1\"")
         
         if let urlString = loadURL?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let myURL = URL(string: urlString) {
             let myRequest = URLRequest(url: myURL)

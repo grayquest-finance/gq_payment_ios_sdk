@@ -45,6 +45,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "GQPaymentIOSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "GQPaymentDelegate",
         "printedName": "GQPaymentDelegate",
@@ -662,6 +672,208 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "token",
+            "printedName": "token",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvp",
+            "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvp",
+            "moduleName": "GQPaymentIOSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvg",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvg",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvs",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvs",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC5tokenSSSgvM",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC5tokenSSSgvM",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "env",
+            "printedName": "env",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15GQPaymentIOSSDK0A3SDKC3envSSvp",
+            "mangledName": "$s15GQPaymentIOSSDK0A3SDKC3envSSvp",
+            "moduleName": "GQPaymentIOSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "Preconcurrency",
+              "Custom",
+              "HasStorage",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC3envSSvg",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC3envSSvg",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC3envSSvs",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC3envSSvs",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15GQPaymentIOSSDK0A3SDKC3envSSvM",
+                "mangledName": "$s15GQPaymentIOSSDK0A3SDKC3envSSvM",
+                "moduleName": "GQPaymentIOSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "viewDidLoad",
             "printedName": "viewDidLoad()",
@@ -683,8 +895,41 @@
               "ObjC",
               "Preconcurrency",
               "Custom",
-              "AccessControl",
-              "Override"
+              "Override",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "viewDidAppear",
+            "printedName": "viewDidAppear(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@GQPaymentIOSSDK@objc(cs)GQPaymentSDK(im)viewDidAppear:",
+            "mangledName": "$s15GQPaymentIOSSDK0A3SDKC13viewDidAppearyySbF",
+            "moduleName": "GQPaymentIOSSDK",
+            "overriding": true,
+            "objc_name": "viewDidAppear:",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Preconcurrency",
+              "Custom",
+              "Override",
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -1225,35 +1470,35 @@
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3033,
+      "offset": 3798,
       "length": 7,
       "value": "\":#[]@\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3138,
+      "offset": 3903,
       "length": 13,
       "value": "\"!$&'()*+,;=\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3251,
+      "offset": 4016,
       "length": 54,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3280,
+      "offset": 4045,
       "length": 1,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/APIService.swift",
       "kind": "StringLiteral",
-      "offset": 3304,
+      "offset": 4069,
       "length": 2,
       "value": "\"\""
     },
@@ -1358,23 +1603,37 @@
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 1204,
+      "offset": 1276,
       "length": 6,
       "value": "\"isdk\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 1244,
+      "offset": 1316,
       "length": 9,
       "value": "\"\"1.1\"\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
       "kind": "StringLiteral",
-      "offset": 1291,
+      "offset": 1363,
       "length": 29,
       "value": "\"v1\/customer\/create-customer\""
+    },
+    {
+      "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/Environment.swift",
+      "kind": "StringLiteral",
+      "offset": 1433,
+      "length": 24,
+      "value": "\"v1\/pp\/get-session-data\""
+    },
+    {
+      "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/Config\/GQError.swift",
+      "kind": "StringLiteral",
+      "offset": 320,
+      "length": 22,
+      "value": "\"Something went wrong\""
     },
     {
       "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQPaymentSDK.swift",
@@ -1396,6 +1655,20 @@
       "offset": 547,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQPaymentSDK.swift",
+      "kind": "BooleanLiteral",
+      "offset": 750,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/valentine\/Documents\/Grayquest\/gq_payment_ios_sdk\/GQPaymentIOSSDK\/Classes\/Sources\/GQPaymentSDK.swift",
+      "kind": "StringLiteral",
+      "offset": 681,
+      "length": 2,
+      "value": "\"\""
     }
   ]
 }

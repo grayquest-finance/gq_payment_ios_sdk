@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'GQPaymentIOSSDK'
-  s.version          = '1.0.4'
+  s.version          = '1.1.0'
   s.summary          = 'GrayQuest Education Finance Pvt. Ltd. iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '13.0'
   s.swift_versions = "5.0"
 
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+#  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   #s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   s.dependency 'CashfreePG', '~> 2.2.0'

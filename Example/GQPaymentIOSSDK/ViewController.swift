@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import GQPaymentIOSSDK
 
 class ViewController: UIViewController, GQPaymentDelegate {
@@ -24,12 +25,10 @@ class ViewController: UIViewController, GQPaymentDelegate {
         DispatchQueue.main.async {
             self.callback.isHidden = false
         }
-//        self.dismiss(animated: true, completion: nil)
     }
     
     func gqCancelResponse(data: [String : Any]?) {
         print("Cancel callback received with data: \(data ?? [:])")
-//        openAlert(title: "Cancel", message: "\(data)")
         callBackMessage += convertDictionaryToJson(dictionary: data!)!
         DispatchQueue.main.async {
             self.callback.isHidden = false
@@ -53,6 +52,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
     @IBOutlet weak var txtUDFDetails: UITextField!
     @IBOutlet weak var txtPaymentMethods: UITextField!
     @IBOutlet weak var txtFeeHeadersSplit: UITextField!
+    @IBOutlet weak var txtAuthToken: UITextField!
+    
     
     @IBOutlet weak var callback: UIButton!
     var clientID: String?
@@ -71,6 +72,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
     var udfDetails: String?
     var paymentMethods: String?
     var feeHeadersSplit: String?
+    var authToken: String?
     
     var config: [String: Any] = [:]
     var auth: [String: Any] = [:]
@@ -128,18 +130,37 @@ class ViewController: UIViewController, GQPaymentDelegate {
         openSDK()
     }
     
+    @IBAction func clickedOpenSDKWithToken(_ sender: UIButton) {
+        callBackMessage = ""
+        if !callback.isHidden {
+            callback.isHidden.toggle()
+        }
+        
+        authToken = txtAuthToken.text
+        environment = txtEnvironment.text
+        
+        openSDK(
+            with: authToken ?? "",
+            env: environment ?? ""
+        )
+    }
+    
     @IBAction func clickedOpenModalScreen(_ sender: UIButton) {
         configureValues()
         validateToConfig()
         
 //    MARK: Present On top of other viewcontrollers
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
-        controller.config = config
-        if let wrapOption = optionalObj, !wrapOption.isEmpty {
-            controller.optionalDataObj = converString(dataString: wrapOption)
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "ModalViewController") as! ModalViewController
+            controller.config = self.config
+            if let wrapOption = self.optionalObj, !wrapOption.isEmpty {
+                controller.optionalDataObj = self.converString(dataString: wrapOption)
+            }
+            controller.token = self.txtAuthToken.text
+            controller.env = self.environment
+            self.present(controller, animated: true)
         }
-        self.present(controller, animated: true)
     }
     
     private func validateToConfig() {
@@ -206,7 +227,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
         print("Config Object: \(config)")
     }
     
-    private func openSDK() {
+    @MainActor private func openSDK() {
         let gqPaymentSDK = GQPaymentSDK()
         
         gqPaymentSDK.modalPresentationStyle = .overFullScreen
@@ -217,67 +238,28 @@ class ViewController: UIViewController, GQPaymentDelegate {
         if let wrapOption = optionalObj, !wrapOption.isEmpty{
             gqPaymentSDK.prefillJSONObject = converString(dataString: wrapOption)
         }
-        DispatchQueue.main.async {
-            self.present(gqPaymentSDK, animated: true)
-        }
+        self.present(gqPaymentSDK, animated: true)
         
     }
     
-    @IBAction func callback(_ sender: UIButton) {
-//        if var wrapCallBack = callBackMessage, !wrapCallBack.isEmpty{
-            openAlert(title: "CallBack Listner", message: callBackMessage)
-//        }
+    @MainActor private func openSDK(with token: String?, env: String) {
+        let gqPaymentSDK = GQPaymentSDK()
+        
+        gqPaymentSDK.modalPresentationStyle = .overFullScreen
+        gqPaymentSDK.modalTransitionStyle = .crossDissolve
+        
+        gqPaymentSDK.delegate = self
+        gqPaymentSDK.token = token
+        gqPaymentSDK.env = env
+        self.present(gqPaymentSDK, animated: true)
     }
+    
+    @IBAction func callback(_ sender: UIButton) {
+        openAlert(title: "CallBack Listner", message: callBackMessage)
+    }
+    
     @IBAction func btnPrefill(_ sender: UIButton) {
-//        UAT: Pranit Test
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        UAT: GQ-Avinash
-        txtClientId.text = "<KEY>"
-        txtClientSecretKey.text = "<KEY>"
-        txtGqApiKey.text = "<KEY>"
-        
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-        
-//        UAT: With Fee Headers
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        UAT: SDK v1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//        Stage: SDK v1.1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-        
-//      Stage: Arjun - GILE
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
 
-//        Stage: SDK v1
-//        txtClientId.text = "<KEY>"
-//        txtClientSecretKey.text = "<KEY>"
-//        txtGqApiKey.text = "<KEY>"
-
-        txtEnvironment.text = "test"
-//        txtEnvironment.text = "live"
-        
-        txtStudentID.text = "demo_12345"
-        txtCustomerNumber.text = "9090909096"
-        
-//        txtPPConfig.text = "{\"slug\": \"gq-avinash-rbse\"}"
-//        txtFeeHeader.text = "{\"Payabel EMI\": 120000.00, \"Payabel AD\": 5, \"Payabel PG\": 5}"
-//        txtFeeHeader.text = "{\"Payable_fee_EMI\": 120000.00, \"Payable_fee_Auto_Debit\": 5, \"Payable_fee_PG\": 5}"
     }
     
     func converString(dataString: String) -> [String:Any] {
@@ -305,12 +287,19 @@ class ViewController: UIViewController, GQPaymentDelegate {
     }
     
     func openAlert(title: String, message: String){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Copy", style: .default, handler: { [weak self] _ in
+                self?.handleCopyAction(message: message)
+            }))
             
-            self?.present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    private func handleCopyAction(message: String?) {
+        UIPasteboard.general.string = message
     }
     
     func convertDictionaryToJson(dictionary: [String: Any]) -> String? {
