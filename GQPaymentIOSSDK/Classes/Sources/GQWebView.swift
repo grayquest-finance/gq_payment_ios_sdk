@@ -14,27 +14,41 @@ import CashfreePG
 import Razorpay
 import Easebuzz
 
+//MARK: A Class for displaying webview
+/// All the vendor SDKs delegate are applied here.
 class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletionProtocolWithData, PayWithEasebuzzCallback, WKUIDelegate, WKScriptMessageHandler, WKNavigationDelegate {
     
+    // MARK: Properties
     let environment = Environment.shared
     var paymentSessionId: String?
     var orderId: String?
     let customInstance = Custom()
+    
+    //MARK: The `delegate` needs to be assigned to receive events.
     public var delegate: GQPaymentDelegate?
     var webDelegate: WebDelegate?
+    
+    //MARK: Webview for displaying web contents
     var webView: WKWebView!
+    
+    //MARK: Cashfree Instance
     let pgService = CFPaymentGatewayService.getInstance()
+    
+    //MARK: Razorpay Instance
     var razorpay: RazorpayCheckout!
     
+    // MARK: Properties
     var callBackUrl: String?
     var vName: String?
     var loadURL: String?
 //    var isUNIPGError: Bool = false
     
+    //MARK: Webview Delegate - On Webview Navigation Finish
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
     }
     
+    //MARK: Webview Delegate - On Webview Navigation Decision
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
             if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
@@ -46,10 +60,12 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         decisionHandler(.allow)
     }
     
+    //MARK: Webview Delegate - On Webview Navigation Fail
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         self.hideLoader()
     }
-        
+    
+    //MARK: Webview Delegate - On Webview Navigation Action
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         guard let url = navigationAction.request.url else { return nil }
         if UIApplication.shared.canOpenURL(url) {
@@ -58,8 +74,9 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         return nil
     }
     
+    //MARK: Webview Delegate - On Webview Message/Event Finish
     public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if (message.name == "sdkSuccess") {
+        if (message.name == "sdkSuccess") {         //MARK: Success Event
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
@@ -67,7 +84,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             } catch {
                 self.dismissNavigationController(data: nil)
             }
-        }else  if (message.name == "sdkError") {
+        }else  if (message.name == "sdkError") {            //MARK: Failure Event
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as! [String: Any]
@@ -77,7 +94,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             } catch {
                 self.dismissNavigationController(data: nil)
             }
-        }else if (message.name == "sdkCancel") {
+        }else if (message.name == "sdkCancel") {         //MARK: Cancel Event
             do {
                 let data = message.body as! String
                 let con = try JSONSerialization.jsonObject(with: data.data(using: .utf8)!, options: []) as? [String: Any]
@@ -85,7 +102,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
             } catch {
                 self.dismissNavigationController(data: nil)
             }
-        }else if (message.name == "sendPGOptions") {
+        }else if (message.name == "sendPGOptions") {         //MARK: On Receive Payment Gateway Options Event
             let data = message.body as! String
             
             if let jsonData = data.data(using: .utf8) {
@@ -94,7 +111,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                         let name = json["name"] as? String
                         vName = name
                         
-                        if name == "CASHFREE"{
+                        if name == "CASHFREE"{                         //MARK: Cashfree SDK Launch
                             if let pgOptions = json["pgOptions"] as? [String: Any],
                                let orderCode1 = pgOptions["order_code"] as? String,
                                let mdMappingCode = pgOptions["md_mapping_code"] as? String,
@@ -107,7 +124,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                     self.openPG(paymentSessionId: paymentSessionId1, orderId: orderCode1)
                                 }
                             }
-                        } else if name == "EASEBUZZ"{
+                        } else if name == "EASEBUZZ"{                         //MARK: Easebuzz SDK Launch
                             if let pgOptions = json["pgOptions"] as? [String: Any],
                                let access_key = pgOptions["access_key"] as? String{
                                 
@@ -119,7 +136,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                                   let order_id = pgOptions["order_id"] as? String,
                                   var redirect = pgOptions["redirect"] as? Bool,
                                   let prefillObj = pgOptions["prefill"] as? [String: Any],
-                                  let notes = pgOptions["notes"] as? [String: Any] {
+                                  let notes = pgOptions["notes"] as? [String: Any] {                         //MARK: UNIPG/Razorpay Detection
                             let name = prefillObj["name"] as? String
                             let email = prefillObj["email"] as? String
                             let contact = prefillObj["contact"] as? String
@@ -146,7 +163,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
                             }
                         } else if let pgOptions = json["pgOptions"] as? [String: Any],
                               let paymentLink = pgOptions["payment_link_web"] as? String {
-//                              Webcheckout page
+//                              MARK: Webcheckout page (Web Link)
                                navigateToPaymentPage(link: paymentLink)
                        }
                     }
@@ -154,7 +171,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 
                 }
             }
-        }else if (message.name == "sendADOptions") {
+        }else if (message.name == "sendADOptions") { //MARK: On Receive Auto Debit (Razorpay Vendor) events
             let data = message.body as! String
             if let jsonData = data.data(using: .utf8) {
                 do {
@@ -201,6 +218,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //        //        self.showPaymentForm()
 //    }
     
+//MARK: Register Webview Events and Webview Configuration
     public override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
@@ -226,6 +244,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         view = webView
     }
     
+    //MARK: Loading webview on valid URL - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -247,11 +266,16 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         
     }
     
+    //MARK: View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    //MARK: Launch Cashfree SDK
+    //         - parameters:
+    //                paymentSessionId - The payment ID of the transaction
+//                    orderId - The Order ID of the transaction
     func openPG(paymentSessionId: String, orderId: String) {
         
         do {
@@ -271,12 +295,16 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: On Dismiss of Navigation Controller
+    //         - parameters:
+    //                data - The data to be passed on SDK cancelled
     @MainActor private func dismissNavigationController(data: [String: Any]?) {
         self.navigationController?.dismiss(animated: true) {
             self.webDelegate?.sdCancel(data: data)
         }
     }
     
+    //MARK: Razorpay Delegate Method - On Error
     func onPaymentError(_ code: Int32, description str: String, andData response: [AnyHashable : Any]?) {
         var userInfo = response as NSDictionary? as? [String: Any]
         if ((callBackUrl?.isEmpty) != nil){
@@ -294,6 +322,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: Razorpay Delegate Method - On Success
     func onPaymentSuccess(_ payment_id: String, andData response: [AnyHashable : Any]?) {
         var userInfo = response as NSDictionary? as? [String: Any]
         if ((callBackUrl?.isEmpty) != nil){
@@ -312,6 +341,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: Cashfree Delegate Method - On Error
     func onError(_ error: CashfreePGCoreSDK.CFErrorResponse, order_id: String) {
         let paymentResponse: [String: Any] = [
             "status": error.status ?? "",
@@ -326,6 +356,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: Cashfree Delegate Method - On Payment done event
     func verifyPayment(order_id: String) {
         let paymentResponse: [String: Any] = [
             "status": "SUCCESS",
@@ -337,6 +368,8 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: For Weblink navigation to a new screen.
+//    Ex. Easebuzz Web Link
     @MainActor func navigateToPaymentPage(link: String?) {
         guard let link else { return }
         
@@ -354,6 +387,9 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
 //        }
     }
     
+    //MARK: For Launching Easebuzz SDK.
+//         - parameters:
+//                access_key - The Access Key to pass to the SDK for functioning
     func initiatePaymentAction(access_key: String) {
         var orderDetails = [
             "access_key": access_key
@@ -374,6 +410,7 @@ class GQWebView: GQViewController, CFResponseDelegate, RazorpayPaymentCompletion
         }
     }
     
+    //MARK: Easebuzz - Callback Function
     func PEBCallback(data: [String : AnyObject]) {
         let payment_response = data["payment_response"]
 //        if payment_response as? [String:Any] != nil {

@@ -9,21 +9,33 @@ import Foundation
 import UIKit
 import CashfreePG
 
+//MARK: An Intializing Class for calling the GQPaymentSDK
+/// - Important: Always add value to `clientJSONObject` and `prefillJSONObject` for intitalising using ClientID, ClientSecret and API Key.
+/// - Important: Always add value to `token` and `env` for initialising using authentication using token.
+/// The `delegate` needs to be assigned to receive events.
+/// The Parameters are the deciding factor in which function and API calls needs to done ahead.
 public class GQPaymentSDK: GQViewController, WebDelegate {
     
+    // MARK: The `delegate` that receives success, failure and error events.
     public var delegate: GQPaymentDelegate?
+    
+    // MARK: Common class for validation and encoding.
     let customInstance = Custom()
+    
+    // MARK: Shared Environment for data caching.
     var environment = Environment.shared
     
+    // MARK: Properties
     public var clientJSONObject: [String: Any]?
     public var prefillJSONObject: [String: Any]?
     private var mobileNumber: String = ""
     private var errorMessage: String = ""
     private var isInValid: Bool = false
     
-    // Auth Token
+    // MARK: Auth Token for login using token.
     public var token: String?
-    // Environment to be used with Auth token
+    
+    // MARK: Environment to be used with Auth token
     public var env: String = "" {
         didSet {
             guard clientJSONObject?.isEmpty ?? true else { return }
@@ -31,16 +43,20 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
     }
     
+    // MARK: Displaying Loader for initial API Call. - Lifecycle View
     public override func viewDidLoad() {
         super.viewDidLoad()
         showLoader()
     }
     
+    // MARK: Redirect to Webview based on given data. - Lifecycle View
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         redirectToWebSDK()
     }
     
+    // MARK: Method to get URL based on given data and fetching.
+    // Performs API call to generate URL based on data received.
     private func redirectToWebSDK() {
         Task(priority: .userInitiated) {
             do {
@@ -57,6 +73,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
     }
     
+    // MARK: Method to handle Error messages.
+    //         - parameters:
+    //                webloadUrl - URL in String format
     @MainActor private func handleError(message: String) {
         let errorObject: [String: Any] = [
             "error": message
@@ -66,6 +85,9 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         }
     }
     
+    // MARK: Function to open webview with the particular URL.
+    //         - parameters:
+    //                webloadUrl - URL in String format
     @MainActor private func redirectToGQWebView(webloadUrl: String?) {
         let gqWebView = GQWebView()
         gqWebView.webDelegate = self
@@ -78,6 +100,7 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         self.hideLoader()
     }
     
+    // MARK: Function to clear data in shared Environment.
     func eraseEnvironment (){
         
         environment.update(environment: "test")
@@ -96,17 +119,26 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
         environment.updateFeeHeaders(feeHeader: "")
     }
     
+    // MARK: WebDelegate Function to return Success events.
+    //         - parameters:
+    //                data - Events based on web
     func sdSuccess(data: [String : Any]?) {
         self.hideLoader()
         delegate?.gqSuccessResponse(data: data)
     }
     
+    // MARK: WebDelegate Function to return Cancel events.
+    //         - parameters:
+    //                data - Events based on web
     func sdCancel(data: [String : Any]?) {
         self.dismiss(animated: true) {
             self.delegate?.gqCancelResponse(data: data)
         }
     }
     
+    // MARK: WebDelegate Function to return Failure events.
+    //         - parameters:
+    //                data - Events based on web
     func sdError(data: [String : Any]?) {
         self.hideLoader()
         delegate?.gqFailureResponse(data: data)
@@ -114,15 +146,21 @@ public class GQPaymentSDK: GQViewController, WebDelegate {
 }
 
 
-//MARK: Login using Auth Token and Environment
+//MARK: Extension for Login using Auth Token and Environment
 extension GQPaymentSDK {
     
+    //MARK: Function for fetching Session Code from token.
+    //         - parameters:
+    //                token - token received from intialising class
     private func fetchURLFromSessionCode(token: String) async throws -> String? {
         try validateForAuthToken(token: token)
         let sessionResponse = try await APIService.fetchSessionCode(token: token)
         return fetchSessionWebURL(response: sessionResponse)
     }
     
+    //MARK: Function to generate Web URL using response from token.
+    //         - parameters:
+    //                response - the response received from API call
     private func fetchSessionWebURL(response: [String: Any]?) -> String? {
         guard let response,
               let data = response["data"] as? [String: Any],
@@ -139,6 +177,9 @@ extension GQPaymentSDK {
         return webloadUrl
     }
     
+    //MARK: Function to validate token and env for authentication.
+    //         - parameters:
+    //                token - token received from intialising class
     private func validateForAuthToken(token: String?) throws {
         var errorMessage: [String] = []
         
@@ -157,9 +198,10 @@ extension GQPaymentSDK {
 }
 
 
-//MARK: Login using Config Object and Prefill Object
+//MARK: Extension for Login using Config Object and Prefill Object
 extension GQPaymentSDK {
     
+    //MARK: Function for saving data in shared Environment and creating URL.
     private func getURLFromEnvironmentData() async throws -> String? {
         if let jsonString = customInstance.convertDictionaryToJson(dictionary: clientJSONObject ?? ["error":"Invalid JSON Object"]) {
             eraseEnvironment()
@@ -298,11 +340,17 @@ extension GQPaymentSDK {
         }
     }
     
+    //MARK: Function for performing create customer API.
     private func getURLFromCreateCustomer() async throws -> String? {
         let responseObject = try await APIService.performCreateCustomer()
         return handleAPIResult(responseObject: responseObject)
     }
     
+    //MARK: Function for handling API result and returning URL
+    //         - parameters:
+    //                token - token received from intialising class
+    //         - return:
+    //                 URL String
     private func handleAPIResult(responseObject: [String: Any]?) -> String? {
         guard let responseObject = responseObject else {
             return nil
@@ -324,6 +372,7 @@ extension GQPaymentSDK {
         return getURL()
     }
     
+    //MARK: Function to generate URL based on shared environment
     private func getURL() -> String {
         
         var webloadUrl: String = ""

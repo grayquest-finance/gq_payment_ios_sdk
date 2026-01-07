@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: Enum to handle SDK error cases
 enum GQError: Error, LocalizedError {
     case noInternet
     case noData
@@ -16,6 +17,7 @@ enum GQError: Error, LocalizedError {
     
     static let somethingWentWrongText = "Something went wrong"
     
+    //MARK: Description for particular error
     var errorDescription: String? {
         switch self {
         case .noInternet:

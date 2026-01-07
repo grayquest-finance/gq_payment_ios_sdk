@@ -7,10 +7,13 @@
 
 import UIKit
 
+//MARK: A Base Class for GQPaymentSDK Viewcontrollers
 public class GQViewController: UIViewController {
     
+    //MARK: Parameter - UI Loader
     private weak var loader: UIActivityIndicatorView?
     
+    //MARK: Function to display loader
     public func showLoader() {
         DispatchQueue.main.async {
             if let loader = self.loader {
@@ -41,6 +44,7 @@ public class GQViewController: UIViewController {
         }
     }
 
+    //MARK: Function to hide loader
     public func hideLoader() {
         DispatchQueue.main.async {
             self.loader?.stopAnimating()
