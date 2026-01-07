@@ -8,12 +8,16 @@
 import UIKit
 @preconcurrency import WebKit
 
+//MARK: A Class for displaying vendors using weblinks and receiving callback URLs back.
 @MainActor class GQWeb: GQViewController {
     
+    //MARK: Webview for displaying web contents
     private var webView: WKWebView!
     
+    // MARK: Vendor URL to load
     var loadURL: String?
     
+    //MARK: Setup Webview Configuration - View Lifecycle
     public override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences.javaScriptCanOpenWindowsAutomatically = true
@@ -30,6 +34,7 @@ import UIKit
         view = webView
     }
     
+    //MARK: Loading the Webview using the URL - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showLoader()
@@ -46,6 +51,7 @@ import UIKit
         }
     }
     
+    //MARK: View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -54,6 +60,7 @@ import UIKit
 }
 
 extension GQWeb: WKNavigationDelegate {
+    //MARK: Handle Web redirections to another URL as well as Deep Linking Management - Webview Delegate Method
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 //    MARK: For Deep Linking UPI Payment Applications.
         if navigationAction.navigationType == .other, let url = navigationAction.request.url {
@@ -75,6 +82,7 @@ extension GQWeb: WKNavigationDelegate {
         decisionHandler(.allow)
     }
     
+    //MARK: Detection of callback URL to pop the current Webview - Webview Delegate Method
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.hideLoader()
 //    MARK: For Detecting Grayquest redirection URL.
