@@ -7,8 +7,10 @@
 
 import Foundation
 
+//MARK: A Class for API services
 class APIService {
     
+    //MARK: Using the Create Customer API
     static func performCreateCustomer() async throws -> [String: Any]? {
         let environment = Environment.shared
         
@@ -48,6 +50,7 @@ class APIService {
         
     }
     
+    //MARK: Using the Session Code API
     static func fetchSessionCode(token: String) async throws -> [String: Any]? {
         let environment = Environment.shared
 
@@ -83,6 +86,7 @@ class APIService {
 }
 
 extension Dictionary {
+    //MARK: Method to encode the String into a Valid URL
     func percentEncoded() -> Data? {
         map { key, value in
             let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
@@ -95,6 +99,7 @@ extension Dictionary {
 }
 
 extension CharacterSet {
+    //MARK: Character Set which allows characters into a valid URL
     static let urlQueryValueAllowed: CharacterSet = {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="

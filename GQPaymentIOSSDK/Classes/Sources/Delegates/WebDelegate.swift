@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+//MARK: The Protocol for Success, Failure and Cancel events which will be used internally in the SDK.
 protocol WebDelegate{
     func sdSuccess(data: [String: Any]?)
     func sdCancel(data: [String: Any]?)
