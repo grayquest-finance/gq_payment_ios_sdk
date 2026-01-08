@@ -7,12 +7,15 @@
 
 import Foundation
 
+//MARK: A Class for maintaining User credentials during SDK Runtime
 class Environment {
     
+    // Singleton instance of the class
     static let shared = Environment()
     
     private init() {}
     
+    // MARK: Properties
     var env: String = "test"
     var gqApiKey: String = ""
     var clientID: String = ""
@@ -34,6 +37,8 @@ class Environment {
     var udfDetailsString: String?
 //    var authToken: String?
     
+    
+    // MARK: Juspay Callback URL
     var juspayCallbackURL: String {
         switch env {
         case "stage":
@@ -48,84 +53,104 @@ class Environment {
         }
     }
     
+    // MARK: Properties
     static var source: String = "isdk"
     static var version: String = "\"1.1\""
     static var customerAPI: String = "v1/customer/create-customer"
     static var sessionCodeAPI: String = "v1/pp/get-session-data"
     
-    // Method to update values
+    
+    // MARK: Method to update environment
     func update(environment: String) {
         self.env = environment
     }
     
+    // MARK: Method to update api key
     func updateApiKey(apiKey: String){
         self.gqApiKey = apiKey
     }
     
+    // MARK: Method to update client ID
     func updateClientId(clientID: String){
         self.clientID = clientID
     }
     
+    // MARK: Method to update client secret
     func updateClientSecret(clientSecret: String){
         self.clientSecret = clientSecret
     }
     
+    // MARK: Method to update abase
     func updateAbase(abase: String){
         self.abase = abase
     }
     
+    // MARK: Method to update customer number
     func updateCustomerNumber(customerNumber: String){
         self.customerNumber = customerNumber
     }
     
+    // MARK: Method to update customer ID
     func updateCustomerId(custId: Int){
         self.customerID = custId
     }
     
+    // MARK: Method to update customer code
     func updateCustomerCode(custCode: String){
         self.customerCode = custCode
     }
     
+    // MARK: Method to update customer type
     func updateCustomerType(custType: String){
         self.customerType = custType
     }
     
+    // MARK: Method to update student ID
     func updateStudentID(stdId: String){
         self.studentID = stdId
     }
     
+    // MARK: Method to update the theme
     func updateTheme(theme: String){
         self.theme = theme
     }
     
+    // MARK: Method to update the customization object
     func updateCustomization(customization: String){
         self.customizationString = customization
     }
     
+    // MARK: Method to update ppConfig
     func updatePpConfig(ppConfig: String){
         self.ppConfigString = ppConfig
     }
     
+    // MARK: Method to update fee headers
     func updateFeeHeaders(feeHeader: String){
         self.feeHeadersString = feeHeader
     }
     
+    // MARK: Method to update fee headers split
     func updateFeeHeadersSplit(feeHeaderSplitString: String) {
         self.feeHeadersSplitString = feeHeaderSplitString
     }
     
+    // MARK: Method to update payment methods
     func updatePaymentMethods(paymentMethods: String) {
         self.paymentMethods = paymentMethods
     }
     
+    // MARK: Method to update reference ID
     func updateReferenceID(referenceID: String?) {
         self.referenceID = referenceID
     }
 
+    // MARK: Method to update emi plan ID
     func updateEmiPlanID(emiPlanID: String?) {
         self.emiPlanID = emiPlanID
     }
 
+    // MARK: Method to update udf details
     func updateUDFDetails(udfDetails: String?) {
         self.udfDetailsString = udfDetails
     }
@@ -134,6 +159,7 @@ class Environment {
 //        self.authToken = authToken
 //    }
     
+    // MARK: The Base URL for different environments
     func baseURL() -> String{
 //        http://erp-sdk.uat.graydev.in
         switch env{
@@ -149,6 +175,7 @@ class Environment {
         }
     }
     
+    // MARK: The Web URL for different environments
     func webLoadURL() -> String{
         switch env{
         case "stage":
