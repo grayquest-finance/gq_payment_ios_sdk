@@ -363,8 +363,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         gqPaymentSDK.modalTransitionStyle = .crossDissolve
         
         gqPaymentSDK.delegate = self
-        gqPaymentSDK.token = token
-        gqPaymentSDK.env = env
+        gqPaymentSDK.clientJSONObject = clientJSONObject
+        gqPaymentSDK.prefillJSONObject = prefillJSONObject
         DispatchQueue.main.async {
             self.present(gqPaymentSDK, animated: true)
         }
@@ -373,7 +373,7 @@ class ViewController: UIViewController, GQPaymentDelegate {
 }
 ```
 
-## Options
+## Options (Session Token)
 
 Available options that can be set while initiating the sdk.
 
