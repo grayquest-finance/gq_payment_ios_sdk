@@ -30,6 +30,10 @@ The newest versions of our GQPaymentIOSSDK(1.0.1 and newer) will require your ap
 ## Initialising
 
 Import the SDK on your viewcontroller, where you want to present the payment screen.
+There 2 options to Initialise the SDK:
+1. Using Client JSON Object and Prefill JSON Object
+2. Using Session Token
+
 
 ```ruby
 import GQPaymentIOSSDK
@@ -44,10 +48,17 @@ let gqPaymentSDK = GQPaymentSDK()
 gqPaymentSDK.modalPresentationStyle = .overFullScreen
 gqPaymentSDK.modalTransitionStyle = .crossDissolve
 
+// Using Client JSON Object & Prefill JSON Object
 gqPaymentSDK.delegate = self
 gqPaymentSDK.clientJSONObject = <ClientJSONObject>
 gqPaymentSDK.prefillJSONObject = <PrefillJSONObject>
 
+// OR Using Session Token
+gqPaymentSDK.delegate = self
+gqPaymentSDK.token = "<session_token>"
+gqPaymentSDK.env = "<env>"
+
+// Launching the SDK
 DispatchQueue.main.async {
     self.present(gqPaymentSDK, animated: true)
 }
@@ -56,7 +67,8 @@ DispatchQueue.main.async {
 
 ## Add the following code for Delegates/ Callbacks:
 
-Confirm your Viewcontroller to the GQPaymentDelegate protocol:
+Confirm your Viewcontroller to the GQPaymentDelegate protocol
+(Mandatory for both Session Token and Client JSON Object):
 
 ```ruby
 extension ViewController: GQPaymentDelegate {
@@ -194,7 +206,7 @@ Below options can be used for customizations.
 `NOTE: If data for a specific field is not available then you should not send the variable or key.`
 
 
-## Complete Code:
+## Complete Code (Client JSON Object):
 
 ```ruby
 import GQPaymentIOSSDK
@@ -351,8 +363,8 @@ class ViewController: UIViewController, GQPaymentDelegate {
         gqPaymentSDK.modalTransitionStyle = .crossDissolve
         
         gqPaymentSDK.delegate = self
-        gqPaymentSDK.clientJSONObject = clientJSONObject
-        gqPaymentSDK.prefillJSONObject = prefillJSONObject
+        gqPaymentSDK.token = token
+        gqPaymentSDK.env = env
         DispatchQueue.main.async {
             self.present(gqPaymentSDK, animated: true)
         }
@@ -360,7 +372,56 @@ class ViewController: UIViewController, GQPaymentDelegate {
     
 }
 ```
+
+## Options
+
+Available options that can be set while initiating the sdk.
+
     
+### Initialising using Session Token and Environment
+
+| Sr. No. | Option | Data Type | Description | Mandatory |
+|--|--|--|--|--|
+| 1 | token | string | Session Token | Yes |
+| 2 | env | string | **Values**: `stage` <br> **Possible Scenarios:** <br> 1. If the value is `stage` then SDK will connect with Testing environment <br> 2. If the value is `live` then SDK will connect with the Live/Production environment | Yes |
+
+    
+## Complete Code (Session Token):
+
+```ruby
+import GQPaymentIOSSDK
+
+class ViewController: UIViewController, GQPaymentDelegate {
+
+    func gqSuccessResponse(data: [String : Any]?) {
+        print("Success callback received with data: \(data)")
+    }
+    
+    func gqFailureResponse(data: [String : Any]?) {
+        print("Failure callback received with data: \(data)")
+    }
+    
+    func gqCancelResponse(data: [String : Any]?) {
+        print("Cancel callback received with data: \(data)")
+    }
+        
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let gqPaymentSDK = GQPaymentSDK()
+        
+        gqPaymentSDK.modalPresentationStyle = .overFullScreen
+        gqPaymentSDK.modalTransitionStyle = .crossDissolve
+        
+        gqPaymentSDK.delegate = self
+        gqPaymentSDK.token = "<session_token>"
+        gqPaymentSDK.env = "<env>"
+        
+        self.present(gqPaymentSDK, animated: true)
+    }
+    
+}
+```
     
 ## Author
 
